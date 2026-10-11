@@ -1,0 +1,10 @@
+module Forge
+  module Sparks
+    module Rb
+      module Version
+        VERSION: String
+      end
+      VERSION: String
+    end
+  end
+end
