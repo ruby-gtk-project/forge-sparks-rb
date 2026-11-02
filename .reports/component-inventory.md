@@ -3,16 +3,21 @@
 Upstream: `origin/main` (GJS + blueprint, meson, gjspack bundler).
 Port: the `ruby` branch of this repo.
 
-**State of the port: nothing is ported yet.** `lib/` holds only the kettle-jem
-scaffold — `lib/forge_sparks.rb`, `lib/forge/sparks/rb/version.rb` and
-`lib/forge_sparks/application.rb`, the generated "The Ruby port has not been
-written yet." status page. Every row below is therefore `present: no`; the
-scaffold is noted where it occupies the eventual path.
+**State of the port (re-surveyed on the current `ruby` HEAD).** The scaffold is
+gone and 22 `lib/*.rb` files, ~4,000 lines, stand against upstream's 23
+components: every widget unit, model, forge backend, the settings store, the
+stylesheet and the assets are written. Two gaps remain, and nothing else:
+
+1. **`po/` — missing entirely.** No catalogue, no gettext at runtime, every
+   string inline English. Upstream ships 23 locales plus the `.pot`, and
+   `relativeDate`'s plural forms need `ngettext`.
+2. **Packaging data — partial.** `data/` has the nine status icons, the
+   empty-state illustration and the app icons, but not the `.desktop`,
+   metainfo or D-Bus service files, so there is no desktop entry.
 
 Scan corroborating the reading below (clean export of `origin/main`,
 `component-identification/scripts/component-scan.sh`): 141 rows, 36 distinct
 widget types, 20 distinct CSS classes, 9 distinct signals, 18 distinct actions.
-The port side scans to the scaffold's 5 widgets and no CSS, signals or actions.
 
 Upstream is a two-file-per-component GJS app: each widget class is a `.js`
 beside its `.blp`, and the port merges the pair into one `lib/*.rb`. House
@@ -75,7 +80,7 @@ Also in `window.blp`: the primary `menu menu` — section one with
 section two with "Quit". Five items, no `custom:` slots. Port it as a
 `Gio::Menu` built in `lib/window.rb`.
 
-Present: **no**.
+Present: **yes**.
 
 ## src/gtk/help-overlay.blp → `lib/shortcuts_dialog.rb` — keyboard shortcuts
 
@@ -92,7 +97,7 @@ The pilot ports this shape as an `Adwaita::ShortcutsDialog` with
 `gnome-contacts-rb/lib/shortcuts_dialog.rb` — items take **positional**
 arguments).
 
-Present: **no**.
+Present: **yes**.
 
 ## src/application.js → `lib/application.rb` — the application, its actions and About
 
@@ -115,7 +120,9 @@ scaffold (status page, five widgets). It must be replaced, and the mapping
 flattened to `lib/application.rb` beside its siblings, with
 `lib/forge_sparks.rb` requiring it.
 
-Present: **no** (scaffold stub only).
+Present: **yes** — `lib/application.rb` (307 lines); the generated
+`lib/forge_sparks/application.rb` scaffold is gone and `lib/forge_sparks.rb`
+is a four-line requirer.
 
 ## src/widgets/accountDialog.js + .blp → `lib/account_dialog.rb` — add/edit an account
 
@@ -144,7 +151,7 @@ Behaviour: URL normalisation (forces `https://`, `GLib.Uri.parse` with
 the create and the edit path, token load from the secret store when editing,
 and firing `app.reload` after add/update/remove.
 
-Present: **no**.
+Present: **yes**.
 
 ## src/widgets/accountsDialog.js + .blp → `lib/accounts_dialog.rb` — the accounts list
 
@@ -168,7 +175,7 @@ with CSS `error` and tooltip "Account authentication failed!" bound to
 `auth-failed`, suffix `Gtk.Image go-next-symbolic`, `activated` → present
 `AccountDialog(account)`.
 
-Present: **no**.
+Present: **yes**.
 
 ## src/widgets/preferences.js + .blp → `lib/preferences_dialog.rb` — preferences
 
@@ -188,7 +195,7 @@ value the portal actually granted (with `freeze_notify`/`thaw_notify` around
 the switch), toasting on failure; the background toggle also updates the live
 window's `hide_on_close`.
 
-Present: **no**.
+Present: **yes**.
 
 ## src/widgets/notificationRow.js + .blp → `lib/notification_row.rb` — one notification row
 
@@ -208,7 +215,7 @@ own layout), `tooltip-text` bound to `title`, `notify::parent` → `_onParent`.
 Properties to reproduce: `title`, `date`, `repo`, `account`, `state`,
 `icon-name`, `progress`, plus the `activated` signal.
 
-Present: **no**.
+Present: **yes**.
 
 ## src/model/notification.js → `lib/notification.rb` — a notification, and its desktop notification
 
@@ -228,7 +235,7 @@ the row icon, so it is a component boundary.
 - Properties: `id`, `type`, `unread`, `updated-at`, `timestamp` (read-only,
   from `dateTime`), `state`, `title`, `repository`, `url`, `account-name`.
 
-Present: **no**.
+Present: **yes**.
 
 ## src/model/notificationsList.js → `lib/notifications_list.rb` — the notifications model
 
@@ -237,7 +244,7 @@ Present: **no**.
 stack-page switching and the visibility of the mark-all-read button hang off
 its `items-changed`.
 
-Present: **no**.
+Present: **yes**.
 
 ## src/model/account.js → `lib/account.rb` — one account
 
@@ -246,7 +253,7 @@ Present: **no**.
 `notify::username` re-notify `display-name`. `display-name` feeds the accounts
 list row and the auth-failure banner, `auth-failed` the row's error icon.
 
-Present: **no**.
+Present: **yes**.
 
 ## src/model/accountsManager.js → `lib/accounts_manager.rb` — accounts store
 
@@ -257,7 +264,7 @@ plus one `<app-id>.account` child schema per account (settings-bound `forge`,
 `saveAccount`, `updateAccount`, `removeAccount`, `getAccountToken`,
 `isMultiple` (the row's account label only appears when true).
 
-Present: **no**.
+Present: **yes**.
 
 ## src/util.js → `lib/util.rb` — settings, session, portal, relative dates
 
@@ -271,7 +278,7 @@ Present: **no**.
   `%d hour(s) ago`, "yesterday"/`%d days ago`, `%d week(s) ago`, then
   `on %b %d` / `on %d %b, %Y`. Plural forms, so it needs ngettext in the port.
 
-Present: **no**.
+Present: **yes**.
 
 ## src/forges/*.js → `lib/forge.rb`, `lib/forges.rb`, `lib/github.rb`, `lib/gitea.rb`, `lib/forgejo.rb`, `lib/gitlab.rb`
 
@@ -291,7 +298,8 @@ toasts and the window's auth banner render. `index.js` also holds `extractID`.
 - `src/forges/forgejo.js` → `lib/forgejo.rb`
 - `src/forges/gitlab.js` → `lib/gitlab.rb`
 
-Present: **no** (all six).
+Present: **yes** (all six): `lib/forge.rb`, `lib/forges.rb`, `lib/github.rb`,
+`lib/gitea.rb`, `lib/forgejo.rb`, `lib/gitlab.rb`.
 
 ## src/main.js + src/com.mardojai.ForgeSparks → `lib/main.rb` (+ existing `exe/forge-sparks`)
 
@@ -299,7 +307,7 @@ Entry point: sets the application name "Forge Sparks", promisifies Soup and
 Secret, instantiates the application and runs it. `exe/forge-sparks` already
 exists on `ruby` but launches the scaffold.
 
-Present: **no**.
+Present: **yes**.
 
 ## data/com.mardojai.ForgeSparks.gschema.xml → `lib/settings.rb`
 
@@ -309,7 +317,9 @@ Main schema keys: `first-run` (b), `hide-on-close` (b), `autostart` (b),
 `url` (`'github.com'`), `username`, `user-id`. Note `window-size` is declared
 but never read upstream — the window uses the blueprint's 500×500.
 
-Present: **no**.
+Present: **yes**, as `lib/settings.rb` — the same key set, backed by a JSON
+file under the user config dir rather than a GSettings schema, so no
+`.gschema.xml` is installed by the port.
 
 ## src/style.css + src/style-dark.css → `lib/style.rb`
 
@@ -319,7 +329,8 @@ needs a `Gtk::CssProvider` pair selected by `Adwaita::StyleManager#dark?`.
 `margin-box` is used by `window.blp` and `accountsDialog.blp`; `closed` by
 `notificationRow.js`. No dead and no undefined classes.
 
-Present: **no**.
+Present: **yes** — `lib/style.rb` carries both sheets as strings and swaps the
+dark provider on `Adwaita::StyleManager#dark?`.
 
 ## Assets — `data/` in the port
 
@@ -330,7 +341,10 @@ Nine status icons (`commit`, `discussion`, `issue`, `issue-done`,
 picture) and the app icons in `data/`. The desktop file and metainfo carry the
 user-visible name "Forge Sparks" and summary "Get Git forges notifications".
 
-Present: **no**.
+Present: **partly** — `data/icons/*-symbolic.svg` (all nine), `data/alldone.svg`,
+`data/forge-sparks.svg` and `data/forge-sparks-symbolic.svg` are in the port.
+Still missing: the `.desktop`, metainfo and D-Bus service files, so the app has
+no desktop entry.
 
 ## po/ — translations
 
@@ -340,7 +354,9 @@ sv ta tr uk vi zh_Hans` per `po/LINGUAS`) plus
 every `.js` holding a translated string is in it. The port needs the same
 catalogue reachable and `ngettext` for `relativeDate`'s plural forms.
 
-Present: **no**.
+Present: **no**. There is no `po/` in the port and no gettext at runtime; every
+user-visible string is inline English, and `lib/util.rb` hand-picks the plural
+form where upstream calls `ngettext`. This is the one whole-component gap left.
 
 ---
 
@@ -348,29 +364,31 @@ Present: **no**.
 
 | # | Upstream | Port path | Kind | Present |
 |---:|---|---|---|:-:|
-| 1 | `src/window.js` + `src/window.blp` | `lib/window.rb` | window (3-page stack, primary menu, banner, empty state) | no |
-| 2 | `src/gtk/help-overlay.blp` | `lib/shortcuts_dialog.rb` | keyboard shortcuts window | no |
-| 3 | `src/application.js` | `lib/application.rb` | application, 9 actions, 7 accels, About dialog | no (scaffold stub) |
-| 4 | `src/widgets/accountDialog.js` + `.blp` | `lib/account_dialog.rb` | dialog (add/edit account, toasts) | no |
-| 5 | `src/widgets/accountsDialog.js` + `.blp` | `lib/accounts_dialog.rb` | dialog (accounts list, empty state, row repeater) | no |
-| 6 | `src/widgets/preferences.js` + `.blp` | `lib/preferences_dialog.rb` | preferences dialog | no |
-| 7 | `src/widgets/notificationRow.js` + `.blp` | `lib/notification_row.rb` | list row | no |
-| 8 | `src/model/notification.js` | `lib/notification.rb` | model + desktop notification + icon map | no |
-| 9 | `src/model/notificationsList.js` | `lib/notifications_list.rb` | list model | no |
-| 10 | `src/model/account.js` | `lib/account.rb` | model | no |
-| 11 | `src/model/accountsManager.js` | `lib/accounts_manager.rb` | settings/secret-backed list model | no |
-| 12 | `src/util.js` | `lib/util.rb` | settings, Soup session, portal, relative dates | no |
-| 13 | `src/forges/forge.js` | `lib/forge.rb` | backend base class | no |
-| 14 | `src/forges/index.js` | `lib/forges.rb` | forge registry, `extractID` | no |
-| 15 | `src/forges/github.js` | `lib/github.rb` | backend + token help text | no |
-| 16 | `src/forges/gitea.js` | `lib/gitea.rb` | backend + token help text | no |
-| 17 | `src/forges/forgejo.js` | `lib/forgejo.rb` | backend + token help text | no |
-| 18 | `src/forges/gitlab.js` | `lib/gitlab.rb` | backend + token help text | no |
-| 19 | `src/main.js` + `src/com.mardojai.ForgeSparks` | `lib/main.rb` | entry point, CLI options | no |
-| 20 | `data/com.mardojai.ForgeSparks.gschema.xml` | `lib/settings.rb` | GSettings schema | no |
-| 21 | `src/style.css` + `src/style-dark.css` | `lib/style.rb` | CSS provider (light/dark) | no |
-| 22 | `src/icons/*.svg`, `src/assets/alldone.svg` | `data/` | assets (9 status icons + illustration) | no |
+| 1 | `src/window.js` + `src/window.blp` | `lib/window.rb` | window (3-page stack, primary menu, banner, empty state) | yes |
+| 2 | `src/gtk/help-overlay.blp` | `lib/shortcuts_dialog.rb` | keyboard shortcuts dialog | yes |
+| 3 | `src/application.js` | `lib/application.rb` | application, 9 actions, 7 accels, About dialog | yes |
+| 4 | `src/widgets/accountDialog.js` + `.blp` | `lib/account_dialog.rb` | dialog (add/edit account, toasts) | yes |
+| 5 | `src/widgets/accountsDialog.js` + `.blp` | `lib/accounts_dialog.rb` | dialog (accounts list, empty state, row repeater) | yes |
+| 6 | `src/widgets/preferences.js` + `.blp` | `lib/preferences_dialog.rb` | preferences dialog | yes |
+| 7 | `src/widgets/notificationRow.js` + `.blp` | `lib/notification_row.rb` | list row | yes |
+| 8 | `src/model/notification.js` | `lib/notification.rb` | model + desktop notification + icon map | yes |
+| 9 | `src/model/notificationsList.js` | `lib/notifications_list.rb` | list model | yes |
+| 10 | `src/model/account.js` | `lib/account.rb` | model | yes |
+| 11 | `src/model/accountsManager.js` | `lib/accounts_manager.rb` | settings/secret-backed list model | yes |
+| 12 | `src/util.js` | `lib/util.rb` | settings, HTTP session, portal, relative dates | yes |
+| 13 | `src/forges/forge.js` | `lib/forge.rb` | backend base class | yes |
+| 14 | `src/forges/index.js` | `lib/forges.rb` | forge registry, `extractID` | yes |
+| 15 | `src/forges/github.js` | `lib/github.rb` | backend + token help text | yes |
+| 16 | `src/forges/gitea.js` | `lib/gitea.rb` | backend + token help text | yes |
+| 17 | `src/forges/forgejo.js` | `lib/forgejo.rb` | backend + token help text | yes |
+| 18 | `src/forges/gitlab.js` | `lib/gitlab.rb` | backend + token help text | yes |
+| 19 | `src/main.js` + `src/com.mardojai.ForgeSparks` | `lib/main.rb` | entry point, CLI options | yes |
+| 20 | `data/com.mardojai.ForgeSparks.gschema.xml` | `lib/settings.rb` | settings store (JSON, same key set) | yes |
+| 21 | `src/style.css` + `src/style-dark.css` | `lib/style.rb` | CSS provider (light/dark) | yes |
+| 22 | `src/icons/*.svg`, `src/assets/alldone.svg`, `data/*.desktop.in.in`, metainfo | `data/` | assets + packaging data | partly |
 | 23 | `po/` (23 locales + pot) | `po/` | translation catalogue | no |
 
 Seven of these are widget units (1–7); the remaining sixteen are the models,
-backends, settings, styling, assets and translations they need.
+backends, settings, styling, assets and translations they need. 21 of 23 are
+done; what is left is the translation catalogue (#23) and the desktop/metainfo
+packaging data (#22).
