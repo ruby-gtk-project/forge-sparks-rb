@@ -3,6 +3,7 @@
 require 'adwaita'
 
 require_relative 'util'
+require_relative 'translation'
 
 # PreferencesDialog holds the three desktop-integration preferences.
 #
@@ -20,6 +21,8 @@ require_relative 'util'
 # the request can fail, and the row follows what actually happened.
 #
 class PreferencesDialog < Adwaita::PreferencesDialog
+  include Translation
+
   # @param settings [Settings] the app settings
   # @param on_hide_on_close_changed [Proc, nil] called with the new value so the
   #   window can follow it, as upstream sets window.hide_on_close
@@ -75,7 +78,7 @@ class PreferencesDialog < Adwaita::PreferencesDialog
 
   def background_row
     @background_row ||= Adwaita::ExpanderRow.new.tap do |row|
-      row.title = 'Keep Running in Background'
+      row.title = _('Keep Running in Background')
       row.show_enable_switch = true
       row.expanded = true
     end
@@ -83,7 +86,7 @@ class PreferencesDialog < Adwaita::PreferencesDialog
 
   def startup_row
     @startup_row ||= Adwaita::ActionRow.new.tap do |row|
-      row.title = 'Run on Startup'
+      row.title = _('Run on Startup')
     end
   end
 
@@ -97,7 +100,7 @@ class PreferencesDialog < Adwaita::PreferencesDialog
   # row follows the autostart switch — upstream binds its sensitivity to it.
   def hidden_row
     @hidden_row ||= Adwaita::ActionRow.new.tap do |row|
-      row.title = 'Start Hidden'
+      row.title = _('Start Hidden')
       row.sensitive = false
     end
   end
@@ -161,7 +164,7 @@ class PreferencesDialog < Adwaita::PreferencesDialog
         update_startup_switch(@settings['autostart'])
 
         unless success
-          add_toast(Adwaita::Toast.new('The autostart request failed.'))
+          add_toast(Adwaita::Toast.new(_('The autostart request failed.')))
         end
       end
     end

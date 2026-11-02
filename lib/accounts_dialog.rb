@@ -4,6 +4,7 @@ require 'adwaita'
 
 require_relative 'accounts_manager'
 require_relative 'account_dialog'
+require_relative 'translation'
 
 # AccountsDialog lists the configured accounts.
 #
@@ -18,6 +19,8 @@ require_relative 'account_dialog'
 # redraws a row after its account was edited.
 #
 class AccountsDialog < Adwaita::Dialog
+  include Translation
+
   CONTENT_WIDTH = 360
 
   # @param accounts [AccountsManager] the accounts model
@@ -30,7 +33,7 @@ class AccountsDialog < Adwaita::Dialog
     @error_icons = {}
     @watched = []
 
-    self.title = 'Accounts'
+    self.title = _('Accounts')
     self.content_width = CONTENT_WIDTH
   end
 
@@ -94,7 +97,7 @@ class AccountsDialog < Adwaita::Dialog
 
   def add_button_content
     @add_button_content ||= Adwaita::ButtonContent.new.tap do |content|
-      content.label = 'Add…'
+      content.label = _('Add…')
       content.icon_name = 'list-add-symbolic'
     end
   end
@@ -120,8 +123,8 @@ class AccountsDialog < Adwaita::Dialog
 
   def empty_page
     @empty_page ||= Adwaita::StatusPage.new.tap do |page|
-      page.title = 'No Accounts'
-      page.description = 'Add an account to receive notifications from'
+      page.title = _('No Accounts')
+      page.description = _('Add an account to receive notifications from')
       page.add_css_class('compact')
     end
   end
@@ -155,7 +158,7 @@ class AccountsDialog < Adwaita::Dialog
 
     def auth_error_icon(account)
       Gtk::Image.new(icon_name: 'dialog-error-symbolic').tap do |image|
-        image.tooltip_text = 'Account authentication failed!'
+        image.tooltip_text = _('Account authentication failed!')
         image.add_css_class('error')
         image.visible = account.auth_failed?
         watch_auth_failed(account, image)

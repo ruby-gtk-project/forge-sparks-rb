@@ -1,0 +1,369 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the com.mardojai.ForgeSparks package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: forge-sparks 0.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/ruby-gtk-project/forge-sparks-rb/"
+"issues\n"
+"POT-Creation-Date: 2026-11-02 23:17+0000\n"
+"PO-Revision-Date: 2025-07-28 10:02+0000\n"
+"Last-Translator: Ahmed Najmawi <iramosu@protonmail.com>\n"
+"Language-Team: Arabic <https://hosted.weblate.org/projects/forge-sparks/"
+"forge-sparks/ar/>\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+"X-Generator: Weblate 5.13-dev\n"
+
+#: lib/account_dialog.rb:46
+msgid "Edit Account"
+msgstr "حرِّر الحساب"
+
+#: lib/account_dialog.rb:48
+msgid "Add Account"
+msgstr "أضِف حسابًا"
+
+#: lib/account_dialog.rb:138
+msgid "Cancel"
+msgstr "ألغِ"
+
+#: lib/account_dialog.rb:145
+msgid "Save"
+msgstr "احفظ"
+
+#: lib/account_dialog.rb:147
+msgid "Add"
+msgstr "أضِف"
+
+#: lib/account_dialog.rb:167
+msgid "Forge"
+msgstr "المنصة"
+
+#: lib/account_dialog.rb:175
+msgid "Instance URL"
+msgstr "مسار المثيل"
+
+#: lib/account_dialog.rb:182
+msgid "Access Token"
+msgstr "رمز الوصول"
+
+#: lib/account_dialog.rb:213
+msgid "Remove Account"
+msgstr "أزِل الحساب"
+
+#: lib/account_dialog.rb:243
+msgid "Could not read the saved access token"
+msgstr ""
+
+#: lib/account_dialog.rb:328
+msgid "Invalid instance url."
+msgstr "مسار المثيل غير صالح."
+
+#: lib/account_dialog.rb:449
+msgid "Unexpected error removing the account"
+msgstr "حدث خطأ غير متوقع عند إزالة الحساب"
+
+#: lib/account_dialog.rb:467
+msgid "Couldn’t authenticate the account"
+msgstr "تعذَّر توثيق الحساب"
+
+#: lib/account_dialog.rb:469
+msgid "The access token doesn’t have the needed scopes"
+msgstr "لا يملك رمز الوصول النطاقات المطلوبة"
+
+#: lib/account_dialog.rb:471
+msgid "Unexpected error when creating the account"
+msgstr "حدث خطأ غير متوقع عند إنشاء الحساب"
+
+#: lib/accounts_dialog.rb:36 lib/window.rb:369 lib/window.rb:652
+msgid "Accounts"
+msgstr "الحسابات"
+
+#: lib/accounts_dialog.rb:100
+msgid "Add…"
+msgstr "أضِف…"
+
+#: lib/accounts_dialog.rb:126
+msgid "No Accounts"
+msgstr "لا توجد حسابات"
+
+#: lib/accounts_dialog.rb:127 lib/window.rb:299
+msgid "Add an account to receive notifications from"
+msgstr "أضِف حسابًا لتستلم التنبيهات منه"
+
+#: lib/accounts_dialog.rb:161
+msgid "Account authentication failed!"
+msgstr "تعذَّر توثيق الحساب!"
+
+#: lib/application.rb:96
+msgid "Get Git forges notifications"
+msgstr "احصل على إشعارات منصات جِت"
+
+#. Translators: Replace "translator-credits" with your names, one name per line
+#: lib/application.rb:98
+msgid "translator-credits"
+msgstr "أحمد النجماوي <iramosu@protonmail.com>"
+
+#: lib/application.rb:116
+msgid "Print version information and exit"
+msgstr ""
+
+#: lib/application.rb:125
+#, fuzzy
+#| msgid "Start Hidden"
+msgid "Start hidden"
+msgstr "ابدأ مخفيًا"
+
+#. Translators: Gitea access token help
+#: lib/gitea.rb:29
+msgid ""
+"To generate a new access token from your instance, go to Settings → "
+"Applications and generate a new token."
+msgstr ""
+"لإنشاء رمز وصول جديد من نسختك، اذهب إلى الإعدادات ← التطبيقات ثم أنشئ رمزًا "
+"جديدًا."
+
+#. Translators: Gitea access token help
+#: lib/gitea.rb:35
+msgid ""
+"Forge Sparks requires the <i>read:issue</i>, <i>write:notification</i> and "
+"<i>read:user</i> scopes granted."
+msgstr ""
+"يتطلب فورج سباركس منح نطاقات <i>read:issue</i>، و<i>write:notification</i>، "
+"و<i>read:user</i>."
+
+#: lib/github.rb:47
+msgid ""
+"You can generate a new personal access token from <a href=\"%s\">GitHub "
+"developer settings</a>. For more information, see \"<a href=\"%s\">Creating "
+"a personal access token</a>\"."
+msgstr ""
+"يمكنك إنشاء رمز وصول شخصي جديد من <a href=\"%s\">إعدادات مطوري جِت‌هاب</a>. "
+"للمزيد من المعلومات، راجع «<a href=\"%s\">إنشاء رمز وصول شخصي</a>»."
+
+#. Translators: GitHub access token help
+#: lib/github.rb:57
+msgid ""
+"Forge Sparks requires a <b>classic</b> access token (for general use) with "
+"the <i>notifications</i> and <i>read:user</i> scopes granted."
+msgstr ""
+"يتطلب «فورج سباركس» رمز وصول <b>تقليديًا</b> (للاستخدام العام) مع منح نطاقَي "
+"<i>notifications</i> و<i>read:user</i>."
+
+#. Translators: GitHub access token help
+#: lib/github.rb:63
+msgid ""
+"If you’re working with private repositories, you’ll also need to grant the "
+"full <i>repo</i> scope."
+msgstr ""
+"إذا كنت تعمل على مستودعات خاصة، فستحتاج أيضًا إلى منح نطاق <i>repo</i> الكامل."
+
+#. Translators: GitLab access token help
+#: lib/gitlab.rb:26
+msgid ""
+"To generate a new access token from your instance, go to Preferences → "
+"Access Tokens and generate a new token."
+msgstr ""
+"لإنشاء رمز وصول جديد من نسختك، اذهب إلى التفضيلات ← رموز الوصول ثم أنشئ رمزًا "
+"جديدًا."
+
+#. Translators: GitLab access token help
+#: lib/gitlab.rb:32
+msgid ""
+"Forge Sparks needs <i>read_api</i> scope to read notifications or full "
+"<i>api</i> scope to also mark todos as done."
+msgstr ""
+"يحتاج فورج سباركس إلى نطاق <i>read_api</i> لقراءة التنبيهات أو نطاق <i>api</"
+"i> الكامل ليعلِّم المهام كمُنجزة أيضًا."
+
+#: lib/notification.rb:124
+msgid "Mark as Read"
+msgstr "علِّم كمقروء"
+
+#: lib/notification.rb:130
+msgid "Show Forge Sparks"
+msgstr "أظهِر «فورج سباركس»"
+
+#: lib/preferences_dialog.rb:81
+msgid "Keep Running in Background"
+msgstr "أبقِ التشغيل في الخلفية"
+
+#: lib/preferences_dialog.rb:89
+msgid "Run on Startup"
+msgstr "شغِّل عند بدء التشغيل"
+
+#: lib/preferences_dialog.rb:103
+msgid "Start Hidden"
+msgstr "ابدأ مخفيًا"
+
+#: lib/preferences_dialog.rb:167
+msgid "The autostart request failed."
+msgstr "أخفق طلب التشغيل الآلي."
+
+#: lib/shortcuts_dialog.rb:26
+msgctxt "shortcut window"
+msgid "General"
+msgstr "عام"
+
+#: lib/shortcuts_dialog.rb:27
+msgctxt "shortcut window"
+msgid "Open menu"
+msgstr "افتح القائمة"
+
+#: lib/shortcuts_dialog.rb:28
+msgctxt "shortcut window"
+msgid "Keyboard shortcuts"
+msgstr "اختصارات لوحة المفاتيح"
+
+#: lib/shortcuts_dialog.rb:29
+msgctxt "shortcut window"
+msgid "Quit"
+msgstr "اخرُج"
+
+#: lib/shortcuts_dialog.rb:35
+#, fuzzy
+#| msgid "_Keyboard Shortcuts"
+msgid "Keyboard Shortcuts"
+msgstr "ا_ختصارات لوحة المفاتيح"
+
+#: lib/util.rb:140 lib/util.rb:145
+msgid "now"
+msgstr "الآن"
+
+#. Translators: relative date
+#: lib/util.rb:148
+msgid "%d minute ago"
+msgid_plural "%d minutes ago"
+msgstr[0] "منذ أقل من دقيقة"
+msgstr[1] "منذ دقيقة"
+msgstr[2] "منذ دقيقتين"
+msgstr[3] "منذ %d دقائق"
+msgstr[4] "منذ %d دقيقة"
+msgstr[5] "منذ %d دقيقة"
+
+#. Translators: relative date
+#: lib/util.rb:152
+msgid "%d hour ago"
+msgid_plural "%d hours ago"
+msgstr[0] "منذ أقل من ساعة"
+msgstr[1] "منذ ساعة"
+msgstr[2] "منذ ساعتين"
+msgstr[3] "منذ %d ساعات"
+msgstr[4] "منذ %d ساعة"
+msgstr[5] "منذ %d ساعة"
+
+#. Translators: relative date
+#: lib/util.rb:157
+msgid "yesterday"
+msgid_plural "%d days ago"
+msgstr[0] "اليوم"
+msgstr[1] "أمس"
+msgstr[2] "منذ يومين"
+msgstr[3] "منذ %d أيام"
+msgstr[4] "منذ %d يومًا"
+msgstr[5] "منذ %d يوم"
+
+#. Translators: relative date
+#: lib/util.rb:162
+msgid "%d week ago"
+msgid_plural "%d weeks ago"
+msgstr[0] "منذ أقل من أسبوع"
+msgstr[1] "منذ أسبوع"
+msgstr[2] "منذ أسبوعين"
+msgstr[3] "منذ %d أسابيع"
+msgstr[4] "منذ %d أسبوعًا"
+msgstr[5] "منذ %d أسبوع"
+
+#. Translators: relative date, %s is date formatted as "May 01"
+#. Translators: relative date, %s is date formatted as "01 May, 2022"
+#: lib/util.rb:166 lib/util.rb:169
+msgid "on %s"
+msgstr "في %s"
+
+#. Translators: Don't translate, only transliterate if needed
+#: lib/window.rb:66
+msgid "Forge Sparks"
+msgstr "فورج سباركس"
+
+#: lib/window.rb:298
+msgid "Welcome to Forge Sparks"
+msgstr "أهلًا بك في «فورج سباركس»"
+
+#: lib/window.rb:309
+msgid "Add Account…"
+msgstr "أضِف حسابًا…"
+
+#: lib/window.rb:350 lib/window.rb:365
+msgid "Mark all as Read"
+msgstr "علِّم الكل كمقروء"
+
+#: lib/window.rb:401
+msgid "No Notifications to Show"
+msgstr "لا توجد تنبيهات لعرضها"
+
+#: lib/window.rb:432
+msgid "_Preferences"
+msgstr "ال_تفضيلات"
+
+#: lib/window.rb:433
+msgid "_Accounts"
+msgstr "ال_حسابات"
+
+#: lib/window.rb:434
+msgid "_Keyboard Shortcuts"
+msgstr "ا_ختصارات لوحة المفاتيح"
+
+#: lib/window.rb:435
+msgid "About Forge Sparks"
+msgstr "عَنْ «فورج سباركس»"
+
+#: lib/window.rb:442
+msgid "Quit"
+msgstr "اخرُج"
+
+#: lib/window.rb:454
+msgid "Main Menu"
+msgstr "القائمة الرئيسة"
+
+#: lib/window.rb:636
+msgid "Account %s authentication failed!"
+msgstr "تعذَّرت مصادقة الحساب %s!"
+
+#: lib/window.rb:637
+msgid "The token may have been revoked or expired."
+msgstr "قد يكون الرمز ملغيًا أو انتهت صلاحيته."
+
+#: data/org.rubygtkproject.ForgeSparks.desktop.in:12
+msgid "git;github;notifications;"
+msgstr ""
+"جت;جيت;غت;غيت;جتهب;جيتهب;غتهب;غيتهب;جتهاب;جيتهاب;غتهاب;غيتهاب;جت هب;جيت "
+"هب;غت هب;غيت هب;جت هاب;جيت هاب;غت هاب;غيت "
+"هاب;التنبيهات;الإشعارات;git;github;notifications;Forge Sparks;"
+
+#: data/org.rubygtkproject.ForgeSparks.metainfo.xml.in:24
+msgid "Simple notifier app with support for GitLab, Github, Gitea and Forgejo."
+msgstr "تطبيق مُنبِّه بسيط يدعم GitLab، وGithub، وGitea، وForgejo."
+
+#: data/org.rubygtkproject.ForgeSparks.metainfo.xml.in:25
+msgid ""
+"This is a Ruby GTK4 and Libadwaita port of Forge Sparks, written against the "
+"original as its specification."
+msgstr ""
+
+#~ msgid "Allow running Forge Sparks on background."
+#~ msgstr "اسمح بتشغيل «فورج سباركس» في الخلفية."
+
+#~ msgid "Allow running Forge Sparks on startup."
+#~ msgstr "اسمح بتشغيل «فورج سباركس» عند بدء التشغيل."
+
+#~ msgid "Monitoring new notifications"
+#~ msgstr "تُراقَب التنبيهات الجديدة"
+
+#~ msgid "The request failed."
+#~ msgstr "أخفق الطلب."

@@ -6,6 +6,7 @@ require 'adwaita'
 require_relative 'forges'
 require_relative 'accounts_manager'
 require_relative 'util'
+require_relative 'translation'
 
 # AccountDialog adds an account, or edits one that exists.
 #
@@ -22,6 +23,8 @@ require_relative 'util'
 # insensitive while it awaits getUser().
 #
 class AccountDialog < Adwaita::Dialog
+  include Translation
+
   CONTENT_WIDTH = 360
   HELP_MARGIN = 24
 
@@ -40,9 +43,9 @@ class AccountDialog < Adwaita::Dialog
     self.content_width = CONTENT_WIDTH
     self.follows_content_size = true
     if @editing
-      self.title = 'Edit Account'
+      self.title = _('Edit Account')
     else
-      self.title = 'Add Account'
+      self.title = _('Add Account')
     end
   end
 
@@ -132,16 +135,16 @@ class AccountDialog < Adwaita::Dialog
 
   def cancel_button
     @cancel_button ||= Gtk::Button.new.tap do |button|
-      button.label = 'Cancel'
+      button.label = _('Cancel')
     end
   end
 
   def save_button
     @save_button ||= Gtk::Button.new.tap do |button|
       if @editing
-        button.label = 'Save'
+        button.label = _('Save')
       else
-        button.label = 'Add'
+        button.label = _('Add')
       end
       button.sensitive = false
       button.add_css_class('suggested-action')
@@ -161,7 +164,7 @@ class AccountDialog < Adwaita::Dialog
   # is on cannot change, so upstream hides the row.
   def forge_row
     @forge_row ||= Adwaita::ComboRow.new.tap do |row|
-      row.title = 'Forge'
+      row.title = _('Forge')
       row.visible = !@editing
       row.model = Gtk::StringList.new(forge_classes.map(&:pretty_name))
     end
@@ -169,14 +172,14 @@ class AccountDialog < Adwaita::Dialog
 
   def instance_row
     @instance_row ||= Adwaita::EntryRow.new.tap do |row|
-      row.title = 'Instance URL'
+      row.title = _('Instance URL')
       row.visible = false
     end
   end
 
   def access_token_row
     @access_token_row ||= Adwaita::PasswordEntryRow.new.tap do |row|
-      row.title = 'Access Token'
+      row.title = _('Access Token')
     end
   end
 
@@ -207,7 +210,7 @@ class AccountDialog < Adwaita::Dialog
 
   def remove_button
     @remove_button ||= Gtk::Button.new.tap do |button|
-      button.label = 'Remove Account'
+      button.label = _('Remove Account')
       button.halign = :center
       button.add_css_class('destructive-action')
       button.add_css_class('pill')
@@ -237,7 +240,7 @@ class AccountDialog < Adwaita::Dialog
     def on_token_loaded(token)
       if token.is_a?(Exception)
         warn "Could not read the saved token: #{token.message}"
-        add_toast(Adwaita::Toast.new('Could not read the saved access token'))
+        add_toast(Adwaita::Toast.new(_('Could not read the saved access token')))
       else
         @saved_token = token.to_s
         access_token_row.text = @saved_token
@@ -322,7 +325,7 @@ class AccountDialog < Adwaita::Dialog
           true
         else
           instance_row.add_css_class('error')
-          add_toast(Adwaita::Toast.new('Invalid instance url.'))
+          add_toast(Adwaita::Toast.new(_('Invalid instance url.')))
           false
         end
       end
@@ -443,7 +446,7 @@ class AccountDialog < Adwaita::Dialog
       if result == true
         finish_and_close
       else
-        add_toast(Adwaita::Toast.new('Unexpected error removing the account'))
+        add_toast(Adwaita::Toast.new(_('Unexpected error removing the account')))
       end
     end
 
@@ -461,11 +464,11 @@ class AccountDialog < Adwaita::Dialog
     def error_text(error)
       case error
       when Forge::FailedForgeAuth
-        'Couldn’t authenticate the account'
+        _('Couldn’t authenticate the account')
       when Forge::FailedTokenScopes
-        'The access token doesn’t have the needed scopes'
+        _('The access token doesn’t have the needed scopes')
       else
-        'Unexpected error when creating the account'
+        _('Unexpected error when creating the account')
       end
     end
 end

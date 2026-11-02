@@ -1,0 +1,400 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the com.mardojai.ForgeSparks package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: forge-sparks 0.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/ruby-gtk-project/forge-sparks-rb/"
+"issues\n"
+"POT-Creation-Date: 2026-11-02 23:17+0000\n"
+"PO-Revision-Date: 2025-09-26 14:01+0000\n"
+"Last-Translator: Jonathan Margotin <jonathan.margotin@icloud.com>\n"
+"Language-Team: French <https://hosted.weblate.org/projects/forge-sparks/"
+"forge-sparks/fr/>\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 5.14-dev\n"
+
+#: lib/account_dialog.rb:46
+msgid "Edit Account"
+msgstr "Modifier le compte"
+
+#: lib/account_dialog.rb:48
+msgid "Add Account"
+msgstr "Ajouter un compte"
+
+#: lib/account_dialog.rb:138
+msgid "Cancel"
+msgstr "Annuler"
+
+#: lib/account_dialog.rb:145
+msgid "Save"
+msgstr "Enregistrer"
+
+#: lib/account_dialog.rb:147
+msgid "Add"
+msgstr "Ajouter"
+
+#: lib/account_dialog.rb:167
+msgid "Forge"
+msgstr "Forge"
+
+#: lib/account_dialog.rb:175
+msgid "Instance URL"
+msgstr "URL d’instance"
+
+#: lib/account_dialog.rb:182
+msgid "Access Token"
+msgstr "Jeton d’accès"
+
+#: lib/account_dialog.rb:213
+msgid "Remove Account"
+msgstr "Supprimer le compte"
+
+#: lib/account_dialog.rb:243
+msgid "Could not read the saved access token"
+msgstr ""
+
+#: lib/account_dialog.rb:328
+msgid "Invalid instance url."
+msgstr "URL d’instance invalide."
+
+#: lib/account_dialog.rb:449
+msgid "Unexpected error removing the account"
+msgstr "Erreur inattendue lors de la suppression du compte"
+
+#: lib/account_dialog.rb:467
+msgid "Couldn’t authenticate the account"
+msgstr "Impossible de se connecter au compte"
+
+#: lib/account_dialog.rb:469
+msgid "The access token doesn’t have the needed scopes"
+msgstr "Le jeton d’accès n’a pas les champs requis"
+
+#: lib/account_dialog.rb:471
+msgid "Unexpected error when creating the account"
+msgstr "Erreur inattendue lors de la création du compte"
+
+#: lib/accounts_dialog.rb:36 lib/window.rb:369 lib/window.rb:652
+msgid "Accounts"
+msgstr "Comptes"
+
+#: lib/accounts_dialog.rb:100
+msgid "Add…"
+msgstr "Ajouter…"
+
+#: lib/accounts_dialog.rb:126
+msgid "No Accounts"
+msgstr "Aucun compte"
+
+#: lib/accounts_dialog.rb:127 lib/window.rb:299
+msgid "Add an account to receive notifications from"
+msgstr "Ajouter un compte pour recevoir des notifications"
+
+#: lib/accounts_dialog.rb:161
+msgid "Account authentication failed!"
+msgstr "Échec de la connexion au compte !"
+
+#: lib/application.rb:96
+#, fuzzy
+msgid "Get Git forges notifications"
+msgstr "Recevez vos notifications de forges git"
+
+#. Translators: Replace "translator-credits" with your names, one name per line
+#: lib/application.rb:98
+msgid "translator-credits"
+msgstr ""
+"Irénée Thirion\n"
+"Mathieu Lagacé"
+
+#: lib/application.rb:116
+msgid "Print version information and exit"
+msgstr ""
+
+#: lib/application.rb:125
+#, fuzzy
+msgid "Start hidden"
+msgstr "Lancer minimisé"
+
+#. Translators: Gitea access token help
+#: lib/gitea.rb:29
+#, fuzzy
+msgid ""
+"To generate a new access token from your instance, go to Settings → "
+"Applications and generate a new token."
+msgstr ""
+"Pour générer un nouveau jeton d’accès depuis votre instance Gitea, allez "
+"dans Paramètres → Applications et créez un nouveau jeton."
+
+#. Translators: Gitea access token help
+#: lib/gitea.rb:35
+#, fuzzy
+msgid ""
+"Forge Sparks requires the <i>read:issue</i>, <i>write:notification</i> and "
+"<i>read:user</i> scopes granted."
+msgstr ""
+"Forge Sparks requiert un jeton d’accès <b>classique</b> (pour un usage "
+"courant) avec une permission pour les champs <i>notifications</i> et "
+"<i>read:user</i>."
+
+#: lib/github.rb:47
+#, fuzzy
+msgid ""
+"You can generate a new personal access token from <a href=\"%s\">GitHub "
+"developer settings</a>. For more information, see \"<a href=\"%s\">Creating "
+"a personal access token</a>\"."
+msgstr ""
+"Vous pouvez générer un nouveau jeton d’accès en allant sur <a "
+"href=\"%s\">Paramètres développeur GitHub </a>. Pour plus d’informations, "
+"voir « <a href=\"%s\">Créer un jeton d’accès personnel</a> »."
+
+#. Translators: GitHub access token help
+#: lib/github.rb:57
+msgid ""
+"Forge Sparks requires a <b>classic</b> access token (for general use) with "
+"the <i>notifications</i> and <i>read:user</i> scopes granted."
+msgstr ""
+"Forge Sparks requiert un jeton d’accès <b>classique</b> (pour un usage "
+"courant) avec une permission pour les champs <i>notifications</i> et "
+"<i>read:user</i>."
+
+#. Translators: GitHub access token help
+#: lib/github.rb:63
+msgid ""
+"If you’re working with private repositories, you’ll also need to grant the "
+"full <i>repo</i> scope."
+msgstr ""
+"Si vous travaillez avec des dépôts privés, vous devrez également accorder "
+"toutes les permissions <i>repo</i>."
+
+#. Translators: GitLab access token help
+#: lib/gitlab.rb:26
+#, fuzzy
+msgid ""
+"To generate a new access token from your instance, go to Preferences → "
+"Access Tokens and generate a new token."
+msgstr ""
+"Pour générer un nouveau jeton d’accès depuis votre instance Gitea, allez "
+"dans Paramètres → Applications et créez un nouveau jeton."
+
+#. Translators: GitLab access token help
+#: lib/gitlab.rb:32
+#, fuzzy
+msgid ""
+"Forge Sparks needs <i>read_api</i> scope to read notifications or full "
+"<i>api</i> scope to also mark todos as done."
+msgstr ""
+"Forge Sparks requiert un jeton d’accès <b>classique</b> (pour un usage "
+"courant) avec une permission pour les champs <i>notifications</i> et "
+"<i>read:user</i>."
+
+#: lib/notification.rb:124
+msgid "Mark as Read"
+msgstr "Marquer comme lu"
+
+#: lib/notification.rb:130
+msgid "Show Forge Sparks"
+msgstr "Afficher Forge Sparks"
+
+#: lib/preferences_dialog.rb:81
+#, fuzzy
+msgid "Keep Running in Background"
+msgstr "Continuer l’exécution en arrière-plan"
+
+#: lib/preferences_dialog.rb:89
+#, fuzzy
+msgid "Run on Startup"
+msgstr "Lancer au démarrage"
+
+#: lib/preferences_dialog.rb:103
+#, fuzzy
+msgid "Start Hidden"
+msgstr "Lancer minimisé"
+
+#: lib/preferences_dialog.rb:167
+msgid "The autostart request failed."
+msgstr "La requête d’auto-démarrage a échoué."
+
+#: lib/shortcuts_dialog.rb:26
+msgctxt "shortcut window"
+msgid "General"
+msgstr "Général"
+
+#: lib/shortcuts_dialog.rb:27
+msgctxt "shortcut window"
+msgid "Open menu"
+msgstr "Ouvrir le menu"
+
+#: lib/shortcuts_dialog.rb:28
+msgctxt "shortcut window"
+msgid "Keyboard shortcuts"
+msgstr "Raccourcis clavier"
+
+#: lib/shortcuts_dialog.rb:29
+msgctxt "shortcut window"
+msgid "Quit"
+msgstr "Quitter"
+
+#: lib/shortcuts_dialog.rb:35
+#, fuzzy
+#| msgid "_Keyboard Shortcuts"
+msgid "Keyboard Shortcuts"
+msgstr "_Raccourcis clavier"
+
+#: lib/util.rb:140 lib/util.rb:145
+msgid "now"
+msgstr "maintenant"
+
+#. Translators: relative date
+#: lib/util.rb:148
+msgid "%d minute ago"
+msgid_plural "%d minutes ago"
+msgstr[0] "il y a %d minute"
+msgstr[1] "il y a %d minutes"
+
+#. Translators: relative date
+#: lib/util.rb:152
+msgid "%d hour ago"
+msgid_plural "%d hours ago"
+msgstr[0] "il y a %d heure"
+msgstr[1] "il y a %d heures"
+
+#. Translators: relative date
+#: lib/util.rb:157
+msgid "yesterday"
+msgid_plural "%d days ago"
+msgstr[0] "hier"
+msgstr[1] "il y a %d jours"
+
+#. Translators: relative date
+#: lib/util.rb:162
+msgid "%d week ago"
+msgid_plural "%d weeks ago"
+msgstr[0] "il y a %d semaine"
+msgstr[1] "il y a %d semaines"
+
+#. Translators: relative date, %s is date formatted as "May 01"
+#. Translators: relative date, %s is date formatted as "01 May, 2022"
+#: lib/util.rb:166 lib/util.rb:169
+msgid "on %s"
+msgstr "le %s"
+
+#. Translators: Don't translate, only transliterate if needed
+#: lib/window.rb:66
+msgid "Forge Sparks"
+msgstr "Forge Sparks"
+
+#: lib/window.rb:298
+msgid "Welcome to Forge Sparks"
+msgstr "Bienvenue dans Forge Sparks"
+
+#: lib/window.rb:309
+msgid "Add Account…"
+msgstr "Ajouter un compte…"
+
+#: lib/window.rb:350 lib/window.rb:365
+msgid "Mark all as Read"
+msgstr "Tout marquer comme lu"
+
+#: lib/window.rb:401
+msgid "No Notifications to Show"
+msgstr "Aucune notification à afficher"
+
+#: lib/window.rb:432
+msgid "_Preferences"
+msgstr "_Préférences"
+
+#: lib/window.rb:433
+#, fuzzy
+msgid "_Accounts"
+msgstr "Comptes"
+
+#: lib/window.rb:434
+msgid "_Keyboard Shortcuts"
+msgstr "_Raccourcis clavier"
+
+#: lib/window.rb:435
+msgid "About Forge Sparks"
+msgstr "À propos de Forge Sparks"
+
+#: lib/window.rb:442
+msgid "Quit"
+msgstr "Quitter"
+
+#: lib/window.rb:454
+msgid "Main Menu"
+msgstr "Menu principal"
+
+#: lib/window.rb:636
+msgid "Account %s authentication failed!"
+msgstr "Identification du compte %s échouée!"
+
+#: lib/window.rb:637
+msgid "The token may have been revoked or expired."
+msgstr "Le jeton est peut-être révoqué ou expiré."
+
+#: data/org.rubygtkproject.ForgeSparks.desktop.in:12
+msgid "git;github;notifications;"
+msgstr "git;github;notifications;"
+
+#: data/org.rubygtkproject.ForgeSparks.metainfo.xml.in:24
+msgid "Simple notifier app with support for GitLab, Github, Gitea and Forgejo."
+msgstr ""
+"Application simple de notification prenant en charge GitHub, Gitea et "
+"Forgejo."
+
+#: data/org.rubygtkproject.ForgeSparks.metainfo.xml.in:25
+msgid ""
+"This is a Ruby GTK4 and Libadwaita port of Forge Sparks, written against the "
+"original as its specification."
+msgstr ""
+
+#~ msgid "Allow running Forge Sparks on background."
+#~ msgstr "Permettre à Forge Sparks de s’exécuter en arrière-plan."
+
+#~ msgid "Allow running Forge Sparks on startup."
+#~ msgstr "Permettre le lancement de Forge Sparks au démarrage."
+
+#~ msgid "Monitoring new notifications"
+#~ msgstr "Surveillance des nouvelles notifications"
+
+#~ msgid "The request failed."
+#~ msgstr "La requête a échoué."
+
+#, fuzzy
+#~ msgid "Forge Sparks requires the <i>api</i> scopes granted."
+#~ msgstr ""
+#~ "Forge Sparks nécessite une permission pour le champ <i>notifications</i>."
+
+#~ msgid "Get git forges notifications"
+#~ msgstr "Recevez vos notifications de forges git"
+
+#~ msgid "Rafael Mardojai CM"
+#~ msgstr "Rafael Mardojai CM"
+
+#~ msgid "Please add an account in the app preferences."
+#~ msgstr "Veuillez ajouter un compte dans les préférences de l’application."
+
+#~ msgid "Open Preferences"
+#~ msgstr "Ouvrir les préférences"
+
+#~ msgid "New account added successfully!"
+#~ msgstr "Nouveau compte ajouté avec succès !"
+
+#~ msgid "Account edited successfully!"
+#~ msgstr "Compte modifié avec succès !"
+
+#~ msgid "General"
+#~ msgstr "Général"
+
+#~ msgid ""
+#~ "To generate a new access token from your Forgejo instance go to Settings "
+#~ "→ Applications and generate a new token."
+#~ msgstr ""
+#~ "Pour générer un nouveau jeton d’accès depuis votre instance Forgejo, "
+#~ "allez dans Paramètres → Applications et créez un nouveau jeton."

@@ -1,0 +1,355 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the com.mardojai.ForgeSparks package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: forge-sparks 0.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/ruby-gtk-project/forge-sparks-rb/"
+"issues\n"
+"POT-Creation-Date: 2026-11-02 23:17+0000\n"
+"PO-Revision-Date: 2024-05-28 16:09+0000\n"
+"Last-Translator: Scrambled777 <weblate.scrambled777@simplelogin.com>\n"
+"Language-Team: Hindi <https://hosted.weblate.org/projects/forge-sparks/forge-"
+"sparks/hi/>\n"
+"Language: hi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 5.6-dev\n"
+
+#: lib/account_dialog.rb:46
+msgid "Edit Account"
+msgstr "खाता संपादित करें"
+
+#: lib/account_dialog.rb:48
+msgid "Add Account"
+msgstr "खाता जोड़ें"
+
+#: lib/account_dialog.rb:138
+msgid "Cancel"
+msgstr "रद्द करें"
+
+#: lib/account_dialog.rb:145
+msgid "Save"
+msgstr "सहेजें"
+
+#: lib/account_dialog.rb:147
+msgid "Add"
+msgstr "जोड़ें"
+
+#: lib/account_dialog.rb:167
+msgid "Forge"
+msgstr "फोर्ज"
+
+#: lib/account_dialog.rb:175
+msgid "Instance URL"
+msgstr "इंस्टैंस URL"
+
+#: lib/account_dialog.rb:182
+msgid "Access Token"
+msgstr "एक्सेस टोकन"
+
+#: lib/account_dialog.rb:213
+msgid "Remove Account"
+msgstr "खाता हटाएं"
+
+#: lib/account_dialog.rb:243
+msgid "Could not read the saved access token"
+msgstr ""
+
+#: lib/account_dialog.rb:328
+msgid "Invalid instance url."
+msgstr "अमान्य इंस्टैंस URL।"
+
+#: lib/account_dialog.rb:449
+msgid "Unexpected error removing the account"
+msgstr "खाता हटाने में अनपेक्षित त्रुटि"
+
+#: lib/account_dialog.rb:467
+msgid "Couldn’t authenticate the account"
+msgstr "खाता प्रमाणित नहीं किया जा सका"
+
+#: lib/account_dialog.rb:469
+msgid "The access token doesn’t have the needed scopes"
+msgstr "एक्सेस टोकन में आवश्यक दायरे नहीं हैं"
+
+#: lib/account_dialog.rb:471
+msgid "Unexpected error when creating the account"
+msgstr "खाता बनाते समय अप्रत्याशित त्रुटि"
+
+#: lib/accounts_dialog.rb:36 lib/window.rb:369 lib/window.rb:652
+msgid "Accounts"
+msgstr "खाते"
+
+#: lib/accounts_dialog.rb:100
+msgid "Add…"
+msgstr "जोड़ें…"
+
+#: lib/accounts_dialog.rb:126
+msgid "No Accounts"
+msgstr "कोई खाता नहीं"
+
+#: lib/accounts_dialog.rb:127 lib/window.rb:299
+msgid "Add an account to receive notifications from"
+msgstr "अधिसूचनाएं प्राप्त करने के लिए एक खाता जोड़ें"
+
+#: lib/accounts_dialog.rb:161
+msgid "Account authentication failed!"
+msgstr "खाता प्रमाणीकरण विफल!"
+
+#: lib/application.rb:96
+msgid "Get Git forges notifications"
+msgstr "गिट फोर्ज अधिसूचनाएं प्राप्त करें"
+
+#. Translators: Replace "translator-credits" with your names, one name per line
+#: lib/application.rb:98
+msgid "translator-credits"
+msgstr "Scrambled777 <weblate.scrambled777@simplelogin.com>"
+
+#: lib/application.rb:116
+msgid "Print version information and exit"
+msgstr ""
+
+#: lib/application.rb:125
+#, fuzzy
+#| msgid "Start Hidden"
+msgid "Start hidden"
+msgstr "छुपे हुए प्रारंभ करें"
+
+#. Translators: Gitea access token help
+#: lib/gitea.rb:29
+msgid ""
+"To generate a new access token from your instance, go to Settings → "
+"Applications and generate a new token."
+msgstr ""
+"अपने इंस्टैंस से एक नया एक्सेस टोकन उत्पन्न करने के लिए, सेटिंग्स → अनुप्रयोग पर जाएं और एक "
+"नया टोकन उत्पन्न करें।"
+
+#. Translators: Gitea access token help
+#: lib/gitea.rb:35
+msgid ""
+"Forge Sparks requires the <i>read:issue</i>, <i>write:notification</i> and "
+"<i>read:user</i> scopes granted."
+msgstr ""
+"फोर्ज स्पार्क्स को <i>read:issue</i>, <i>write:notification</i> और <i>read:user</"
+"i> स्कोप दिए जाने की आवश्यकता है।"
+
+#: lib/github.rb:47
+msgid ""
+"You can generate a new personal access token from <a href=\"%s\">GitHub "
+"developer settings</a>. For more information, see \"<a href=\"%s\">Creating "
+"a personal access token</a>\"."
+msgstr ""
+"आप <a href=\"%s\">गिटहब डेवलपर सेटिंग</a> से एक नया व्यक्तिगत एक्सेस टोकन उत्पन्न कर "
+"सकते हैं। अधिक जानकारी के लिए, \"<a href=\"%s\">व्यक्तिगत एक्सेस टोकन बनाना</a>\" देखें।"
+
+#. Translators: GitHub access token help
+#: lib/github.rb:57
+msgid ""
+"Forge Sparks requires a <b>classic</b> access token (for general use) with "
+"the <i>notifications</i> and <i>read:user</i> scopes granted."
+msgstr ""
+"फोर्ज स्पार्क्स को <i>अधिसूचनाएं</i> और <i>read:user</i> स्कोप के साथ एक <b>क्लासिक</"
+"b> एक्सेस टोकन (सामान्य उपयोग के लिए) की आवश्यकता होती है।"
+
+#. Translators: GitHub access token help
+#: lib/github.rb:63
+msgid ""
+"If you’re working with private repositories, you’ll also need to grant the "
+"full <i>repo</i> scope."
+msgstr ""
+"यदि आप निजी रिपॉजिटरी के साथ काम कर रहे हैं, तो आपको पूर्ण <i>रेपो</i> स्कोप देने की "
+"भी आवश्यकता होगी।"
+
+#. Translators: GitLab access token help
+#: lib/gitlab.rb:26
+msgid ""
+"To generate a new access token from your instance, go to Preferences → "
+"Access Tokens and generate a new token."
+msgstr ""
+"अपने इंस्टैंस से एक नया एक्सेस टोकन उत्पन्न करने के लिए, प्राथमिकताएं → एक्सेस टोकन पर जाएं "
+"और एक नया टोकन उत्पन्न करें।"
+
+#. Translators: GitLab access token help
+#: lib/gitlab.rb:32
+#, fuzzy
+msgid ""
+"Forge Sparks needs <i>read_api</i> scope to read notifications or full "
+"<i>api</i> scope to also mark todos as done."
+msgstr ""
+"फोर्ज स्पार्क्स को <i>read:issue</i>, <i>write:notification</i> और <i>read:user</"
+"i> स्कोप दिए जाने की आवश्यकता है।"
+
+#: lib/notification.rb:124
+msgid "Mark as Read"
+msgstr "पठित चिह्नित करें"
+
+#: lib/notification.rb:130
+msgid "Show Forge Sparks"
+msgstr "फोर्ज स्पार्क्स दिखाएं"
+
+#: lib/preferences_dialog.rb:81
+msgid "Keep Running in Background"
+msgstr "पृष्ठभूमि में चालू रखें"
+
+#: lib/preferences_dialog.rb:89
+msgid "Run on Startup"
+msgstr "शुरुआत पर चलाएं"
+
+#: lib/preferences_dialog.rb:103
+msgid "Start Hidden"
+msgstr "छुपे हुए प्रारंभ करें"
+
+#: lib/preferences_dialog.rb:167
+msgid "The autostart request failed."
+msgstr "स्वतः प्रारंभ अनुरोध विफल रहा।"
+
+#: lib/shortcuts_dialog.rb:26
+msgctxt "shortcut window"
+msgid "General"
+msgstr "सामान्य"
+
+#: lib/shortcuts_dialog.rb:27
+msgctxt "shortcut window"
+msgid "Open menu"
+msgstr "मेनू खोलें"
+
+#: lib/shortcuts_dialog.rb:28
+msgctxt "shortcut window"
+msgid "Keyboard shortcuts"
+msgstr "कीबोर्ड शॉर्टकट"
+
+#: lib/shortcuts_dialog.rb:29
+msgctxt "shortcut window"
+msgid "Quit"
+msgstr "बंद करें"
+
+#: lib/shortcuts_dialog.rb:35
+#, fuzzy
+#| msgid "_Keyboard Shortcuts"
+msgid "Keyboard Shortcuts"
+msgstr "कीबोर्ड शॉर्टकट (_K)"
+
+#: lib/util.rb:140 lib/util.rb:145
+msgid "now"
+msgstr "अभी"
+
+#. Translators: relative date
+#: lib/util.rb:148
+msgid "%d minute ago"
+msgid_plural "%d minutes ago"
+msgstr[0] "%d मिनट पहले"
+msgstr[1] "%d मिनट पहले"
+
+#. Translators: relative date
+#: lib/util.rb:152
+msgid "%d hour ago"
+msgid_plural "%d hours ago"
+msgstr[0] "%d घंटा पहले"
+msgstr[1] "%d घंटे पहले"
+
+#. Translators: relative date
+#: lib/util.rb:157
+msgid "yesterday"
+msgid_plural "%d days ago"
+msgstr[0] "कल"
+msgstr[1] "%d दिन पहले"
+
+#. Translators: relative date
+#: lib/util.rb:162
+msgid "%d week ago"
+msgid_plural "%d weeks ago"
+msgstr[0] "%d हफ्ता पहले"
+msgstr[1] "%d हफ्ते पहले"
+
+#. Translators: relative date, %s is date formatted as "May 01"
+#. Translators: relative date, %s is date formatted as "01 May, 2022"
+#: lib/util.rb:166 lib/util.rb:169
+msgid "on %s"
+msgstr "%s पर"
+
+#. Translators: Don't translate, only transliterate if needed
+#: lib/window.rb:66
+msgid "Forge Sparks"
+msgstr "फोर्ज स्पार्क्स"
+
+#: lib/window.rb:298
+msgid "Welcome to Forge Sparks"
+msgstr "फोर्ज स्पार्क्स में आपका स्वागत है"
+
+#: lib/window.rb:309
+msgid "Add Account…"
+msgstr "खाता जोड़ें…"
+
+#: lib/window.rb:350 lib/window.rb:365
+msgid "Mark all as Read"
+msgstr "सभी पठित चिह्नित करें"
+
+#: lib/window.rb:401
+msgid "No Notifications to Show"
+msgstr "दिखाने के लिए कोई अधिसूचना नहीं"
+
+#: lib/window.rb:432
+msgid "_Preferences"
+msgstr "प्राथमिकताएं (_P)"
+
+#: lib/window.rb:433
+msgid "_Accounts"
+msgstr "खाता (_A)"
+
+#: lib/window.rb:434
+msgid "_Keyboard Shortcuts"
+msgstr "कीबोर्ड शॉर्टकट (_K)"
+
+#: lib/window.rb:435
+msgid "About Forge Sparks"
+msgstr "फोर्ज स्पार्क्स के बारे में"
+
+#: lib/window.rb:442
+msgid "Quit"
+msgstr "बंद करें"
+
+#: lib/window.rb:454
+msgid "Main Menu"
+msgstr "मुख्य मेनू"
+
+#: lib/window.rb:636
+msgid "Account %s authentication failed!"
+msgstr "खाता %s प्रमाणीकरण विफल!"
+
+#: lib/window.rb:637
+msgid "The token may have been revoked or expired."
+msgstr "टोकन रद्द या समाप्त हो सकता है।"
+
+#: data/org.rubygtkproject.ForgeSparks.desktop.in:12
+msgid "git;github;notifications;"
+msgstr "गिट;गिटहब;अधिसूचनाएं;"
+
+#: data/org.rubygtkproject.ForgeSparks.metainfo.xml.in:24
+#, fuzzy
+msgid "Simple notifier app with support for GitLab, Github, Gitea and Forgejo."
+msgstr "Github, Gitea और Forgejo के समर्थन के साथ सरल सूचक ऐप।"
+
+#: data/org.rubygtkproject.ForgeSparks.metainfo.xml.in:25
+msgid ""
+"This is a Ruby GTK4 and Libadwaita port of Forge Sparks, written against the "
+"original as its specification."
+msgstr ""
+
+#~ msgid "Allow running Forge Sparks on background."
+#~ msgstr "पृष्ठभूमि पर फोर्ज स्पार्क्स चलाने की अनुमति दें।"
+
+#~ msgid "Allow running Forge Sparks on startup."
+#~ msgstr "स्टार्टअप पर फोर्ज स्पार्क्स चलाने की अनुमति दें।"
+
+#~ msgid "Monitoring new notifications"
+#~ msgstr "नई अधिसूचनाओं की निगरानी"
+
+#~ msgid "The request failed."
+#~ msgstr "अनुरोध विफल रहा।"
+
+#~ msgid "Forge Sparks requires the <i>api</i> scopes granted."
+#~ msgstr "फोर्ज स्पार्क्स को दिए गए <i>api</i> स्कोप की आवश्यकता है।"

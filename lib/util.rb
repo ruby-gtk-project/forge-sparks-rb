@@ -7,6 +7,7 @@ require 'fileutils'
 require 'gtk4'
 
 require_relative 'settings'
+require_relative 'translation'
 
 # Util holds the process-wide singletons and the small helpers upstream keeps
 # in src/util.js: the settings instance, the HTTP session every request goes
@@ -28,6 +29,8 @@ require_relative 'settings'
 #   autostart desktop file that the portal would have written on our behalf.
 #
 module Util
+  extend Translation
+
   APP_ID = 'org.rubygtkproject.ForgeSparks'
   APP_NAME = 'Forge Sparks'
   VERSION = '0.1.0'
@@ -134,32 +137,38 @@ module Util
 
     if difference <= 0
       warn 'Date is in the future!'
-      'now'
+      _('now')
     else
       minutes = (difference / 60.0).round
 
       if minutes < 1
-        'now'
+        _('now')
       elsif minutes < 60
-        plural(minutes, '%d minute ago', '%d minutes ago')
+        # Translators: relative date
+        format(n_('%d minute ago', '%d minutes ago', minutes), minutes)
       elsif minutes < 1440
-        (minutes / 60.0).round.then { |hours| plural(hours, '%d hour ago', '%d hours ago') }
+        (minutes / 60.0).round.then do |hours|
+          # Translators: relative date
+          format(n_('%d hour ago', '%d hours ago', hours), hours)
+        end
       elsif minutes < 10_080
-        (minutes / 1440.0).round.then { |days| plural(days, 'yesterday', '%d days ago') }
+        (minutes / 1440.0).round.then do |days|
+          # Translators: relative date
+          format(n_('yesterday', '%d days ago', days), days)
+        end
       elsif minutes < 40_320
-        (minutes / 10_080.0).round.then { |weeks| plural(weeks, '%d week ago', '%d weeks ago') }
+        (minutes / 10_080.0).round.then do |weeks|
+          # Translators: relative date
+          format(n_('%d week ago', '%d weeks ago', weeks), weeks)
+        end
       elsif now.year == date.year
-        format('on %s', date.strftime('%b %d'))
+        # Translators: relative date, %s is date formatted as "May 01"
+        format(_('on %s'), date.strftime('%b %d'))
       else
-        format('on %s', date.strftime('%d %b, %Y'))
+        # Translators: relative date, %s is date formatted as "01 May, 2022"
+        format(_('on %s'), date.strftime('%d %b, %Y'))
       end
     end
-  end
-
-  # Upstream reaches for ngettext here; without a catalogue the port picks the
-  # same two forms by the same rule.
-  def plural(count, singular, plural_form)
-    format(count == 1 ? singular : plural_form, count)
   end
 
   # HttpSession is the single session every forge request goes through.

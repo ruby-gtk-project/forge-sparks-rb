@@ -1,0 +1,327 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the com.mardojai.ForgeSparks package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: forge-sparks 0.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/ruby-gtk-project/forge-sparks-rb/"
+"issues\n"
+"POT-Creation-Date: 2026-11-02 23:17+0000\n"
+"PO-Revision-Date: 2026-03-19 14:09+0000\n"
+"Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
+"Language-Team: Georgian <https://hosted.weblate.org/projects/forge-sparks/"
+"forge-sparks/ka/>\n"
+"Language: ka\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.17-dev\n"
+
+#: lib/account_dialog.rb:46
+msgid "Edit Account"
+msgstr "ანგარიშის ჩასწორება"
+
+#: lib/account_dialog.rb:48
+msgid "Add Account"
+msgstr "ანგარიშის დამატება"
+
+#: lib/account_dialog.rb:138
+msgid "Cancel"
+msgstr "გაუქმება"
+
+#: lib/account_dialog.rb:145
+msgid "Save"
+msgstr "შენახვა"
+
+#: lib/account_dialog.rb:147
+msgid "Add"
+msgstr "დამატება"
+
+#: lib/account_dialog.rb:167
+msgid "Forge"
+msgstr "Forge"
+
+#: lib/account_dialog.rb:175
+msgid "Instance URL"
+msgstr "გაშვებული ასლის URL"
+
+#: lib/account_dialog.rb:182
+msgid "Access Token"
+msgstr "წვდომს კოდი"
+
+#: lib/account_dialog.rb:213
+msgid "Remove Account"
+msgstr "ანგარიშის წაშლა"
+
+#: lib/account_dialog.rb:243
+msgid "Could not read the saved access token"
+msgstr ""
+
+#: lib/account_dialog.rb:328
+msgid "Invalid instance url."
+msgstr ""
+
+#: lib/account_dialog.rb:449
+msgid "Unexpected error removing the account"
+msgstr ""
+
+#: lib/account_dialog.rb:467
+msgid "Couldn’t authenticate the account"
+msgstr ""
+
+#: lib/account_dialog.rb:469
+msgid "The access token doesn’t have the needed scopes"
+msgstr ""
+
+#: lib/account_dialog.rb:471
+msgid "Unexpected error when creating the account"
+msgstr ""
+
+#: lib/accounts_dialog.rb:36 lib/window.rb:369 lib/window.rb:652
+msgid "Accounts"
+msgstr "ანგარიშები"
+
+#: lib/accounts_dialog.rb:100
+msgid "Add…"
+msgstr "დამატება…"
+
+#: lib/accounts_dialog.rb:126
+msgid "No Accounts"
+msgstr "ანგარიშების გარეშე"
+
+#: lib/accounts_dialog.rb:127 lib/window.rb:299
+msgid "Add an account to receive notifications from"
+msgstr ""
+
+#: lib/accounts_dialog.rb:161
+msgid "Account authentication failed!"
+msgstr ""
+
+#: lib/application.rb:96
+msgid "Get Git forges notifications"
+msgstr ""
+
+#. Translators: Replace "translator-credits" with your names, one name per line
+#: lib/application.rb:98
+msgid "translator-credits"
+msgstr "თემური დოღონაძე"
+
+#: lib/application.rb:116
+msgid "Print version information and exit"
+msgstr ""
+
+#: lib/application.rb:125
+#, fuzzy
+#| msgid "Start Hidden"
+msgid "Start hidden"
+msgstr "დამალულად გაშვება"
+
+#. Translators: Gitea access token help
+#: lib/gitea.rb:29
+msgid ""
+"To generate a new access token from your instance, go to Settings → "
+"Applications and generate a new token."
+msgstr ""
+
+#. Translators: Gitea access token help
+#: lib/gitea.rb:35
+msgid ""
+"Forge Sparks requires the <i>read:issue</i>, <i>write:notification</i> and "
+"<i>read:user</i> scopes granted."
+msgstr ""
+
+#: lib/github.rb:47
+msgid ""
+"You can generate a new personal access token from <a href=\"%s\">GitHub "
+"developer settings</a>. For more information, see \"<a href=\"%s\">Creating "
+"a personal access token</a>\"."
+msgstr ""
+
+#. Translators: GitHub access token help
+#: lib/github.rb:57
+msgid ""
+"Forge Sparks requires a <b>classic</b> access token (for general use) with "
+"the <i>notifications</i> and <i>read:user</i> scopes granted."
+msgstr ""
+
+#. Translators: GitHub access token help
+#: lib/github.rb:63
+msgid ""
+"If you’re working with private repositories, you’ll also need to grant the "
+"full <i>repo</i> scope."
+msgstr ""
+
+#. Translators: GitLab access token help
+#: lib/gitlab.rb:26
+msgid ""
+"To generate a new access token from your instance, go to Preferences → "
+"Access Tokens and generate a new token."
+msgstr ""
+
+#. Translators: GitLab access token help
+#: lib/gitlab.rb:32
+msgid ""
+"Forge Sparks needs <i>read_api</i> scope to read notifications or full "
+"<i>api</i> scope to also mark todos as done."
+msgstr ""
+
+#: lib/notification.rb:124
+msgid "Mark as Read"
+msgstr "წაკითხულად მონიშვნა"
+
+#: lib/notification.rb:130
+msgid "Show Forge Sparks"
+msgstr ""
+
+#: lib/preferences_dialog.rb:81
+msgid "Keep Running in Background"
+msgstr ""
+
+#: lib/preferences_dialog.rb:89
+msgid "Run on Startup"
+msgstr "ჩატვირთვისას გაშვება"
+
+#: lib/preferences_dialog.rb:103
+msgid "Start Hidden"
+msgstr "დამალულად გაშვება"
+
+#: lib/preferences_dialog.rb:167
+msgid "The autostart request failed."
+msgstr ""
+
+#: lib/shortcuts_dialog.rb:26
+msgctxt "shortcut window"
+msgid "General"
+msgstr "ზოგადი"
+
+#: lib/shortcuts_dialog.rb:27
+msgctxt "shortcut window"
+msgid "Open menu"
+msgstr "მენიუს გახსნა"
+
+#: lib/shortcuts_dialog.rb:28
+msgctxt "shortcut window"
+msgid "Keyboard shortcuts"
+msgstr "კლავიატურის მალსახმობები"
+
+#: lib/shortcuts_dialog.rb:29
+msgctxt "shortcut window"
+msgid "Quit"
+msgstr "გასვლა"
+
+#: lib/shortcuts_dialog.rb:35
+#, fuzzy
+#| msgid "_Keyboard Shortcuts"
+msgid "Keyboard Shortcuts"
+msgstr "_კლავიატურის მალსახმობები"
+
+#: lib/util.rb:140 lib/util.rb:145
+msgid "now"
+msgstr "ახლა"
+
+#. Translators: relative date
+#: lib/util.rb:148
+msgid "%d minute ago"
+msgid_plural "%d minutes ago"
+msgstr[0] "%d წუთის წინ"
+msgstr[1] "%d წუთის წინ"
+
+#. Translators: relative date
+#: lib/util.rb:152
+msgid "%d hour ago"
+msgid_plural "%d hours ago"
+msgstr[0] "%d საათის წინ"
+msgstr[1] "%d საათის წინ"
+
+#. Translators: relative date
+#: lib/util.rb:157
+msgid "yesterday"
+msgid_plural "%d days ago"
+msgstr[0] "გუშინ"
+msgstr[1] "%d დღის წინ"
+
+#. Translators: relative date
+#: lib/util.rb:162
+msgid "%d week ago"
+msgid_plural "%d weeks ago"
+msgstr[0] "%d კვირის წინ"
+msgstr[1] "%d კვირის წინ"
+
+#. Translators: relative date, %s is date formatted as "May 01"
+#. Translators: relative date, %s is date formatted as "01 May, 2022"
+#: lib/util.rb:166 lib/util.rb:169
+msgid "on %s"
+msgstr "%s-ზე"
+
+#. Translators: Don't translate, only transliterate if needed
+#: lib/window.rb:66
+msgid "Forge Sparks"
+msgstr "Forge Sparks"
+
+#: lib/window.rb:298
+msgid "Welcome to Forge Sparks"
+msgstr ""
+
+#: lib/window.rb:309
+msgid "Add Account…"
+msgstr "ანგარიშის დამატება…"
+
+#: lib/window.rb:350 lib/window.rb:365
+msgid "Mark all as Read"
+msgstr ""
+
+#: lib/window.rb:401
+msgid "No Notifications to Show"
+msgstr ""
+
+#: lib/window.rb:432
+msgid "_Preferences"
+msgstr "_მორგება"
+
+#: lib/window.rb:433
+msgid "_Accounts"
+msgstr "_ანგარიშები"
+
+#: lib/window.rb:434
+msgid "_Keyboard Shortcuts"
+msgstr "_კლავიატურის მალსახმობები"
+
+#: lib/window.rb:435
+msgid "About Forge Sparks"
+msgstr "Forge Sparks-ის შესახებ"
+
+#: lib/window.rb:442
+msgid "Quit"
+msgstr "გასვლა"
+
+#: lib/window.rb:454
+msgid "Main Menu"
+msgstr "მთავარი მენიუ"
+
+#: lib/window.rb:636
+msgid "Account %s authentication failed!"
+msgstr ""
+
+#: lib/window.rb:637
+msgid "The token may have been revoked or expired."
+msgstr ""
+
+#: data/org.rubygtkproject.ForgeSparks.desktop.in:12
+msgid "git;github;notifications;"
+msgstr "git;github;notifications;"
+
+#: data/org.rubygtkproject.ForgeSparks.metainfo.xml.in:24
+msgid "Simple notifier app with support for GitLab, Github, Gitea and Forgejo."
+msgstr ""
+
+#: data/org.rubygtkproject.ForgeSparks.metainfo.xml.in:25
+msgid ""
+"This is a Ruby GTK4 and Libadwaita port of Forge Sparks, written against the "
+"original as its specification."
+msgstr ""
+
+#~ msgid "The request failed."
+#~ msgstr "მოთხოვნა ჩავარდა."

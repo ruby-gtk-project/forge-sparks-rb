@@ -1,0 +1,340 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the com.mardojai.ForgeSparks package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: forge-sparks 0.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/ruby-gtk-project/forge-sparks-rb/"
+"issues\n"
+"POT-Creation-Date: 2026-11-02 23:17+0000\n"
+"PO-Revision-Date: 2025-10-09 07:07+0000\n"
+"Last-Translator: Jiening Yu <jiening.yu@outlook.com>\n"
+"Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
+"projects/forge-sparks/forge-sparks/zh_Hans/>\n"
+"Language: zh_Hans\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 5.14-dev\n"
+
+#: lib/account_dialog.rb:46
+msgid "Edit Account"
+msgstr "编辑帐号"
+
+#: lib/account_dialog.rb:48
+msgid "Add Account"
+msgstr "添加帐号"
+
+#: lib/account_dialog.rb:138
+msgid "Cancel"
+msgstr "取消"
+
+#: lib/account_dialog.rb:145
+msgid "Save"
+msgstr "保存"
+
+#: lib/account_dialog.rb:147
+msgid "Add"
+msgstr "添加"
+
+#: lib/account_dialog.rb:167
+msgid "Forge"
+msgstr "平台实现"
+
+#: lib/account_dialog.rb:175
+msgid "Instance URL"
+msgstr "平台URL"
+
+#: lib/account_dialog.rb:182
+msgid "Access Token"
+msgstr "访问Token"
+
+#: lib/account_dialog.rb:213
+msgid "Remove Account"
+msgstr "移除帐号"
+
+#: lib/account_dialog.rb:243
+msgid "Could not read the saved access token"
+msgstr ""
+
+#: lib/account_dialog.rb:328
+msgid "Invalid instance url."
+msgstr "无效的平台URL"
+
+#: lib/account_dialog.rb:449
+msgid "Unexpected error removing the account"
+msgstr "移除账户时产生意外错误"
+
+#: lib/account_dialog.rb:467
+msgid "Couldn’t authenticate the account"
+msgstr "无法认证账户"
+
+#: lib/account_dialog.rb:469
+msgid "The access token doesn’t have the needed scopes"
+msgstr "此Token无所需的全部权限"
+
+#: lib/account_dialog.rb:471
+msgid "Unexpected error when creating the account"
+msgstr "创建账户时产生意外错误"
+
+#: lib/accounts_dialog.rb:36 lib/window.rb:369 lib/window.rb:652
+msgid "Accounts"
+msgstr "帐号"
+
+#: lib/accounts_dialog.rb:100
+msgid "Add…"
+msgstr "添加…"
+
+#: lib/accounts_dialog.rb:126
+msgid "No Accounts"
+msgstr "无帐号"
+
+#: lib/accounts_dialog.rb:127 lib/window.rb:299
+msgid "Add an account to receive notifications from"
+msgstr "添加帐号以接收通知"
+
+#: lib/accounts_dialog.rb:161
+msgid "Account authentication failed!"
+msgstr "帐号认证失败！"
+
+#: lib/application.rb:96
+msgid "Get Git forges notifications"
+msgstr "收取来自 Git 托管平台的通知"
+
+#. Translators: Replace "translator-credits" with your names, one name per line
+#: lib/application.rb:98
+msgid "translator-credits"
+msgstr "Jiening Yu <jiening.yu@outlook.com>"
+
+#: lib/application.rb:116
+msgid "Print version information and exit"
+msgstr ""
+
+#: lib/application.rb:125
+#, fuzzy
+#| msgid "Start Hidden"
+msgid "Start hidden"
+msgstr "启动时隐藏"
+
+#. Translators: Gitea access token help
+#: lib/gitea.rb:29
+msgid ""
+"To generate a new access token from your instance, go to Settings → "
+"Applications and generate a new token."
+msgstr "请前往 应用 → 访问令牌 以生成一个新的Token。"
+
+#. Translators: Gitea access token help
+#: lib/gitea.rb:35
+msgid ""
+"Forge Sparks requires the <i>read:issue</i>, <i>write:notification</i> and "
+"<i>read:user</i> scopes granted."
+msgstr ""
+"Forge Sparks需要 <i>read:issue</i>, <i>write:notification</i> 与 "
+"<i>read:user</i>权限。"
+
+#: lib/github.rb:47
+msgid ""
+"You can generate a new personal access token from <a href=\"%s\">GitHub "
+"developer settings</a>. For more information, see \"<a href=\"%s\">Creating "
+"a personal access token</a>\"."
+msgstr ""
+"您可于<a href=\"%s\">GitHub开发者设置</a>中生成新的个人Token。见<a "
+"href=\"%s\">创建个人Token</a>以了解更多。"
+
+#. Translators: GitHub access token help
+#: lib/github.rb:57
+msgid ""
+"Forge Sparks requires a <b>classic</b> access token (for general use) with "
+"the <i>notifications</i> and <i>read:user</i> scopes granted."
+msgstr ""
+"Forge Sparks需要一个具<i>notifications</i>和<i>read:user</i>权限的<b>经典</"
+"b>Token以为常规使用。"
+
+#. Translators: GitHub access token help
+#: lib/github.rb:63
+msgid ""
+"If you’re working with private repositories, you’ll also need to grant the "
+"full <i>repo</i> scope."
+msgstr "如果你需要接收来自私人仓库的通知，则还需要整个<i>repo</i>范围的权限。"
+
+#. Translators: GitLab access token help
+#: lib/gitlab.rb:26
+msgid ""
+"To generate a new access token from your instance, go to Preferences → "
+"Access Tokens and generate a new token."
+msgstr "请前往 用户设置 → 访问令牌 以生成一个新的Token。"
+
+#. Translators: GitLab access token help
+#: lib/gitlab.rb:32
+msgid ""
+"Forge Sparks needs <i>read_api</i> scope to read notifications or full "
+"<i>api</i> scope to also mark todos as done."
+msgstr ""
+"Forge Sparks需要 <i>read_api</i> 权限以获取通知或完整的 <i>api</i> 权限以进一"
+"步将代办项标记为完成。"
+
+#: lib/notification.rb:124
+msgid "Mark as Read"
+msgstr "设为已读"
+
+#: lib/notification.rb:130
+msgid "Show Forge Sparks"
+msgstr "显示Forge Sparks"
+
+#: lib/preferences_dialog.rb:81
+msgid "Keep Running in Background"
+msgstr "持续在后台运行"
+
+#: lib/preferences_dialog.rb:89
+msgid "Run on Startup"
+msgstr "于启动时运行"
+
+#: lib/preferences_dialog.rb:103
+msgid "Start Hidden"
+msgstr "启动时隐藏"
+
+#: lib/preferences_dialog.rb:167
+msgid "The autostart request failed."
+msgstr "自动启动请求失败"
+
+#: lib/shortcuts_dialog.rb:26
+msgctxt "shortcut window"
+msgid "General"
+msgstr "通用"
+
+#: lib/shortcuts_dialog.rb:27
+msgctxt "shortcut window"
+msgid "Open menu"
+msgstr "打开菜单"
+
+#: lib/shortcuts_dialog.rb:28
+msgctxt "shortcut window"
+msgid "Keyboard shortcuts"
+msgstr "快捷键"
+
+#: lib/shortcuts_dialog.rb:29
+msgctxt "shortcut window"
+msgid "Quit"
+msgstr "退出"
+
+#: lib/shortcuts_dialog.rb:35
+#, fuzzy
+#| msgid "_Keyboard Shortcuts"
+msgid "Keyboard Shortcuts"
+msgstr "_快捷键"
+
+#: lib/util.rb:140 lib/util.rb:145
+msgid "now"
+msgstr "现在"
+
+#. Translators: relative date
+#: lib/util.rb:148
+msgid "%d minute ago"
+msgid_plural "%d minutes ago"
+msgstr[0] "%d分钟前"
+
+#. Translators: relative date
+#: lib/util.rb:152
+msgid "%d hour ago"
+msgid_plural "%d hours ago"
+msgstr[0] "%d小时前"
+
+#. Translators: relative date
+#: lib/util.rb:157
+msgid "yesterday"
+msgid_plural "%d days ago"
+msgstr[0] "%d天前"
+
+#. Translators: relative date
+#: lib/util.rb:162
+msgid "%d week ago"
+msgid_plural "%d weeks ago"
+msgstr[0] "%d星期前"
+
+#. Translators: relative date, %s is date formatted as "May 01"
+#. Translators: relative date, %s is date formatted as "01 May, 2022"
+#: lib/util.rb:166 lib/util.rb:169
+msgid "on %s"
+msgstr "%s"
+
+#. Translators: Don't translate, only transliterate if needed
+#: lib/window.rb:66
+msgid "Forge Sparks"
+msgstr "Forge Sparks"
+
+#: lib/window.rb:298
+msgid "Welcome to Forge Sparks"
+msgstr "欢迎来到Forge Sparks"
+
+#: lib/window.rb:309
+msgid "Add Account…"
+msgstr "添加帐号…"
+
+#: lib/window.rb:350 lib/window.rb:365
+msgid "Mark all as Read"
+msgstr "全部设为已读"
+
+#: lib/window.rb:401
+msgid "No Notifications to Show"
+msgstr "无通知"
+
+#: lib/window.rb:432
+msgid "_Preferences"
+msgstr "_偏好设置"
+
+#: lib/window.rb:433
+msgid "_Accounts"
+msgstr "_帐号"
+
+#: lib/window.rb:434
+msgid "_Keyboard Shortcuts"
+msgstr "_快捷键"
+
+#: lib/window.rb:435
+msgid "About Forge Sparks"
+msgstr "关于Forge Sparks"
+
+#: lib/window.rb:442
+msgid "Quit"
+msgstr "退出"
+
+#: lib/window.rb:454
+msgid "Main Menu"
+msgstr "主菜单"
+
+#: lib/window.rb:636
+msgid "Account %s authentication failed!"
+msgstr "帐号%s认证失败！"
+
+#: lib/window.rb:637
+msgid "The token may have been revoked or expired."
+msgstr "Token可能已过期或被撤销"
+
+#: data/org.rubygtkproject.ForgeSparks.desktop.in:12
+msgid "git;github;notifications;"
+msgstr "git;github;notifications;通知;"
+
+#: data/org.rubygtkproject.ForgeSparks.metainfo.xml.in:24
+msgid "Simple notifier app with support for GitLab, Github, Gitea and Forgejo."
+msgstr "支持 GitLab, GitHub, Gitea 与Forgejo 的简易通知程序"
+
+#: data/org.rubygtkproject.ForgeSparks.metainfo.xml.in:25
+msgid ""
+"This is a Ruby GTK4 and Libadwaita port of Forge Sparks, written against the "
+"original as its specification."
+msgstr ""
+
+#~ msgid "Allow running Forge Sparks on background."
+#~ msgstr "允许Forge Sparks在后台运行"
+
+#~ msgid "Allow running Forge Sparks on startup."
+#~ msgstr "允许Forge Sparks在启动时运行"
+
+#~ msgid "Monitoring new notifications"
+#~ msgstr "正在收取新通知"
+
+#~ msgid "The request failed."
+#~ msgstr "请求失败"

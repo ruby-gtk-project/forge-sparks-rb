@@ -1,0 +1,377 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the com.mardojai.ForgeSparks package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: forge-sparks 0.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/ruby-gtk-project/forge-sparks-rb/"
+"issues\n"
+"POT-Creation-Date: 2026-11-02 23:17+0000\n"
+"PO-Revision-Date: 2026-02-24 21:09+0000\n"
+"Last-Translator: Thomas Boom <thomasnowprod@proton.me>\n"
+"Language-Team: Dutch <https://hosted.weblate.org/projects/forge-sparks/forge-"
+"sparks/nl/>\n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.16.1-dev\n"
+
+#: lib/account_dialog.rb:46
+msgid "Edit Account"
+msgstr "Account bewerken"
+
+#: lib/account_dialog.rb:48
+msgid "Add Account"
+msgstr "Account toevoegen"
+
+#: lib/account_dialog.rb:138
+msgid "Cancel"
+msgstr "Annuleren"
+
+#: lib/account_dialog.rb:145
+msgid "Save"
+msgstr "Opslaan"
+
+#: lib/account_dialog.rb:147
+msgid "Add"
+msgstr "Toevoegen"
+
+#: lib/account_dialog.rb:167
+msgid "Forge"
+msgstr "Forge"
+
+#: lib/account_dialog.rb:175
+msgid "Instance URL"
+msgstr "Instantie-URL"
+
+#: lib/account_dialog.rb:182
+msgid "Access Token"
+msgstr "Toegangssleutel"
+
+#: lib/account_dialog.rb:213
+msgid "Remove Account"
+msgstr "Account verwijderen"
+
+#: lib/account_dialog.rb:243
+msgid "Could not read the saved access token"
+msgstr ""
+
+#: lib/account_dialog.rb:328
+msgid "Invalid instance url."
+msgstr "Ongeldige instantie-URL."
+
+#: lib/account_dialog.rb:449
+msgid "Unexpected error removing the account"
+msgstr "Onverwachte fout bij het verwijderen van het account"
+
+#: lib/account_dialog.rb:467
+msgid "Couldn’t authenticate the account"
+msgstr "Kon niet authenticeren met account"
+
+#: lib/account_dialog.rb:469
+msgid "The access token doesn’t have the needed scopes"
+msgstr "De toegangssleutel heeft niet de benodigde scopes"
+
+#: lib/account_dialog.rb:471
+msgid "Unexpected error when creating the account"
+msgstr "Onverwachte fout tijdens het aanmaken van het account"
+
+#: lib/accounts_dialog.rb:36 lib/window.rb:369 lib/window.rb:652
+msgid "Accounts"
+msgstr "Accounts"
+
+#: lib/accounts_dialog.rb:100
+msgid "Add…"
+msgstr "Toevoegen…"
+
+#: lib/accounts_dialog.rb:126
+msgid "No Accounts"
+msgstr "Geen accounts"
+
+#: lib/accounts_dialog.rb:127 lib/window.rb:299
+msgid "Add an account to receive notifications from"
+msgstr "Voeg een account toe om meldingen van te krijgen"
+
+#: lib/accounts_dialog.rb:161
+msgid "Account authentication failed!"
+msgstr "Account-authenticatie mislukt!"
+
+#: lib/application.rb:96
+msgid "Get Git forges notifications"
+msgstr "Krijg meldingen van Git-forges"
+
+#. Translators: Replace "translator-credits" with your names, one name per line
+#: lib/application.rb:98
+msgid "translator-credits"
+msgstr "Philip Goto https://philipgoto.nl/"
+
+#: lib/application.rb:116
+msgid "Print version information and exit"
+msgstr ""
+
+#: lib/application.rb:125
+#, fuzzy
+#| msgid "Start Hidden"
+msgid "Start hidden"
+msgstr "Verborgen starten"
+
+#. Translators: Gitea access token help
+#: lib/gitea.rb:29
+msgid ""
+"To generate a new access token from your instance, go to Settings → "
+"Applications and generate a new token."
+msgstr ""
+"Om een nieuw toegangs­token van uw instantie te genereren, gaat u naar "
+"Instellingen → Apps en genereert u een nieuw token."
+
+#. Translators: Gitea access token help
+#: lib/gitea.rb:35
+msgid ""
+"Forge Sparks requires the <i>read:issue</i>, <i>write:notification</i> and "
+"<i>read:user</i> scopes granted."
+msgstr ""
+"Forge Sparks vereist dat de volgende scopes zijn toegekend: <i>read:issue</"
+"i>, <i>write:notification</i> en <i>read:user</i>"
+
+#: lib/github.rb:47
+msgid ""
+"You can generate a new personal access token from <a href=\"%s\">GitHub "
+"developer settings</a>. For more information, see \"<a href=\"%s\">Creating "
+"a personal access token</a>\"."
+msgstr ""
+"U kunt een nieuw persoonlijk toegangs­token genereren via de <a "
+"href=\"%s\">GitHub-ontwikkelaars­instellingen</a>. Voor meer informatie, zie "
+"‘<a href=\"%s\">Een persoonlijk toegangs­token maken</a>’."
+
+#. Translators: GitHub access token help
+#: lib/github.rb:57
+msgid ""
+"Forge Sparks requires a <b>classic</b> access token (for general use) with "
+"the <i>notifications</i> and <i>read:user</i> scopes granted."
+msgstr ""
+"Forge Sparks vereist een <b>klassiek</b> toegangs­token (voor algemeen "
+"gebruik) met de toe­gekende scopes <i>notifications</i> en <i>read:user</i>."
+
+#. Translators: GitHub access token help
+#: lib/github.rb:63
+msgid ""
+"If you’re working with private repositories, you’ll also need to grant the "
+"full <i>repo</i> scope."
+msgstr ""
+"Als u met privé-repositories werkt, moet u ook de volledige <i>repo</i>-"
+"scope toekennen."
+
+#. Translators: GitLab access token help
+#: lib/gitlab.rb:26
+msgid ""
+"To generate a new access token from your instance, go to Preferences → "
+"Access Tokens and generate a new token."
+msgstr ""
+"Om een nieuw toegangs­token van uw instantie te genereren, gaat u naar "
+"Voorkeuren → Toegangs­tokens en genereert u een nieuw token."
+
+#. Translators: GitLab access token help
+#: lib/gitlab.rb:32
+msgid ""
+"Forge Sparks needs <i>read_api</i> scope to read notifications or full "
+"<i>api</i> scope to also mark todos as done."
+msgstr ""
+"Forge Sparks heeft de scope <i>read_api</i> nodig om meldingen te lezen of "
+"de volledige scope <i>api</i> om taken ook als voltooid te markeren."
+
+#: lib/notification.rb:124
+msgid "Mark as Read"
+msgstr "Markeren als gelezen"
+
+#: lib/notification.rb:130
+msgid "Show Forge Sparks"
+msgstr "Forge Sparks weergeven"
+
+#: lib/preferences_dialog.rb:81
+msgid "Keep Running in Background"
+msgstr "Actief blijven op achter­grond"
+
+#: lib/preferences_dialog.rb:89
+msgid "Run on Startup"
+msgstr "Uitvoeren bij opstarten"
+
+#: lib/preferences_dialog.rb:103
+msgid "Start Hidden"
+msgstr "Verborgen starten"
+
+#: lib/preferences_dialog.rb:167
+msgid "The autostart request failed."
+msgstr "De aanvraag om automatisch te starten is mislukt."
+
+#: lib/shortcuts_dialog.rb:26
+msgctxt "shortcut window"
+msgid "General"
+msgstr "Algemeen"
+
+#: lib/shortcuts_dialog.rb:27
+msgctxt "shortcut window"
+msgid "Open menu"
+msgstr "Menu openen"
+
+#: lib/shortcuts_dialog.rb:28
+msgctxt "shortcut window"
+msgid "Keyboard shortcuts"
+msgstr "Sneltoetsen"
+
+#: lib/shortcuts_dialog.rb:29
+msgctxt "shortcut window"
+msgid "Quit"
+msgstr "Afsluiten"
+
+#: lib/shortcuts_dialog.rb:35
+#, fuzzy
+#| msgid "_Keyboard Shortcuts"
+msgid "Keyboard Shortcuts"
+msgstr "_Sneltoetsen"
+
+#: lib/util.rb:140 lib/util.rb:145
+msgid "now"
+msgstr "nu"
+
+#. Translators: relative date
+#: lib/util.rb:148
+msgid "%d minute ago"
+msgid_plural "%d minutes ago"
+msgstr[0] "%d minuut geleden"
+msgstr[1] "%d minuten geleden"
+
+#. Translators: relative date
+#: lib/util.rb:152
+msgid "%d hour ago"
+msgid_plural "%d hours ago"
+msgstr[0] "%d uur geleden"
+msgstr[1] "%d uur geleden"
+
+#. Translators: relative date
+#: lib/util.rb:157
+msgid "yesterday"
+msgid_plural "%d days ago"
+msgstr[0] "gisteren"
+msgstr[1] "%d dagen geleden"
+
+#. Translators: relative date
+#: lib/util.rb:162
+msgid "%d week ago"
+msgid_plural "%d weeks ago"
+msgstr[0] "%d week geleden"
+msgstr[1] "%d weken geleden"
+
+#. Translators: relative date, %s is date formatted as "May 01"
+#. Translators: relative date, %s is date formatted as "01 May, 2022"
+#: lib/util.rb:166 lib/util.rb:169
+msgid "on %s"
+msgstr "op %s"
+
+#. Translators: Don't translate, only transliterate if needed
+#: lib/window.rb:66
+msgid "Forge Sparks"
+msgstr "Forge Sparks"
+
+#: lib/window.rb:298
+msgid "Welcome to Forge Sparks"
+msgstr "Welkom bij Forge Sparks"
+
+#: lib/window.rb:309
+msgid "Add Account…"
+msgstr "Account toevoegen…"
+
+#: lib/window.rb:350 lib/window.rb:365
+msgid "Mark all as Read"
+msgstr "Alles als gelezen markeren"
+
+#: lib/window.rb:401
+msgid "No Notifications to Show"
+msgstr "Geen meldingen om te tonen"
+
+#: lib/window.rb:432
+msgid "_Preferences"
+msgstr "_Voorkeuren"
+
+#: lib/window.rb:433
+msgid "_Accounts"
+msgstr "_Accounts"
+
+#: lib/window.rb:434
+msgid "_Keyboard Shortcuts"
+msgstr "_Sneltoetsen"
+
+#: lib/window.rb:435
+msgid "About Forge Sparks"
+msgstr "Over Forge Sparks"
+
+#: lib/window.rb:442
+msgid "Quit"
+msgstr "Afsluiten"
+
+#: lib/window.rb:454
+msgid "Main Menu"
+msgstr "Hoofdmenu"
+
+#: lib/window.rb:636
+msgid "Account %s authentication failed!"
+msgstr "Authenticatie van account %s mislukt!"
+
+#: lib/window.rb:637
+msgid "The token may have been revoked or expired."
+msgstr "Het token is mogelijk ingetrokken of verlopen."
+
+#: data/org.rubygtkproject.ForgeSparks.desktop.in:12
+msgid "git;github;notifications;"
+msgstr "git;github;meldingen;"
+
+#: data/org.rubygtkproject.ForgeSparks.metainfo.xml.in:24
+msgid "Simple notifier app with support for GitLab, Github, Gitea and Forgejo."
+msgstr ""
+"Eenvoudige meldingen-app met ondersteuning voor GitLab, Github, Gitea en "
+"Forgejo."
+
+#: data/org.rubygtkproject.ForgeSparks.metainfo.xml.in:25
+msgid ""
+"This is a Ruby GTK4 and Libadwaita port of Forge Sparks, written against the "
+"original as its specification."
+msgstr ""
+
+#~ msgid "Allow running Forge Sparks on background."
+#~ msgstr "Sta toe dat Forge Sparks op de achtergrond actief blijft."
+
+#~ msgid "Allow running Forge Sparks on startup."
+#~ msgstr "Sta toe dat Forge Sparks start bij het opstarten van het systeem."
+
+#~ msgid "Monitoring new notifications"
+#~ msgstr "Bijhouden van nieuwe meldingen"
+
+#~ msgid "The request failed."
+#~ msgstr "De aanvraag is mislukt."
+
+#~ msgid "Forge Sparks requires the <i>api</i> scopes granted."
+#~ msgstr "Forge Sparks vereist dat de <i>api</i>-scopes zijn toegekend."
+
+#~ msgid "Get git forges notifications"
+#~ msgstr "Krijg meldingen van Git-forges"
+
+#~ msgid "Rafael Mardojai CM"
+#~ msgstr "Rafael Mardojai CM"
+
+#~ msgid "Please add an account in the app preferences."
+#~ msgstr "Voeg een account toe in de app-voorkeuren."
+
+#~ msgid "Open Preferences"
+#~ msgstr "Voorkeuren openen"
+
+#~ msgid "New account added successfully!"
+#~ msgstr "Nieuw account succesvol toegevoegd!"
+
+#~ msgid "Account edited successfully!"
+#~ msgstr "Account succesvol bijgewerkt!"
+
+#~ msgid "General"
+#~ msgstr "Algemeen"

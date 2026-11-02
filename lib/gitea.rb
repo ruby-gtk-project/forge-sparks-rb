@@ -4,6 +4,7 @@ require 'time'
 
 require_relative 'forge'
 require_relative 'github'
+require_relative 'translation'
 
 # Gitea is the Gitea backend.
 #
@@ -13,6 +14,8 @@ require_relative 'github'
 # url queries rather than a request body.
 #
 class Gitea < GitHub
+  extend Translation
+
   class << self
     def forge_name = 'gitea'
     def pretty_name = 'Gitea'
@@ -22,11 +25,17 @@ class Gitea < GitHub
 
     def token_text
       [
-        'To generate a new access token from your instance, go to Settings → Applications and ' \
-        'generate a new token.',
+        # Translators: Gitea access token help
+        _(
+          'To generate a new access token from your instance, go to Settings → Applications ' \
+          'and generate a new token.',
+        ),
         "\n\n",
-        'Forge Sparks requires the <i>read:issue</i>, <i>write:notification</i> and ' \
-        '<i>read:user</i> scopes granted.',
+        # Translators: Gitea access token help
+        _(
+          'Forge Sparks requires the <i>read:issue</i>, <i>write:notification</i> and ' \
+          '<i>read:user</i> scopes granted.',
+        ),
       ].join
     end
   end

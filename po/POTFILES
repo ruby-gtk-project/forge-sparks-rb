@@ -1,0 +1,15 @@
+# Every file with a translatable string in it, which is what
+# po/update-catalogue.sh extracts po/forge-sparks.pot from.
+data/org.rubygtkproject.ForgeSparks.desktop.in
+data/org.rubygtkproject.ForgeSparks.metainfo.xml.in
+lib/account_dialog.rb
+lib/accounts_dialog.rb
+lib/application.rb
+lib/gitea.rb
+lib/github.rb
+lib/gitlab.rb
+lib/notification.rb
+lib/preferences_dialog.rb
+lib/shortcuts_dialog.rb
+lib/util.rb
+lib/window.rb

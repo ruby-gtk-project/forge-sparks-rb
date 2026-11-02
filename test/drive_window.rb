@@ -19,6 +19,12 @@ require 'fileutils'
 require 'json'
 require 'time'
 
+# The checks below read the English the port is written in, so the run is
+# pinned to the C locale: a machine whose language has a compiled catalogue in
+# data/locale would otherwise hand back translated labels.
+ENV['LANGUAGE'] = 'C'
+ENV['LC_ALL'] = 'C'
+
 scratch = Dir.mktmpdir('forge-sparks-drive')
 ENV['XDG_CONFIG_HOME'] = File.join(scratch, 'config')
 ENV['XDG_DATA_HOME'] = File.join(scratch, 'data')

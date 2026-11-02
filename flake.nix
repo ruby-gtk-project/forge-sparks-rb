@@ -116,6 +116,26 @@
           "data"
           "po"
         ];
+
+        # The app id is read off the packaging data in data/, the same way the
+        # launcher is read off exe/: the desktop entry, the AppStream metainfo,
+        # the D-Bus service and both icons all have to be installed under it,
+        # and a name kept in step by hand is a name that drifts.
+        dataNames =
+          if builtins.pathExists ./data
+          then builtins.attrNames (builtins.readDir ./data)
+          else [ ];
+        desktopTemplates = builtins.filter
+          (n: builtins.match ".*\\.desktop\\.in" n != null)
+          dataNames;
+        appId =
+          if desktopTemplates == [ ]
+          then null
+          else builtins.head (builtins.match "(.*)\\.desktop\\.in" (builtins.head desktopTemplates));
+
+        # The text domain the app binds, which is the basename of every
+        # compiled catalogue.
+        textDomain = "forge-sparks";
       in
       {
         packages.default = pkgs.stdenv.mkDerivation {
@@ -128,7 +148,10 @@
           # computed its wrapper arguments, so a schema would end up somewhere
           # the wrapper never looks. The wrapper below is built by hand and
           # points at both the pre- and post-move paths.
-          nativeBuildInputs = [ pkgs.makeWrapper ];
+          # gettext compiles the catalogues and merges them into the desktop
+          # entry and the metainfo, which is what meson's i18n.merge_file does
+          # for upstream.
+          nativeBuildInputs = [ pkgs.makeWrapper pkgs.gettext pkgs.desktop-file-utils ];
           buildInputs = [ gems ] ++ gtkStack;
 
           dontBuild = true;
@@ -145,6 +168,33 @@
             # resolves against the copied tree.
             install -Dm755 exe/${launcher} $out/share/forge-sparks/exe/${launcher}
 
+            # One compiled catalogue per po/<lang>.po, under the share the
+            # wrapper puts on XDG_DATA_DIRS, which is where the app's
+            # Translation looks for them.
+            for po in po/*.po; do
+              lang=$(basename "$po" .po)
+              install -d $out/share/locale/$lang/LC_MESSAGES
+              msgfmt "$po" -o $out/share/locale/$lang/LC_MESSAGES/${textDomain}.mo
+            done
+${pkgs.lib.optionalString (appId != null) ''
+            # The desktop entry and the metainfo, each with the translations
+            # of its own strings merged in from po/, the D-Bus service aimed
+            # at the launcher this derivation installs, and the two icons under
+            # the names the app asks the icon theme for.
+            install -d $out/share/applications $out/share/metainfo $out/share/dbus-1/services
+            msgfmt --desktop --template data/${appId}.desktop.in -d po \
+              -o $out/share/applications/${appId}.desktop
+            desktop-file-validate $out/share/applications/${appId}.desktop
+            msgfmt --xml --template data/${appId}.metainfo.xml.in -d po \
+              -o $out/share/metainfo/${appId}.metainfo.xml
+            substitute data/${appId}.service.in \
+              $out/share/dbus-1/services/${appId}.service \
+              --replace-fail '@bindir@' "$out/bin"
+            install -Dm644 data/forge-sparks.svg \
+              $out/share/icons/hicolor/scalable/apps/${appId}.svg
+            install -Dm644 data/forge-sparks-symbolic.svg \
+              $out/share/icons/hicolor/symbolic/apps/${appId}-symbolic.svg
+''}
             # Compile any GSettings schema the port ships.
             if [ -d data/schemas ]; then
               mkdir -p $out/share/glib-2.0/schemas

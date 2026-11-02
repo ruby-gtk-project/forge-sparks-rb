@@ -2,6 +2,7 @@
 
 require_relative 'forge'
 require_relative 'notification'
+require_relative 'translation'
 
 # GitLab is the GitLab backend.
 #
@@ -10,6 +11,8 @@ require_relative 'notification'
 # todo as done. The token is a Bearer token rather than GitHub's "token".
 #
 class GitLab < Forge
+  extend Translation
+
   class << self
     def forge_name = 'gitlab'
     def pretty_name = 'GitLab'
@@ -19,11 +22,17 @@ class GitLab < Forge
 
     def token_text
       [
-        'To generate a new access token from your instance, go to Preferences → Access Tokens ' \
-        'and generate a new token.',
+        # Translators: GitLab access token help
+        _(
+          'To generate a new access token from your instance, go to Preferences → Access ' \
+          'Tokens and generate a new token.',
+        ),
         "\n\n",
-        'Forge Sparks needs <i>read_api</i> scope to read notifications or full <i>api</i> ' \
-        'scope to also mark todos as done.',
+        # Translators: GitLab access token help
+        _(
+          'Forge Sparks needs <i>read_api</i> scope to read notifications or full <i>api</i> ' \
+          'scope to also mark todos as done.',
+        ),
       ].join
     end
   end

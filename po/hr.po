@@ -1,0 +1,361 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the com.mardojai.ForgeSparks package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: forge-sparks 0.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/ruby-gtk-project/forge-sparks-rb/"
+"issues\n"
+"POT-Creation-Date: 2026-11-02 23:17+0000\n"
+"PO-Revision-Date: 2025-10-25 16:02+0000\n"
+"Last-Translator: Milo Ivir <mail@milotype.de>\n"
+"Language-Team: Croatian <https://hosted.weblate.org/projects/forge-sparks/"
+"forge-sparks/hr/>\n"
+"Language: hr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Weblate 5.14.1-dev\n"
+
+#: lib/account_dialog.rb:46
+msgid "Edit Account"
+msgstr "Uredi račun"
+
+#: lib/account_dialog.rb:48
+msgid "Add Account"
+msgstr "Dodaj račun"
+
+#: lib/account_dialog.rb:138
+msgid "Cancel"
+msgstr "Odustani"
+
+#: lib/account_dialog.rb:145
+msgid "Save"
+msgstr "Spremi"
+
+#: lib/account_dialog.rb:147
+msgid "Add"
+msgstr "Dodaj"
+
+#: lib/account_dialog.rb:167
+msgid "Forge"
+msgstr "Platforma"
+
+#: lib/account_dialog.rb:175
+msgid "Instance URL"
+msgstr "URL instance"
+
+#: lib/account_dialog.rb:182
+msgid "Access Token"
+msgstr "Pristupni token"
+
+#: lib/account_dialog.rb:213
+msgid "Remove Account"
+msgstr "Ukloni račun"
+
+#: lib/account_dialog.rb:243
+msgid "Could not read the saved access token"
+msgstr ""
+
+#: lib/account_dialog.rb:328
+msgid "Invalid instance url."
+msgstr "Neispravna URL adresa instance."
+
+#: lib/account_dialog.rb:449
+msgid "Unexpected error removing the account"
+msgstr "Neočekivana greška prilikom uklanjanja računa"
+
+#: lib/account_dialog.rb:467
+msgid "Couldn’t authenticate the account"
+msgstr "Nije bilo moguće autentificirati račun"
+
+#: lib/account_dialog.rb:469
+msgid "The access token doesn’t have the needed scopes"
+msgstr "Pristupni token nema potrebne opsege"
+
+#: lib/account_dialog.rb:471
+msgid "Unexpected error when creating the account"
+msgstr "Neočekivana greška prilikom stvaranja računa"
+
+#: lib/accounts_dialog.rb:36 lib/window.rb:369 lib/window.rb:652
+msgid "Accounts"
+msgstr "Računi"
+
+#: lib/accounts_dialog.rb:100
+msgid "Add…"
+msgstr "Dodaj …"
+
+#: lib/accounts_dialog.rb:126
+msgid "No Accounts"
+msgstr "Nema računa"
+
+#: lib/accounts_dialog.rb:127 lib/window.rb:299
+msgid "Add an account to receive notifications from"
+msgstr "Dodajte račun za primanje obavijesti od"
+
+#: lib/accounts_dialog.rb:161
+msgid "Account authentication failed!"
+msgstr "Autentifikacija računa nije uspjela!"
+
+#: lib/application.rb:96
+msgid "Get Git forges notifications"
+msgstr "Primaj obavijesti Git platformi"
+
+#. Translators: Replace "translator-credits" with your names, one name per line
+#: lib/application.rb:98
+msgid "translator-credits"
+msgstr "Milo Ivir <mail@milotype.de>"
+
+#: lib/application.rb:116
+msgid "Print version information and exit"
+msgstr ""
+
+#: lib/application.rb:125
+#, fuzzy
+#| msgid "Start Hidden"
+msgid "Start hidden"
+msgstr "Pokreni skrivene"
+
+#. Translators: Gitea access token help
+#: lib/gitea.rb:29
+msgid ""
+"To generate a new access token from your instance, go to Settings → "
+"Applications and generate a new token."
+msgstr ""
+"Za generiranje novog pristupnog tokena iz svoje instance, idite na Postavke "
+"→ Aplikacije i generirajte novi token."
+
+#. Translators: Gitea access token help
+#: lib/gitea.rb:35
+msgid ""
+"Forge Sparks requires the <i>read:issue</i>, <i>write:notification</i> and "
+"<i>read:user</i> scopes granted."
+msgstr ""
+"Forge Sparks zahtijeva odobrene <i>read:issue</i>, <i>write:notification</i> "
+"i <i>read:user</i> opsege."
+
+#: lib/github.rb:47
+msgid ""
+"You can generate a new personal access token from <a href=\"%s\">GitHub "
+"developer settings</a>. For more information, see \"<a href=\"%s\">Creating "
+"a personal access token</a>\"."
+msgstr ""
+"Novi osobni pristupni token se može generirati na stranici <a "
+"href=\"%s\">GitHub developer settings</a> (Postavke GitHub programera). "
+"Dodatne informacije se nalaze u dokumentaciji u odjeljku „<a "
+"href=\"%s\">Creating a personal access token</a>“ (Stvaranje osobnog "
+"pristupnog tokena)."
+
+#. Translators: GitHub access token help
+#: lib/github.rb:57
+msgid ""
+"Forge Sparks requires a <b>classic</b> access token (for general use) with "
+"the <i>notifications</i> and <i>read:user</i> scopes granted."
+msgstr ""
+"Forge Sparks zahtijeva <b>klasični</b> pristupni token (za opću upotrebu) s "
+"odobrenim <i>notifications</i> i <i>read:user</i> ospezima."
+
+#. Translators: GitHub access token help
+#: lib/github.rb:63
+msgid ""
+"If you’re working with private repositories, you’ll also need to grant the "
+"full <i>repo</i> scope."
+msgstr ""
+"Ako radite s privatnim repozitorijima morat ćete dodijeliti i puni <i>repo</"
+"i> opseg."
+
+#. Translators: GitLab access token help
+#: lib/gitlab.rb:26
+msgid ""
+"To generate a new access token from your instance, go to Preferences → "
+"Access Tokens and generate a new token."
+msgstr ""
+"Za generiranje novog pristupnog tokena iz svoje instance, idite na Postavke "
+"→ Pristupni tokeni i generirajte novi token."
+
+#. Translators: GitLab access token help
+#: lib/gitlab.rb:32
+msgid ""
+"Forge Sparks needs <i>read_api</i> scope to read notifications or full "
+"<i>api</i> scope to also mark todos as done."
+msgstr ""
+"Forge Sparks treba <i>read_api</i> opseg za čitanje obavijesti ili puni "
+"opseg <i>API-ja</i> kako bi također označio zadatke kao završene."
+
+#: lib/notification.rb:124
+msgid "Mark as Read"
+msgstr "Označi kao pročitano"
+
+#: lib/notification.rb:130
+msgid "Show Forge Sparks"
+msgstr "Prikaži Forge Sparks"
+
+#: lib/preferences_dialog.rb:81
+msgid "Keep Running in Background"
+msgstr "Nastavi raditi u pozadini"
+
+#: lib/preferences_dialog.rb:89
+msgid "Run on Startup"
+msgstr "Pokreni nakon pokretanja sustava"
+
+#: lib/preferences_dialog.rb:103
+msgid "Start Hidden"
+msgstr "Pokreni skrivene"
+
+#: lib/preferences_dialog.rb:167
+msgid "The autostart request failed."
+msgstr "Zahtjev za automatsko pokretanje nije uspio."
+
+#: lib/shortcuts_dialog.rb:26
+msgctxt "shortcut window"
+msgid "General"
+msgstr "Općenito"
+
+#: lib/shortcuts_dialog.rb:27
+msgctxt "shortcut window"
+msgid "Open menu"
+msgstr "Otvori izbornik"
+
+#: lib/shortcuts_dialog.rb:28
+msgctxt "shortcut window"
+msgid "Keyboard shortcuts"
+msgstr "Tipkovni prečaci"
+
+#: lib/shortcuts_dialog.rb:29
+msgctxt "shortcut window"
+msgid "Quit"
+msgstr "Zatvori aplikaciju"
+
+#: lib/shortcuts_dialog.rb:35
+#, fuzzy
+#| msgid "_Keyboard Shortcuts"
+msgid "Keyboard Shortcuts"
+msgstr "_Tipkovni prečaci"
+
+#: lib/util.rb:140 lib/util.rb:145
+msgid "now"
+msgstr "sada"
+
+#. Translators: relative date
+#: lib/util.rb:148
+msgid "%d minute ago"
+msgid_plural "%d minutes ago"
+msgstr[0] "prije %d minute"
+msgstr[1] "prije %d minute"
+msgstr[2] "prije %d minuta"
+
+#. Translators: relative date
+#: lib/util.rb:152
+msgid "%d hour ago"
+msgid_plural "%d hours ago"
+msgstr[0] "prije %d sat"
+msgstr[1] "prije %d sata"
+msgstr[2] "prije %d sati"
+
+#. Translators: relative date
+#: lib/util.rb:157
+msgid "yesterday"
+msgid_plural "%d days ago"
+msgstr[0] "jučer"
+msgstr[1] "prije %d dana"
+msgstr[2] "prije %d dana"
+
+#. Translators: relative date
+#: lib/util.rb:162
+msgid "%d week ago"
+msgid_plural "%d weeks ago"
+msgstr[0] "prije %d tjedan"
+msgstr[1] "prije %d tjedna"
+msgstr[2] "prije %d tjedna"
+
+#. Translators: relative date, %s is date formatted as "May 01"
+#. Translators: relative date, %s is date formatted as "01 May, 2022"
+#: lib/util.rb:166 lib/util.rb:169
+msgid "on %s"
+msgstr "%s"
+
+#. Translators: Don't translate, only transliterate if needed
+#: lib/window.rb:66
+msgid "Forge Sparks"
+msgstr "Forge Sparks"
+
+#: lib/window.rb:298
+msgid "Welcome to Forge Sparks"
+msgstr "Dobro došli u Forge Sparks"
+
+#: lib/window.rb:309
+msgid "Add Account…"
+msgstr "Dodaj račun …"
+
+#: lib/window.rb:350 lib/window.rb:365
+msgid "Mark all as Read"
+msgstr "Označi sve kao pročitano"
+
+#: lib/window.rb:401
+msgid "No Notifications to Show"
+msgstr "Nema obavijesti"
+
+#: lib/window.rb:432
+msgid "_Preferences"
+msgstr "_Postavke"
+
+#: lib/window.rb:433
+msgid "_Accounts"
+msgstr "_Računi"
+
+#: lib/window.rb:434
+msgid "_Keyboard Shortcuts"
+msgstr "_Tipkovni prečaci"
+
+#: lib/window.rb:435
+msgid "About Forge Sparks"
+msgstr "O aplikaciji Forge Sparks"
+
+#: lib/window.rb:442
+msgid "Quit"
+msgstr "Zatvori aplikaciju"
+
+#: lib/window.rb:454
+msgid "Main Menu"
+msgstr "Glavni izbornik"
+
+#: lib/window.rb:636
+msgid "Account %s authentication failed!"
+msgstr "Autentifikacija računa %s nije uspjela!"
+
+#: lib/window.rb:637
+msgid "The token may have been revoked or expired."
+msgstr "Token je možda opozvan ili je istekao."
+
+#: data/org.rubygtkproject.ForgeSparks.desktop.in:12
+msgid "git;github;notifications;"
+msgstr "git;github;obavijesti;"
+
+#: data/org.rubygtkproject.ForgeSparks.metainfo.xml.in:24
+msgid "Simple notifier app with support for GitLab, Github, Gitea and Forgejo."
+msgstr ""
+"Jednostavna aplikacija za obavještavanje s podrškom za GitLab, Github, Gitea "
+"i Forgejo."
+
+#: data/org.rubygtkproject.ForgeSparks.metainfo.xml.in:25
+msgid ""
+"This is a Ruby GTK4 and Libadwaita port of Forge Sparks, written against the "
+"original as its specification."
+msgstr ""
+
+#~ msgid "Allow running Forge Sparks on background."
+#~ msgstr "Dopusti pokretanje aplikacije Forge Sparks u pozadini."
+
+#~ msgid "Allow running Forge Sparks on startup."
+#~ msgstr ""
+#~ "Dopusti pokretanje aplikacije Forge Sparks nakon pokretanja sustava."
+
+#~ msgid "Monitoring new notifications"
+#~ msgstr "Praćenje novih obavijesti"
+
+#~ msgid "The request failed."
+#~ msgstr "Zahtjev nije uspio."

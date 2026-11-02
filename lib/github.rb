@@ -4,6 +4,7 @@ require 'time'
 
 require_relative 'forge'
 require_relative 'notification'
+require_relative 'translation'
 
 # GitHub is the GitHub backend.
 #
@@ -13,6 +14,8 @@ require_relative 'notification'
 # web UI open the notification shelf.
 #
 class GitHub < Forge
+  extend Translation
+
   TOKEN_URL = 'https://github.com/settings/tokens'
   TOKEN_HELP_URL = 'https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/' \
                    'managing-your-personal-access-tokens#creating-a-personal-access-token-classic'
@@ -40,15 +43,27 @@ class GitHub < Forge
 
     def token_text
       [
-        "You can generate a new personal access token from <a href=\"#{TOKEN_URL}\">GitHub developer " \
-        "settings</a>. For more information, see \"<a href=\"#{TOKEN_HELP_URL}\">Creating a personal " \
-        'access token</a>".',
+        format(
+          _(
+            'You can generate a new personal access token from <a href="%s">GitHub developer ' \
+            'settings</a>. For more information, see "<a href="%s">Creating a personal access ' \
+            'token</a>".',
+          ),
+          TOKEN_URL,
+          TOKEN_HELP_URL,
+        ),
         "\n\n",
-        'Forge Sparks requires a <b>classic</b> access token (for general use) with the ' \
-        '<i>notifications</i> and <i>read:user</i> scopes granted.',
+        # Translators: GitHub access token help
+        _(
+          'Forge Sparks requires a <b>classic</b> access token (for general use) with the ' \
+          '<i>notifications</i> and <i>read:user</i> scopes granted.',
+        ),
         ' ',
-        'If you’re working with private repositories, you’ll also need to grant the full ' \
-        '<i>repo</i> scope.',
+        # Translators: GitHub access token help
+        _(
+          'If you’re working with private repositories, you’ll also need to grant the full ' \
+          '<i>repo</i> scope.',
+        ),
       ].join
     end
   end

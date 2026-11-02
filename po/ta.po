@@ -1,0 +1,356 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the com.mardojai.ForgeSparks package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: forge-sparks 0.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/ruby-gtk-project/forge-sparks-rb/"
+"issues\n"
+"POT-Creation-Date: 2026-11-02 23:17+0000\n"
+"PO-Revision-Date: 2026-03-02 09:09+0000\n"
+"Last-Translator: தமிழ்நேரம் <tamilneram247@gmail.com>\n"
+"Language-Team: Tamil <https://hosted.weblate.org/projects/forge-sparks/forge-"
+"sparks/ta/>\n"
+"Language: ta\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.16.1-dev\n"
+
+#: lib/account_dialog.rb:46
+msgid "Edit Account"
+msgstr "கணக்கைத் திருத்தவும்"
+
+#: lib/account_dialog.rb:48
+msgid "Add Account"
+msgstr "கணக்கைச் சேர்க்கவும்"
+
+#: lib/account_dialog.rb:138
+msgid "Cancel"
+msgstr "ரத்துசெய்"
+
+#: lib/account_dialog.rb:145
+msgid "Save"
+msgstr "சேமி"
+
+#: lib/account_dialog.rb:147
+msgid "Add"
+msgstr "கூட்டு"
+
+#: lib/account_dialog.rb:167
+msgid "Forge"
+msgstr "ஃபார்ச்"
+
+#: lib/account_dialog.rb:175
+msgid "Instance URL"
+msgstr "நிகழ்வு முகவரி"
+
+#: lib/account_dialog.rb:182
+msgid "Access Token"
+msgstr "அணுகல் கிள்ளாக்கு"
+
+#: lib/account_dialog.rb:213
+msgid "Remove Account"
+msgstr "கணக்கை அகற்று"
+
+#: lib/account_dialog.rb:243
+msgid "Could not read the saved access token"
+msgstr ""
+
+#: lib/account_dialog.rb:328
+msgid "Invalid instance url."
+msgstr "தவறான நிகழ்வு முகவரி."
+
+#: lib/account_dialog.rb:449
+msgid "Unexpected error removing the account"
+msgstr "கணக்கை அகற்றுவதில் எதிர்பாராத பிழை"
+
+#: lib/account_dialog.rb:467
+msgid "Couldn’t authenticate the account"
+msgstr "கணக்கை அங்கீகரிக்க முடியவில்லை"
+
+#: lib/account_dialog.rb:469
+msgid "The access token doesn’t have the needed scopes"
+msgstr "அணுகல் டோக்கனில் தேவையான நோக்கங்கள் இல்லை"
+
+#: lib/account_dialog.rb:471
+msgid "Unexpected error when creating the account"
+msgstr "கணக்கை உருவாக்கும் போது எதிர்பாராத பிழை"
+
+#: lib/accounts_dialog.rb:36 lib/window.rb:369 lib/window.rb:652
+msgid "Accounts"
+msgstr "கணக்குகள்"
+
+#: lib/accounts_dialog.rb:100
+msgid "Add…"
+msgstr "சேர்க்கவும்…"
+
+#: lib/accounts_dialog.rb:126
+msgid "No Accounts"
+msgstr "கணக்குகள் இல்லை"
+
+#: lib/accounts_dialog.rb:127 lib/window.rb:299
+msgid "Add an account to receive notifications from"
+msgstr "அறிவிப்புகளைப் பெற ஒரு கணக்கைச் சேர்க்கவும்"
+
+#: lib/accounts_dialog.rb:161
+msgid "Account authentication failed!"
+msgstr "கணக்கு ஏற்பு தோல்வியடைந்தது!"
+
+#: lib/application.rb:96
+msgid "Get Git forges notifications"
+msgstr "அறிவிலி ஃபோர்சச் அறிவிப்புகளைப் பெறுங்கள்"
+
+#. Translators: Replace "translator-credits" with your names, one name per line
+#: lib/application.rb:98
+msgid "translator-credits"
+msgstr "மொழிபெயர்ப்பாளர்-வரவு"
+
+#: lib/application.rb:116
+msgid "Print version information and exit"
+msgstr ""
+
+#: lib/application.rb:125
+#, fuzzy
+#| msgid "Start Hidden"
+msgid "Start hidden"
+msgstr "மறைக்கத் தொடங்குங்கள்"
+
+#. Translators: Gitea access token help
+#: lib/gitea.rb:29
+msgid ""
+"To generate a new access token from your instance, go to Settings → "
+"Applications and generate a new token."
+msgstr ""
+"உங்கள் நிகழ்விலிருந்து புதிய அணுகல் கிள்ளாக்கை உருவாக்க, அமைப்புகள் → பயன்பாடுகளுக்குச் "
+"சென்று புதிய கிள்ளாக்கை உருவாக்கவும்."
+
+#. Translators: Gitea access token help
+#: lib/gitea.rb:35
+msgid ""
+"Forge Sparks requires the <i>read:issue</i>, <i>write:notification</i> and "
+"<i>read:user</i> scopes granted."
+msgstr ""
+"ஃபோர்ச் ச்பார்க்சுக்கு <i> படிக்க: வெளியீடு </i>, <i> எழுது: அறிவிப்பு </i> மற்றும் <i> "
+"படிக்க: பயனர் </i> ச்கோப்புகள் வழங்கப்பட்டன."
+
+#: lib/github.rb:47
+msgid ""
+"You can generate a new personal access token from <a href=\"%s\">GitHub "
+"developer settings</a>. For more information, see \"<a href=\"%s\">Creating "
+"a personal access token</a>\"."
+msgstr ""
+"<a href=\"%s\">அறிவிலிமையம் உருவாக்குபவர் அமைப்புகள் </a> இலிருந்து புதிய தனிப்பட்ட "
+"அணுகல் கிள்ளாக்கை நீங்கள் உருவாக்கலாம். மேலும் தகவலுக்கு, \"<a href=\"%s\">தனிப்பட்ட "
+"அணுகல் கிள்ளாக்கை உருவாக்குதல் </a>\" ஐப் பார்க்கவும்."
+
+#. Translators: GitHub access token help
+#: lib/github.rb:57
+msgid ""
+"Forge Sparks requires a <b>classic</b> access token (for general use) with "
+"the <i>notifications</i> and <i>read:user</i> scopes granted."
+msgstr ""
+"ஃபோர்ச் ச்பார்க்சுக்கு <b> கிளாசிக் </b> <i> அறிவிப்புகள் </i> மற்றும் <i> படிக்க: பயனர் "
+"</i> ச்கோப்புகள் வழங்கப்பட்ட ஒரு அணுகல் கிள்ளாக்கு தேவை."
+
+#. Translators: GitHub access token help
+#: lib/github.rb:63
+msgid ""
+"If you’re working with private repositories, you’ll also need to grant the "
+"full <i>repo</i> scope."
+msgstr ""
+"நீங்கள் தனியார் களஞ்சியங்களுடன் பணிபுரிகிறீர்கள் என்றால், நீங்கள் முழு <i> ரெப்போ </i> "
+"நோக்கத்தையும் வழங்க வேண்டும்."
+
+#. Translators: GitLab access token help
+#: lib/gitlab.rb:26
+msgid ""
+"To generate a new access token from your instance, go to Preferences → "
+"Access Tokens and generate a new token."
+msgstr ""
+"உங்கள் நிகழ்விலிருந்து புதிய அணுகல் கிள்ளாக்கை உருவாக்க, விருப்பத்தேர்வுகள் → டோக்கன்களை "
+"அணுகவும், புதிய கிள்ளாக்கை உருவாக்கவும்."
+
+#. Translators: GitLab access token help
+#: lib/gitlab.rb:32
+msgid ""
+"Forge Sparks needs <i>read_api</i> scope to read notifications or full "
+"<i>api</i> scope to also mark todos as done."
+msgstr ""
+"ஃபோர்ச் ச்பார்க்சுக்கு அறிவிப்புகளைப் படிக்க <i>read_api</i> அனுகல் தேவை அல்லது "
+"செய்யவேண்டியதாக முடிந்ததாகக் குறிக்க முழு <i>api</i> அனுகல் தேவை."
+
+#: lib/notification.rb:124
+msgid "Mark as Read"
+msgstr "படித்தபடி குறி"
+
+#: lib/notification.rb:130
+msgid "Show Forge Sparks"
+msgstr "ஃபோர்ச் ச்பார்க்சைக் காட்டு"
+
+#: lib/preferences_dialog.rb:81
+msgid "Keep Running in Background"
+msgstr "பின்னணியில் தொடர்ந்து இயங்கும்"
+
+#: lib/preferences_dialog.rb:89
+msgid "Run on Startup"
+msgstr "தொடக்கத்தில் இயக்கவும்"
+
+#: lib/preferences_dialog.rb:103
+msgid "Start Hidden"
+msgstr "மறைக்கத் தொடங்குங்கள்"
+
+#: lib/preferences_dialog.rb:167
+msgid "The autostart request failed."
+msgstr "ஆட்டோச்டார்ட் கோரிக்கை தோல்வியடைந்தது."
+
+#: lib/shortcuts_dialog.rb:26
+msgctxt "shortcut window"
+msgid "General"
+msgstr "பொது"
+
+#: lib/shortcuts_dialog.rb:27
+msgctxt "shortcut window"
+msgid "Open menu"
+msgstr "திறந்த பட்டியல்"
+
+#: lib/shortcuts_dialog.rb:28
+msgctxt "shortcut window"
+msgid "Keyboard shortcuts"
+msgstr "விசைப்பலகை குறுக்குவழிகள்"
+
+#: lib/shortcuts_dialog.rb:29
+msgctxt "shortcut window"
+msgid "Quit"
+msgstr "வெளியேறு"
+
+#: lib/shortcuts_dialog.rb:35
+#, fuzzy
+#| msgid "_Keyboard Shortcuts"
+msgid "Keyboard Shortcuts"
+msgstr "விசைப்பலகை குறுக்குவழிகள்"
+
+#: lib/util.rb:140 lib/util.rb:145
+msgid "now"
+msgstr "இப்போது"
+
+#. Translators: relative date
+#: lib/util.rb:148
+msgid "%d minute ago"
+msgid_plural "%d minutes ago"
+msgstr[0] "%d மணித்துளி முன்பு"
+msgstr[1] "%d நிமிடங்களுக்கு முன்பு"
+
+#. Translators: relative date
+#: lib/util.rb:152
+msgid "%d hour ago"
+msgid_plural "%d hours ago"
+msgstr[0] "%d மணி நேரத்திற்கு முன்பு"
+msgstr[1] "%d மணிநேரங்களுக்கு முன்பு"
+
+#. Translators: relative date
+#: lib/util.rb:157
+msgid "yesterday"
+msgid_plural "%d days ago"
+msgstr[0] "நேற்று"
+msgstr[1] "%d சில நாட்களுக்கு முன்பு"
+
+#. Translators: relative date
+#: lib/util.rb:162
+msgid "%d week ago"
+msgid_plural "%d weeks ago"
+msgstr[0] "%d வாரத்திற்கு முன்பு"
+msgstr[1] "%d வாரங்களுக்கு முன்பு"
+
+#. Translators: relative date, %s is date formatted as "May 01"
+#. Translators: relative date, %s is date formatted as "01 May, 2022"
+#: lib/util.rb:166 lib/util.rb:169
+msgid "on %s"
+msgstr "%s"
+
+#. Translators: Don't translate, only transliterate if needed
+#: lib/window.rb:66
+msgid "Forge Sparks"
+msgstr "ஃபோர்ச் தீப்பொறிகள்"
+
+#: lib/window.rb:298
+msgid "Welcome to Forge Sparks"
+msgstr "ஃபோர்ச் ச்பார்க்சுக்கு வருக"
+
+#: lib/window.rb:309
+msgid "Add Account…"
+msgstr "கணக்கைச் சேர்க்கவும்…"
+
+#: lib/window.rb:350 lib/window.rb:365
+msgid "Mark all as Read"
+msgstr "அனைத்தையும் படித்தபடி குறிக்கவும்"
+
+#: lib/window.rb:401
+msgid "No Notifications to Show"
+msgstr "காட்ட அறிவிப்புகள் எதுவும் இல்லை"
+
+#: lib/window.rb:432
+msgid "_Preferences"
+msgstr "_ முனைகள்"
+
+#: lib/window.rb:433
+msgid "_Accounts"
+msgstr "_ கணக்குகள்"
+
+#: lib/window.rb:434
+msgid "_Keyboard Shortcuts"
+msgstr "விசைப்பலகை குறுக்குவழிகள்"
+
+#: lib/window.rb:435
+msgid "About Forge Sparks"
+msgstr "ஃபோர்ச் ச்பார்க்ச் பற்றி"
+
+#: lib/window.rb:442
+msgid "Quit"
+msgstr "வெளியேறு"
+
+#: lib/window.rb:454
+msgid "Main Menu"
+msgstr "பட்டியல் விளையாடுங்கள்"
+
+#: lib/window.rb:636
+msgid "Account %s authentication failed!"
+msgstr "கணக்கு %s ஏற்பு தோல்வியடைந்தது!"
+
+#: lib/window.rb:637
+msgid "The token may have been revoked or expired."
+msgstr "கிள்ளாக்கு ரத்து செய்யப்பட்டிருக்கலாம் அல்லது காலாவதியானது."
+
+#: data/org.rubygtkproject.ForgeSparks.desktop.in:12
+msgid "git;github;notifications;"
+msgstr "கிட்; கிதுப்; அறிவிப்புகள்;"
+
+#: data/org.rubygtkproject.ForgeSparks.metainfo.xml.in:24
+msgid "Simple notifier app with support for GitLab, Github, Gitea and Forgejo."
+msgstr ""
+"அறிவிலிஆய்வு, அறிவிலிமையம், கிட்டா மற்றும் ஃபோர்ச்சோவுக்கான ஆதரவுடன் எளிய அறிவிப்பாளர் "
+"பயன்பாடு."
+
+#: data/org.rubygtkproject.ForgeSparks.metainfo.xml.in:25
+msgid ""
+"This is a Ruby GTK4 and Libadwaita port of Forge Sparks, written against the "
+"original as its specification."
+msgstr ""
+
+#~ msgid "Allow running Forge Sparks on background."
+#~ msgstr "பின்னணியில் ஃபோர்ச் தீப்பொறிகளை இயக்க அனுமதிக்கவும்."
+
+#~ msgid "Allow running Forge Sparks on startup."
+#~ msgstr "தொடக்கத்தில் ஃபோர்ச் தீப்பொறிகளை இயக்க அனுமதிக்கவும்."
+
+#~ msgid "Monitoring new notifications"
+#~ msgstr "புதிய அறிவிப்புகளை கண்காணித்தல்"
+
+#~ msgid "The request failed."
+#~ msgstr "கோரிக்கை தோல்வியடைந்தது."
+
+#~ msgid "Forge Sparks requires the <i>api</i> scopes granted."
+#~ msgstr "ஃபோர்ச் ச்பார்க்சுக்கு <i> பநிஇ </i> ச்கோப்புகள் தேவை."

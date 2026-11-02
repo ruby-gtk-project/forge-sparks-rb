@@ -1,0 +1,396 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the com.mardojai.ForgeSparks package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: forge-sparks 0.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/ruby-gtk-project/forge-sparks-rb/"
+"issues\n"
+"POT-Creation-Date: 2026-11-02 23:17+0000\n"
+"PO-Revision-Date: 2026-08-20 12:52+0000\n"
+"Last-Translator: Димко <Dymkovych@proton.me>\n"
+"Language-Team: Ukrainian <https://hosted.weblate.org/projects/forge-sparks/"
+"forge-sparks/uk/>\n"
+"Language: uk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Weblate 2026.9.dev0\n"
+
+#: lib/account_dialog.rb:46
+msgid "Edit Account"
+msgstr "Редагувати обліковий запис"
+
+#: lib/account_dialog.rb:48
+msgid "Add Account"
+msgstr "Додати обліковий запис"
+
+#: lib/account_dialog.rb:138
+msgid "Cancel"
+msgstr "Скасувати"
+
+#: lib/account_dialog.rb:145
+msgid "Save"
+msgstr "Зберегти"
+
+#: lib/account_dialog.rb:147
+msgid "Add"
+msgstr "Додати"
+
+#: lib/account_dialog.rb:167
+msgid "Forge"
+msgstr "Forge"
+
+#: lib/account_dialog.rb:175
+msgid "Instance URL"
+msgstr "URL-адреса екземпляра"
+
+#: lib/account_dialog.rb:182
+msgid "Access Token"
+msgstr "Токен доступу"
+
+#: lib/account_dialog.rb:213
+msgid "Remove Account"
+msgstr "Видалити обліковий запис"
+
+#: lib/account_dialog.rb:243
+msgid "Could not read the saved access token"
+msgstr ""
+
+#: lib/account_dialog.rb:328
+msgid "Invalid instance url."
+msgstr "Недійсна URL-адреса екземпляра."
+
+#: lib/account_dialog.rb:449
+msgid "Unexpected error removing the account"
+msgstr "Несподівана помилка видалення облікового запису"
+
+#: lib/account_dialog.rb:467
+msgid "Couldn’t authenticate the account"
+msgstr "Не вдалося автентифікувати обліковий запис"
+
+#: lib/account_dialog.rb:469
+msgid "The access token doesn’t have the needed scopes"
+msgstr "Токен доступу не має необхідних діапазонів"
+
+#: lib/account_dialog.rb:471
+msgid "Unexpected error when creating the account"
+msgstr "Неочікувана помилка при створенні облікового запису"
+
+#: lib/accounts_dialog.rb:36 lib/window.rb:369 lib/window.rb:652
+msgid "Accounts"
+msgstr "Облікові записи"
+
+#: lib/accounts_dialog.rb:100
+msgid "Add…"
+msgstr "Додати…"
+
+#: lib/accounts_dialog.rb:126
+msgid "No Accounts"
+msgstr "Немає облікових записів"
+
+#: lib/accounts_dialog.rb:127 lib/window.rb:299
+msgid "Add an account to receive notifications from"
+msgstr "Додати обліковий запис для отримання повідомлень від"
+
+#: lib/accounts_dialog.rb:161
+msgid "Account authentication failed!"
+msgstr "Помилка автентифікації облікового запису!"
+
+#: lib/application.rb:96
+msgid "Get Git forges notifications"
+msgstr "Отримувати сповіщення git forges"
+
+#. Translators: Replace "translator-credits" with your names, one name per line
+#: lib/application.rb:98
+msgid "translator-credits"
+msgstr "kefir2105"
+
+#: lib/application.rb:116
+msgid "Print version information and exit"
+msgstr ""
+
+#: lib/application.rb:125
+#, fuzzy
+#| msgid "Start Hidden"
+msgid "Start hidden"
+msgstr "Початок приховано"
+
+#. Translators: Gitea access token help
+#: lib/gitea.rb:29
+msgid ""
+"To generate a new access token from your instance, go to Settings → "
+"Applications and generate a new token."
+msgstr ""
+"Щоб створити новий токен доступу з вашого екземпляра, перейдіть до "
+"Налаштування → Застосунки та створіть новий токен."
+
+#. Translators: Gitea access token help
+#: lib/gitea.rb:35
+msgid ""
+"Forge Sparks requires the <i>read:issue</i>, <i>write:notification</i> and "
+"<i>read:user</i> scopes granted."
+msgstr ""
+"Forge Sparks вимагає <i>read: issue</i>, <i>write: notification</i> і "
+"<i>read: user</i> надано дозвіл."
+
+#: lib/github.rb:47
+msgid ""
+"You can generate a new personal access token from <a href=\"%s\">GitHub "
+"developer settings</a>. For more information, see \"<a href=\"%s\">Creating "
+"a personal access token</a>\"."
+msgstr ""
+"Ви можете згенерувати новий персональний токен доступу, перейшовши за "
+"посиланням <a href=\"%s\">Налаштування розробника GitHub</a>. Для отримання "
+"додаткової інформації див. \"<a href=\"%s\">Створення персонального токена "
+"доступу</a>\"."
+
+#. Translators: GitHub access token help
+#: lib/github.rb:57
+msgid ""
+"Forge Sparks requires a <b>classic</b> access token (for general use) with "
+"the <i>notifications</i> and <i>read:user</i> scopes granted."
+msgstr ""
+"Forge Sparks потребує <b>класичного токену доступу</b> (для загального "
+"використання) з дозволеними <i>сповіщеннями</i> та <i>read:user</i>."
+
+#. Translators: GitHub access token help
+#: lib/github.rb:63
+msgid ""
+"If you’re working with private repositories, you’ll also need to grant the "
+"full <i>repo</i> scope."
+msgstr ""
+"Якщо ви працюєте з приватними репозиторіями, вам також потрібно надати "
+"повний обсяг <i>репо</i>."
+
+#. Translators: GitLab access token help
+#: lib/gitlab.rb:26
+msgid ""
+"To generate a new access token from your instance, go to Preferences → "
+"Access Tokens and generate a new token."
+msgstr ""
+"Щоб згенерувати новий маркер доступу з вашого екземпляра, перейдіть до "
+"Налаштування → Маркери доступу та згенеруйте новий маркер."
+
+#. Translators: GitLab access token help
+#: lib/gitlab.rb:32
+msgid ""
+"Forge Sparks needs <i>read_api</i> scope to read notifications or full "
+"<i>api</i> scope to also mark todos as done."
+msgstr ""
+"Forge Sparks потребує області видимості <i>read_api</i> для читання "
+"сповіщень або повної області видимості <i>api</i>, щоб також позначати "
+"завдання як виконані."
+
+#: lib/notification.rb:124
+msgid "Mark as Read"
+msgstr "Відзначити як прочитане"
+
+#: lib/notification.rb:130
+msgid "Show Forge Sparks"
+msgstr "Показати Forge Sparks"
+
+#: lib/preferences_dialog.rb:81
+msgid "Keep Running in Background"
+msgstr "Продовжувати працювати у фоновому режимі"
+
+#: lib/preferences_dialog.rb:89
+msgid "Run on Startup"
+msgstr "Запустити під час запуску"
+
+#: lib/preferences_dialog.rb:103
+msgid "Start Hidden"
+msgstr "Початок приховано"
+
+#: lib/preferences_dialog.rb:167
+msgid "The autostart request failed."
+msgstr "Запит на автозапуск не вдалося виконати."
+
+#: lib/shortcuts_dialog.rb:26
+msgctxt "shortcut window"
+msgid "General"
+msgstr "Загальні"
+
+#: lib/shortcuts_dialog.rb:27
+msgctxt "shortcut window"
+msgid "Open menu"
+msgstr "Відкрити меню"
+
+#: lib/shortcuts_dialog.rb:28
+msgctxt "shortcut window"
+msgid "Keyboard shortcuts"
+msgstr "Клавіатурні скорочення"
+
+#: lib/shortcuts_dialog.rb:29
+msgctxt "shortcut window"
+msgid "Quit"
+msgstr "Вийти"
+
+#: lib/shortcuts_dialog.rb:35
+#, fuzzy
+#| msgid "_Keyboard Shortcuts"
+msgid "Keyboard Shortcuts"
+msgstr "_Клавіатурні скорочення"
+
+#: lib/util.rb:140 lib/util.rb:145
+msgid "now"
+msgstr "зараз"
+
+#. Translators: relative date
+#: lib/util.rb:148
+msgid "%d minute ago"
+msgid_plural "%d minutes ago"
+msgstr[0] "%d хвилину тому"
+msgstr[1] "%d хвилини тому"
+msgstr[2] "%d хвилин тому"
+
+#. Translators: relative date
+#: lib/util.rb:152
+msgid "%d hour ago"
+msgid_plural "%d hours ago"
+msgstr[0] "%d годину тому"
+msgstr[1] "%d години тому"
+msgstr[2] "%d годин тому"
+
+#. Translators: relative date
+#: lib/util.rb:157
+msgid "yesterday"
+msgid_plural "%d days ago"
+msgstr[0] "Вчора"
+msgstr[1] "%d дні тому"
+msgstr[2] "%d днів тому"
+
+#. Translators: relative date
+#: lib/util.rb:162
+msgid "%d week ago"
+msgid_plural "%d weeks ago"
+msgstr[0] "%d тиждень тому"
+msgstr[1] "%d тижні тому"
+msgstr[2] "%d тижнів тому"
+
+#. Translators: relative date, %s is date formatted as "May 01"
+#. Translators: relative date, %s is date formatted as "01 May, 2022"
+#: lib/util.rb:166 lib/util.rb:169
+msgid "on %s"
+msgstr "на %s"
+
+#. Translators: Don't translate, only transliterate if needed
+#: lib/window.rb:66
+msgid "Forge Sparks"
+msgstr "Forge Sparks"
+
+#: lib/window.rb:298
+msgid "Welcome to Forge Sparks"
+msgstr "Ласкаво просимо до Forge Sparks"
+
+#: lib/window.rb:309
+msgid "Add Account…"
+msgstr "Додати обліковий запис…"
+
+#: lib/window.rb:350 lib/window.rb:365
+msgid "Mark all as Read"
+msgstr "Позначити все як прочитане"
+
+#: lib/window.rb:401
+msgid "No Notifications to Show"
+msgstr "Немає сповіщень для показу"
+
+#: lib/window.rb:432
+msgid "_Preferences"
+msgstr "_Налаштування"
+
+#: lib/window.rb:433
+msgid "_Accounts"
+msgstr "_Облікові записи"
+
+#: lib/window.rb:434
+msgid "_Keyboard Shortcuts"
+msgstr "_Клавіатурні скорочення"
+
+#: lib/window.rb:435
+msgid "About Forge Sparks"
+msgstr "Про Forge Sparks"
+
+#: lib/window.rb:442
+msgid "Quit"
+msgstr "Вийти"
+
+#: lib/window.rb:454
+msgid "Main Menu"
+msgstr "Головне меню"
+
+#: lib/window.rb:636
+msgid "Account %s authentication failed!"
+msgstr "Не вдалося виконати автентифікацію облікового запису %s!"
+
+#: lib/window.rb:637
+msgid "The token may have been revoked or expired."
+msgstr "Можливо, токен було анульовано або термін його дії закінчився."
+
+#: data/org.rubygtkproject.ForgeSparks.desktop.in:12
+msgid "git;github;notifications;"
+msgstr "git;github;notifications;сповіщення;"
+
+#: data/org.rubygtkproject.ForgeSparks.metainfo.xml.in:24
+msgid "Simple notifier app with support for GitLab, Github, Gitea and Forgejo."
+msgstr ""
+"Проста програма сповіщень із підтримкою GitLab, Github, Gitea та Forgejo."
+
+#: data/org.rubygtkproject.ForgeSparks.metainfo.xml.in:25
+msgid ""
+"This is a Ruby GTK4 and Libadwaita port of Forge Sparks, written against the "
+"original as its specification."
+msgstr ""
+
+#~ msgid "Allow running Forge Sparks on background."
+#~ msgstr "Дозволити запуск Forge Sparks у фоновому режимі."
+
+#~ msgid "Allow running Forge Sparks on startup."
+#~ msgstr "Дозволити запуск Forge Sparks під час запуску системи."
+
+#~ msgid "Monitoring new notifications"
+#~ msgstr "Шукаю нові сповіщення"
+
+#~ msgid "The request failed."
+#~ msgstr "Запит не виконано."
+
+#~ msgid "Forge Sparks requires the <i>api</i> scopes granted."
+#~ msgstr "Для Forge Sparks потрібні надані області <i>api</i>."
+
+#~ msgid "Get git forges notifications"
+#~ msgstr "Отримувати сповіщення git forges"
+
+#~ msgid "Rafael Mardojai CM"
+#~ msgstr "Rafael Mardojai CM"
+
+#~ msgid "Please add an account in the app preferences."
+#~ msgstr "Будь ласка, додайте обліковий запис у налаштуваннях додатку."
+
+#~ msgid "Open Preferences"
+#~ msgstr "Відкрити налаштування"
+
+#~ msgid "New account added successfully!"
+#~ msgstr "Новий обліковий запис успішно додано!"
+
+#~ msgid "Account edited successfully!"
+#~ msgstr "Обліковий запис успішно відредаговано!"
+
+#~ msgid "General"
+#~ msgstr "Загальні"
+
+#~ msgid ""
+#~ "To generate a new access token from your Forgejo instance go to Settings "
+#~ "→ Applications and generate a new token."
+#~ msgstr ""
+#~ "Щоб згенерувати новий токен доступу для вашого екземпляра Forgejo, "
+#~ "перейдіть до Налаштування → Застосунки та згенеруйте новий токен."
+
+#~ msgid "Window size"
+#~ msgstr "Розмір вікна"
+
+#~ msgid "Window size (width and height)."
+#~ msgstr "Розмір вікна (ширина та висота)."

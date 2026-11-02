@@ -9,6 +9,7 @@ require_relative 'notifications_list'
 require_relative 'notification_row'
 require_relative 'account_dialog'
 require_relative 'shortcuts_dialog'
+require_relative 'translation'
 
 # Window is the main application window.
 #
@@ -26,6 +27,8 @@ require_relative 'shortcuts_dialog'
 # but the main loop touches a widget.
 #
 class Window < Adwaita::ApplicationWindow
+  include Translation
+
   DEFAULT_WIDTH = 500
   DEFAULT_HEIGHT = 500
   MIN_WIDTH = 360
@@ -59,7 +62,8 @@ class Window < Adwaita::ApplicationWindow
     @rows = []
     @notified = @settings['notified'].dup
 
-    self.title = 'Forge Sparks'
+    # Translators: Don't translate, only transliterate if needed
+    self.title = _('Forge Sparks')
     self.width_request = MIN_WIDTH
     self.height_request = MIN_HEIGHT
     set_default_size(DEFAULT_WIDTH, DEFAULT_HEIGHT)
@@ -291,8 +295,8 @@ class Window < Adwaita::ApplicationWindow
   # which is the same picture without an icon theme in the way.
   def setup_page
     @setup_page ||= Adwaita::StatusPage.new.tap do |page|
-      page.title = 'Welcome to Forge Sparks'
-      page.description = 'Add an account to receive notifications from'
+      page.title = _('Welcome to Forge Sparks')
+      page.description = _('Add an account to receive notifications from')
       page.paintable = app_icon
       page.vexpand = true
     end
@@ -302,7 +306,7 @@ class Window < Adwaita::ApplicationWindow
 
   def add_account_button
     @add_account_button ||= Gtk::Button.new.tap do |button|
-      button.label = 'Add Account…'
+      button.label = _('Add Account…')
       button.halign = :center
       button.add_css_class('suggested-action')
       button.add_css_class('pill')
@@ -343,7 +347,7 @@ class Window < Adwaita::ApplicationWindow
     @mark_as_read_button ||= Gtk::Button.new.tap do |button|
       button.visible = false
       button.add_css_class('flat')
-      button.tooltip_text = 'Mark all as Read'
+      button.tooltip_text = _('Mark all as Read')
     end
   end
 
@@ -358,11 +362,11 @@ class Window < Adwaita::ApplicationWindow
     end
   end
 
-  def mark_as_read_label = @mark_as_read_label ||= Gtk::Label.new('Mark all as Read')
+  def mark_as_read_label = @mark_as_read_label ||= Gtk::Label.new(_('Mark all as Read'))
 
   def account_banner
     @account_banner ||= Adwaita::Banner.new('').tap do |banner|
-      banner.button_label = 'Accounts'
+      banner.button_label = _('Accounts')
       banner.action_name = 'app.accounts'
     end
   end
@@ -394,7 +398,7 @@ class Window < Adwaita::ApplicationWindow
   end
 
   def empty_label
-    @empty_label ||= Gtk::Label.new('No Notifications to Show').tap do |label|
+    @empty_label ||= Gtk::Label.new(_('No Notifications to Show')).tap do |label|
       label.wrap = true
       label.justify = :center
       label.add_css_class('title-1')
@@ -425,17 +429,17 @@ class Window < Adwaita::ApplicationWindow
       menu.append_section(
         nil,
         Gio::Menu.new.tap do |section|
-                section.append('_Preferences', 'app.preferences')
-                section.append('_Accounts', 'app.accounts')
-                section.append('_Keyboard Shortcuts', 'win.show-help-overlay')
-                section.append('About Forge Sparks', 'app.about')
+                section.append(_('_Preferences'), 'app.preferences')
+                section.append(_('_Accounts'), 'app.accounts')
+                section.append(_('_Keyboard Shortcuts'), 'win.show-help-overlay')
+                section.append(_('About Forge Sparks'), 'app.about')
               end,
       )
 
       menu.append_section(
         nil,
         Gio::Menu.new.tap do |section|
-                section.append('Quit', 'app.quit')
+                section.append(_('Quit'), 'app.quit')
               end,
       )
     end
@@ -447,7 +451,7 @@ class Window < Adwaita::ApplicationWindow
       Gtk::MenuButton.new.tap do |button|
         button.primary = true
         button.icon_name = 'open-menu-symbolic'
-        button.tooltip_text = 'Main Menu'
+        button.tooltip_text = _('Main Menu')
         button.menu_model = primary_menu
       end
     end
@@ -629,8 +633,8 @@ class Window < Adwaita::ApplicationWindow
           account.auth_failed = true
           @forges.delete(account_id)
 
-          "Account #{account.display_name} authentication failed!".then do |title|
-            'The token may have been revoked or expired.'.then do |description|
+          format(_('Account %s authentication failed!'), account.display_name).then do |title|
+            _('The token may have been revoked or expired.').then do |description|
               account_banner.title = "#{title}\n#{description}"
               account_banner.revealed = true
               notify_auth_failure(title, description)
@@ -645,7 +649,7 @@ class Window < Adwaita::ApplicationWindow
         Gio::Notification.new(title).tap do |notification|
           notification.body = description
           notification.set_default_action('app.activate')
-          notification.add_button('Accounts', 'app.accounts')
+          notification.add_button(_('Accounts'), 'app.accounts')
           application.send_notification(AUTH_ERROR_NOTIFICATION, notification)
         end
         @auth_error_notified = true

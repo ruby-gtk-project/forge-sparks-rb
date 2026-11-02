@@ -1,0 +1,3 @@
+[D-BUS Service]
+Name=org.rubygtkproject.ForgeSparks
+Exec=@bindir@/forge-sparks --gapplication-service

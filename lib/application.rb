@@ -3,6 +3,7 @@
 require 'adwaita'
 
 require_relative 'util'
+require_relative 'translation'
 require_relative 'style'
 require_relative 'window'
 require_relative 'accounts_manager'
@@ -20,6 +21,8 @@ require_relative 'preferences_dialog'
 # the window is an Adwaita::ApplicationWindow, which works.
 #
 class Application
+  include Translation
+
   APP_ID = Util::APP_ID
 
   # Upstream's _initAppActions, as data. Each action is either parameterless
@@ -90,7 +93,9 @@ class Application
       about.developer_name = 'Rafael Mardojai CM'
       about.developers = ['Rafael Mardojai CM']
       about.version = Util::VERSION
-      about.comments = 'Get Git forges notifications'
+      about.comments = _('Get Git forges notifications')
+      # Translators: Replace "translator-credits" with your names, one name per line
+      about.translator_credits = _('translator-credits')
       about.copyright = 'Copyright 2022 Rafael Mardojai CM'
       about.license_type = Gtk::License::MIT_X11
       about.website = 'https://github.com/ruby-gtk-project/forge-sparks-rb'
@@ -108,7 +113,7 @@ class Application
         'v'.ord,
         :none,
         :none,
-        'Print version information and exit',
+        _('Print version information and exit'),
         nil,
       )
 
@@ -117,7 +122,7 @@ class Application
         0,
         :none,
         :none,
-        'Start hidden',
+        _('Start hidden'),
         nil,
       )
     end

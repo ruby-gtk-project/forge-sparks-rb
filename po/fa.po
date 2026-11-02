@@ -1,0 +1,336 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the com.mardojai.ForgeSparks package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: forge-sparks 0.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/ruby-gtk-project/forge-sparks-rb/"
+"issues\n"
+"POT-Creation-Date: 2026-11-02 23:17+0000\n"
+"PO-Revision-Date: 2025-06-29 00:05+0000\n"
+"Last-Translator: Mir Sobhan <mr.sobhan.n@outlook.com>\n"
+"Language-Team: Persian <https://hosted.weblate.org/projects/forge-sparks/"
+"forge-sparks/fa/>\n"
+"Language: fa\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 5.13-dev\n"
+
+#: lib/account_dialog.rb:46
+msgid "Edit Account"
+msgstr "ویرایش حساب"
+
+#: lib/account_dialog.rb:48
+msgid "Add Account"
+msgstr "افوزدن حساب"
+
+#: lib/account_dialog.rb:138
+msgid "Cancel"
+msgstr "لغو"
+
+#: lib/account_dialog.rb:145
+msgid "Save"
+msgstr "ذخیره"
+
+#: lib/account_dialog.rb:147
+msgid "Add"
+msgstr "افزودن"
+
+#: lib/account_dialog.rb:167
+msgid "Forge"
+msgstr "فورج"
+
+#: lib/account_dialog.rb:175
+msgid "Instance URL"
+msgstr "URL‌ نمونه"
+
+#: lib/account_dialog.rb:182
+msgid "Access Token"
+msgstr "توکن دسترسی"
+
+#: lib/account_dialog.rb:213
+msgid "Remove Account"
+msgstr "زدودن حساب"
+
+#: lib/account_dialog.rb:243
+msgid "Could not read the saved access token"
+msgstr ""
+
+#: lib/account_dialog.rb:328
+msgid "Invalid instance url."
+msgstr "URL نمونه غیرمعتبر."
+
+#: lib/account_dialog.rb:449
+msgid "Unexpected error removing the account"
+msgstr "خطای غیرمنتظره هنگام زدودن حساب"
+
+#: lib/account_dialog.rb:467
+msgid "Couldn’t authenticate the account"
+msgstr "احراز حساب امکان نیافت"
+
+#: lib/account_dialog.rb:469
+msgid "The access token doesn’t have the needed scopes"
+msgstr "توکن دسترسی حوزه های مورد نیاز را ندارد"
+
+#: lib/account_dialog.rb:471
+msgid "Unexpected error when creating the account"
+msgstr "خطای نامنتظره هنگام ایجاد حساب"
+
+#: lib/accounts_dialog.rb:36 lib/window.rb:369 lib/window.rb:652
+msgid "Accounts"
+msgstr "حساب‌ها"
+
+#: lib/accounts_dialog.rb:100
+msgid "Add…"
+msgstr "افزودن…"
+
+#: lib/accounts_dialog.rb:126
+msgid "No Accounts"
+msgstr "هیچ حسابی نیست"
+
+#: lib/accounts_dialog.rb:127 lib/window.rb:299
+msgid "Add an account to receive notifications from"
+msgstr "یک حساب اضافه کنید تا آگاهی‌ها را دریافت کنید"
+
+#: lib/accounts_dialog.rb:161
+msgid "Account authentication failed!"
+msgstr "احراز حساب شکست خورد!"
+
+#: lib/application.rb:96
+msgid "Get Git forges notifications"
+msgstr "آگاهی های فورج گیت را دریافت کنید"
+
+#. Translators: Replace "translator-credits" with your names, one name per line
+#: lib/application.rb:98
+msgid "translator-credits"
+msgstr "میسانو t.me/mirsobhan"
+
+#: lib/application.rb:116
+msgid "Print version information and exit"
+msgstr ""
+
+#: lib/application.rb:125
+#, fuzzy
+#| msgid "Start Hidden"
+msgid "Start hidden"
+msgstr "شروع پنهانی"
+
+#. Translators: Gitea access token help
+#: lib/gitea.rb:29
+msgid ""
+"To generate a new access token from your instance, go to Settings → "
+"Applications and generate a new token."
+msgstr ""
+
+#. Translators: Gitea access token help
+#: lib/gitea.rb:35
+msgid ""
+"Forge Sparks requires the <i>read:issue</i>, <i>write:notification</i> and "
+"<i>read:user</i> scopes granted."
+msgstr ""
+
+#: lib/github.rb:47
+msgid ""
+"You can generate a new personal access token from <a href=\"%s\">GitHub "
+"developer settings</a>. For more information, see \"<a href=\"%s\">Creating "
+"a personal access token</a>\"."
+msgstr ""
+
+#. Translators: GitHub access token help
+#: lib/github.rb:57
+msgid ""
+"Forge Sparks requires a <b>classic</b> access token (for general use) with "
+"the <i>notifications</i> and <i>read:user</i> scopes granted."
+msgstr ""
+
+#. Translators: GitHub access token help
+#: lib/github.rb:63
+msgid ""
+"If you’re working with private repositories, you’ll also need to grant the "
+"full <i>repo</i> scope."
+msgstr ""
+
+#. Translators: GitLab access token help
+#: lib/gitlab.rb:26
+msgid ""
+"To generate a new access token from your instance, go to Preferences → "
+"Access Tokens and generate a new token."
+msgstr ""
+
+#. Translators: GitLab access token help
+#: lib/gitlab.rb:32
+msgid ""
+"Forge Sparks needs <i>read_api</i> scope to read notifications or full "
+"<i>api</i> scope to also mark todos as done."
+msgstr ""
+
+#: lib/notification.rb:124
+msgid "Mark as Read"
+msgstr "علامت به عنوان خوانده"
+
+#: lib/notification.rb:130
+msgid "Show Forge Sparks"
+msgstr "نمایش فورج اسپارکز"
+
+#: lib/preferences_dialog.rb:81
+msgid "Keep Running in Background"
+msgstr "نگهداری اجرا در پس‌زمینه"
+
+#: lib/preferences_dialog.rb:89
+msgid "Run on Startup"
+msgstr "اجرا در شروع اولیه"
+
+#: lib/preferences_dialog.rb:103
+msgid "Start Hidden"
+msgstr "شروع پنهانی"
+
+#: lib/preferences_dialog.rb:167
+msgid "The autostart request failed."
+msgstr "درخواست اجرای خودکار ناموفق بود."
+
+#: lib/shortcuts_dialog.rb:26
+msgctxt "shortcut window"
+msgid "General"
+msgstr "عمومی"
+
+#: lib/shortcuts_dialog.rb:27
+msgctxt "shortcut window"
+msgid "Open menu"
+msgstr "باز کردن فهرست"
+
+#: lib/shortcuts_dialog.rb:28
+msgctxt "shortcut window"
+msgid "Keyboard shortcuts"
+msgstr "میانبرهای تخته‌کلید"
+
+#: lib/shortcuts_dialog.rb:29
+msgctxt "shortcut window"
+msgid "Quit"
+msgstr "خروج"
+
+#: lib/shortcuts_dialog.rb:35
+#, fuzzy
+#| msgid "_Keyboard Shortcuts"
+msgid "Keyboard Shortcuts"
+msgstr "_میانبرهای تخته‌کلید"
+
+#: lib/util.rb:140 lib/util.rb:145
+msgid "now"
+msgstr "اکنون"
+
+#. Translators: relative date
+#: lib/util.rb:148
+msgid "%d minute ago"
+msgid_plural "%d minutes ago"
+msgstr[0] "%d دقیقه پیش"
+msgstr[1] "%d دقیقه پیش"
+
+#. Translators: relative date
+#: lib/util.rb:152
+msgid "%d hour ago"
+msgid_plural "%d hours ago"
+msgstr[0] "%d ساعت قبل"
+msgstr[1] "%d ساعت قبل"
+
+#. Translators: relative date
+#: lib/util.rb:157
+msgid "yesterday"
+msgid_plural "%d days ago"
+msgstr[0] "دیروز"
+msgstr[1] "%d روز قبل"
+
+#. Translators: relative date
+#: lib/util.rb:162
+msgid "%d week ago"
+msgid_plural "%d weeks ago"
+msgstr[0] "%d هفته قبل"
+msgstr[1] "%d هفته قبل"
+
+#. Translators: relative date, %s is date formatted as "May 01"
+#. Translators: relative date, %s is date formatted as "01 May, 2022"
+#: lib/util.rb:166 lib/util.rb:169
+msgid "on %s"
+msgstr "در %s"
+
+#. Translators: Don't translate, only transliterate if needed
+#: lib/window.rb:66
+msgid "Forge Sparks"
+msgstr "فورج اسپارک"
+
+#: lib/window.rb:298
+msgid "Welcome to Forge Sparks"
+msgstr "خوش‌آمدید به فورج اسپارک"
+
+#: lib/window.rb:309
+msgid "Add Account…"
+msgstr "افزودن حساب…"
+
+#: lib/window.rb:350 lib/window.rb:365
+msgid "Mark all as Read"
+msgstr "علامت زدن همه به عنوان خوانده‌شده"
+
+#: lib/window.rb:401
+msgid "No Notifications to Show"
+msgstr "هیچ آگاهی برای نمایش نیست"
+
+#: lib/window.rb:432
+msgid "_Preferences"
+msgstr "_ترجیحات"
+
+#: lib/window.rb:433
+msgid "_Accounts"
+msgstr "__حساب‌ها"
+
+#: lib/window.rb:434
+msgid "_Keyboard Shortcuts"
+msgstr "_میانبرهای تخته‌کلید"
+
+#: lib/window.rb:435
+msgid "About Forge Sparks"
+msgstr "درباره فورج اسپارک"
+
+#: lib/window.rb:442
+msgid "Quit"
+msgstr "خروج"
+
+#: lib/window.rb:454
+msgid "Main Menu"
+msgstr "منو اصلی"
+
+#: lib/window.rb:636
+msgid "Account %s authentication failed!"
+msgstr "احراز هویت حساب %s شکست خورد!"
+
+#: lib/window.rb:637
+msgid "The token may have been revoked or expired."
+msgstr "توکن ممکن است لغو شده یا منقضی شده باشد."
+
+#: data/org.rubygtkproject.ForgeSparks.desktop.in:12
+msgid "git;github;notifications;"
+msgstr "گیت;گیتهاب;آگاهی‌ها;"
+
+#: data/org.rubygtkproject.ForgeSparks.metainfo.xml.in:24
+msgid "Simple notifier app with support for GitLab, Github, Gitea and Forgejo."
+msgstr "برنامه آگاه‌ساز ساده با پشتیبانی از گیت‌لب، گیتهاب، گیتی و فورجو."
+
+#: data/org.rubygtkproject.ForgeSparks.metainfo.xml.in:25
+msgid ""
+"This is a Ruby GTK4 and Libadwaita port of Forge Sparks, written against the "
+"original as its specification."
+msgstr ""
+
+#~ msgid "Allow running Forge Sparks on background."
+#~ msgstr "اجازه اجرا فورج اسپارک در پس‌زمینه."
+
+#~ msgid "Allow running Forge Sparks on startup."
+#~ msgstr "اجازه اجرا فورج‌ اسپارک در شروع اولیه."
+
+#~ msgid "Monitoring new notifications"
+#~ msgstr "واپایش آگاهی‌های جدید"
+
+#~ msgid "The request failed."
+#~ msgstr "درخواست ناموفق بود."

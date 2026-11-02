@@ -2,6 +2,8 @@
 
 require 'adwaita'
 
+require_relative 'translation'
+
 # ShortcutsDialog lists the keyboard shortcuts.
 #
 # Ported from upstream's src/gtk/help-overlay.blp, a Gtk.ShortcutsWindow with
@@ -11,17 +13,26 @@ require 'adwaita'
 # same win.show-help-overlay action.
 #
 class ShortcutsDialog < Adwaita::ShortcutsDialog
+  # Both ways round: the section titles below are looked up as the class body
+  # is read, the dialog title as an instance is built.
+  include Translation
+  extend Translation
+
+  # The four titles carry upstream's "shortcut window" context, which is what
+  # C_("shortcut window", …) in its Blueprint gives them: a shortcut window's
+  # labels are short enough that a language may want them worded differently
+  # here than in the menu.
   SECTIONS = {
-    'General' => [
-      ['Open menu', 'F10'],
-      ['Keyboard shortcuts', '<Control>question'],
-      ['Quit', '<Control>q'],
+    p_('shortcut window', 'General') => [
+      [p_('shortcut window', 'Open menu'), 'F10'],
+      [p_('shortcut window', 'Keyboard shortcuts'), '<Control>question'],
+      [p_('shortcut window', 'Quit'), '<Control>q'],
     ],
   }.freeze
 
   def initialize
     super()
-    self.title = 'Keyboard Shortcuts'
+    self.title = _('Keyboard Shortcuts')
   end
 
   def build

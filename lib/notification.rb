@@ -3,6 +3,8 @@
 require 'time'
 require 'gtk4'
 
+require_relative 'translation'
+
 require_relative 'util'
 
 # Notification is one notification from a forge.
@@ -18,6 +20,8 @@ require_relative 'util'
 # window sorts and the list box renders.
 #
 class Notification < GLib::Object
+  include Translation
+
   type_register
 
   DEFAULT_ICON = 'preferences-system-details-symbolic'
@@ -117,13 +121,13 @@ class Notification < GLib::Object
       )
 
       notification.add_button_with_target(
-        'Mark as Read',
+        _('Mark as Read'),
         'app.mark-read',
         GLib::Variant.new(@id.to_s),
       )
 
       if hidden
-        notification.add_button('Show Forge Sparks', 'app.activate')
+        notification.add_button(_('Show Forge Sparks'), 'app.activate')
       end
     end
   end

@@ -1,0 +1,357 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the com.mardojai.ForgeSparks package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: forge-sparks 0.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/ruby-gtk-project/forge-sparks-rb/"
+"issues\n"
+"POT-Creation-Date: 2026-11-02 23:17+0000\n"
+"PO-Revision-Date: 2024-04-17 15:03+0000\n"
+"Last-Translator: glemco <glemco@posteo.net>\n"
+"Language-Team: Italian <https://hosted.weblate.org/projects/forge-sparks/"
+"forge-sparks/it/>\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.5-dev\n"
+
+#: lib/account_dialog.rb:46
+msgid "Edit Account"
+msgstr "Modifica Account"
+
+#: lib/account_dialog.rb:48
+msgid "Add Account"
+msgstr "Aggiungi Account"
+
+#: lib/account_dialog.rb:138
+msgid "Cancel"
+msgstr "Annulla"
+
+#: lib/account_dialog.rb:145
+msgid "Save"
+msgstr "Salva"
+
+#: lib/account_dialog.rb:147
+msgid "Add"
+msgstr "Aggiungi"
+
+#: lib/account_dialog.rb:167
+msgid "Forge"
+msgstr "Forge"
+
+#: lib/account_dialog.rb:175
+msgid "Instance URL"
+msgstr "URL Istanza"
+
+#: lib/account_dialog.rb:182
+msgid "Access Token"
+msgstr "Token di Accesso"
+
+#: lib/account_dialog.rb:213
+msgid "Remove Account"
+msgstr "Rimuovi Account"
+
+#: lib/account_dialog.rb:243
+msgid "Could not read the saved access token"
+msgstr ""
+
+#: lib/account_dialog.rb:328
+msgid "Invalid instance url."
+msgstr "URL istanza non valido"
+
+#: lib/account_dialog.rb:449
+msgid "Unexpected error removing the account"
+msgstr "Errore imprevisto cancellando l'account"
+
+#: lib/account_dialog.rb:467
+msgid "Couldn’t authenticate the account"
+msgstr "Impossibile autenticare l'account"
+
+#: lib/account_dialog.rb:469
+msgid "The access token doesn’t have the needed scopes"
+msgstr "Il token di accesso non ha i permessi necessari"
+
+#: lib/account_dialog.rb:471
+msgid "Unexpected error when creating the account"
+msgstr "Errore imprevisto creando l'account"
+
+#: lib/accounts_dialog.rb:36 lib/window.rb:369 lib/window.rb:652
+msgid "Accounts"
+msgstr "Account"
+
+#: lib/accounts_dialog.rb:100
+msgid "Add…"
+msgstr "Aggiungi…"
+
+#: lib/accounts_dialog.rb:126
+msgid "No Accounts"
+msgstr "Nessun Account"
+
+#: lib/accounts_dialog.rb:127 lib/window.rb:299
+msgid "Add an account to receive notifications from"
+msgstr "Aggiungi un account per ricevere notifiche"
+
+#: lib/accounts_dialog.rb:161
+msgid "Account authentication failed!"
+msgstr "L'autenticazione è fallita!"
+
+#: lib/application.rb:96
+msgid "Get Git forges notifications"
+msgstr "Ricevi le notifiche di Git forges"
+
+#. Translators: Replace "translator-credits" with your names, one name per line
+#: lib/application.rb:98
+msgid "translator-credits"
+msgstr "glemco"
+
+#: lib/application.rb:116
+msgid "Print version information and exit"
+msgstr ""
+
+#: lib/application.rb:125
+#, fuzzy
+#| msgid "Start Hidden"
+msgid "Start hidden"
+msgstr "Avvia Nascosto"
+
+#. Translators: Gitea access token help
+#: lib/gitea.rb:29
+msgid ""
+"To generate a new access token from your instance, go to Settings → "
+"Applications and generate a new token."
+msgstr ""
+"Per generare un nuovo token di accesso dalla tua istanza, vai su "
+"Impostazioni → Applicazioni e genera un nuovo token."
+
+#. Translators: Gitea access token help
+#: lib/gitea.rb:35
+msgid ""
+"Forge Sparks requires the <i>read:issue</i>, <i>write:notification</i> and "
+"<i>read:user</i> scopes granted."
+msgstr ""
+"Forge Sparks richiede i permessi di <i>lettura:issue</i> , "
+"<i>scrittura:notifiche</i> e <i>lettura:utente</i> concessi."
+
+#: lib/github.rb:47
+msgid ""
+"You can generate a new personal access token from <a href=\"%s\">GitHub "
+"developer settings</a>. For more information, see \"<a href=\"%s\">Creating "
+"a personal access token</a>\"."
+msgstr ""
+"Puoi generare un nuovo token di accesso personale dalle <a "
+"href=\"%s\">Impostazioni sviluppatore di GitHub</a>. Per ulteriori "
+"informazioni, consulta \"<a href=\"%s\">Creazione di un token di accesso "
+"personale</a>\"."
+
+#. Translators: GitHub access token help
+#: lib/github.rb:57
+msgid ""
+"Forge Sparks requires a <b>classic</b> access token (for general use) with "
+"the <i>notifications</i> and <i>read:user</i> scopes granted."
+msgstr ""
+"Forge Sparks richiede un token di accesso <b>classico</b> (per uso generale) "
+"con permessi di <i>notifiche</i> e <i>lettura:utente</i> concessi."
+
+#. Translators: GitHub access token help
+#: lib/github.rb:63
+msgid ""
+"If you’re working with private repositories, you’ll also need to grant the "
+"full <i>repo</i> scope."
+msgstr ""
+"Se lavori con repository privati, devi anche concedere l'intero accesso al "
+"<i>repo</i>."
+
+#. Translators: GitLab access token help
+#: lib/gitlab.rb:26
+msgid ""
+"To generate a new access token from your instance, go to Preferences → "
+"Access Tokens and generate a new token."
+msgstr ""
+"Per generare un nuovo token di accesso dalla tua istanza, vai su Preferenze "
+"→ Token di Accesso e genera un nuovo token."
+
+#. Translators: GitLab access token help
+#: lib/gitlab.rb:32
+#, fuzzy
+msgid ""
+"Forge Sparks needs <i>read_api</i> scope to read notifications or full "
+"<i>api</i> scope to also mark todos as done."
+msgstr ""
+"Forge Sparks richiede i permessi di <i>lettura:issue</i> , "
+"<i>scrittura:notifiche</i> e <i>lettura:utente</i> concessi."
+
+#: lib/notification.rb:124
+msgid "Mark as Read"
+msgstr "Segna come Letta"
+
+#: lib/notification.rb:130
+msgid "Show Forge Sparks"
+msgstr "Mostra Forge Sparks"
+
+#: lib/preferences_dialog.rb:81
+msgid "Keep Running in Background"
+msgstr "Tieni in Esecuzione in Background"
+
+#: lib/preferences_dialog.rb:89
+msgid "Run on Startup"
+msgstr "Esegui all'avvio"
+
+#: lib/preferences_dialog.rb:103
+msgid "Start Hidden"
+msgstr "Avvia Nascosto"
+
+#: lib/preferences_dialog.rb:167
+msgid "The autostart request failed."
+msgstr "La richiesta di avvio automatico è fallita."
+
+#: lib/shortcuts_dialog.rb:26
+msgctxt "shortcut window"
+msgid "General"
+msgstr "Generale"
+
+#: lib/shortcuts_dialog.rb:27
+msgctxt "shortcut window"
+msgid "Open menu"
+msgstr "Apri menu"
+
+#: lib/shortcuts_dialog.rb:28
+msgctxt "shortcut window"
+msgid "Keyboard shortcuts"
+msgstr "Scorciatoie tastiera"
+
+#: lib/shortcuts_dialog.rb:29
+msgctxt "shortcut window"
+msgid "Quit"
+msgstr "Esci"
+
+#: lib/shortcuts_dialog.rb:35
+#, fuzzy
+#| msgid "_Keyboard Shortcuts"
+msgid "Keyboard Shortcuts"
+msgstr "_Scorciatoie Tastiera"
+
+#: lib/util.rb:140 lib/util.rb:145
+msgid "now"
+msgstr "ora"
+
+#. Translators: relative date
+#: lib/util.rb:148
+msgid "%d minute ago"
+msgid_plural "%d minutes ago"
+msgstr[0] "%d minuto fa"
+msgstr[1] "%d minuti fa"
+
+#. Translators: relative date
+#: lib/util.rb:152
+msgid "%d hour ago"
+msgid_plural "%d hours ago"
+msgstr[0] "%d ora fa"
+msgstr[1] "%d ore fa"
+
+#. Translators: relative date
+#: lib/util.rb:157
+msgid "yesterday"
+msgid_plural "%d days ago"
+msgstr[0] "ieri"
+msgstr[1] "%d giorni fa"
+
+#. Translators: relative date
+#: lib/util.rb:162
+msgid "%d week ago"
+msgid_plural "%d weeks ago"
+msgstr[0] "%d settimana fa"
+msgstr[1] "%d settimane fa"
+
+#. Translators: relative date, %s is date formatted as "May 01"
+#. Translators: relative date, %s is date formatted as "01 May, 2022"
+#: lib/util.rb:166 lib/util.rb:169
+msgid "on %s"
+msgstr "il %s"
+
+#. Translators: Don't translate, only transliterate if needed
+#: lib/window.rb:66
+msgid "Forge Sparks"
+msgstr "Forge Sparks"
+
+#: lib/window.rb:298
+msgid "Welcome to Forge Sparks"
+msgstr "Benvenuto in Forge Sparks"
+
+#: lib/window.rb:309
+msgid "Add Account…"
+msgstr "Aggiungi Account…"
+
+#: lib/window.rb:350 lib/window.rb:365
+msgid "Mark all as Read"
+msgstr "Segna tutte come Lette"
+
+#: lib/window.rb:401
+msgid "No Notifications to Show"
+msgstr "Nessuna Notifica da mostrare"
+
+#: lib/window.rb:432
+msgid "_Preferences"
+msgstr "_Preferenze"
+
+#: lib/window.rb:433
+msgid "_Accounts"
+msgstr "_Account"
+
+#: lib/window.rb:434
+msgid "_Keyboard Shortcuts"
+msgstr "_Scorciatoie Tastiera"
+
+#: lib/window.rb:435
+msgid "About Forge Sparks"
+msgstr "Informazioni su Forge Sparks"
+
+#: lib/window.rb:442
+msgid "Quit"
+msgstr "Esci"
+
+#: lib/window.rb:454
+msgid "Main Menu"
+msgstr "Menu Principale"
+
+#: lib/window.rb:636
+msgid "Account %s authentication failed!"
+msgstr "L'autenticazione dell'account %s è fallita!"
+
+#: lib/window.rb:637
+msgid "The token may have been revoked or expired."
+msgstr "Il token potrebbe essere stato revocato o scaduto."
+
+#: data/org.rubygtkproject.ForgeSparks.desktop.in:12
+msgid "git;github;notifications;"
+msgstr "git;github;notifiche;"
+
+#: data/org.rubygtkproject.ForgeSparks.metainfo.xml.in:24
+#, fuzzy
+msgid "Simple notifier app with support for GitLab, Github, Gitea and Forgejo."
+msgstr "Semplice app per notifiche con supporto a Github, Gitea e Forgejo."
+
+#: data/org.rubygtkproject.ForgeSparks.metainfo.xml.in:25
+msgid ""
+"This is a Ruby GTK4 and Libadwaita port of Forge Sparks, written against the "
+"original as its specification."
+msgstr ""
+
+#~ msgid "Allow running Forge Sparks on background."
+#~ msgstr "Consenti l'esecuzione di Forge Sparks in background."
+
+#~ msgid "Allow running Forge Sparks on startup."
+#~ msgstr "Consente l'esecuzione di Forge Sparks all'avvio."
+
+#~ msgid "Monitoring new notifications"
+#~ msgstr "Controllo nuove notifiche"
+
+#~ msgid "The request failed."
+#~ msgstr "La richiesta è fallita."
+
+#~ msgid "Forge Sparks requires the <i>api</i> scopes granted."
+#~ msgstr "Forge Sparks richiede i permessi <i>api</i> concessi."

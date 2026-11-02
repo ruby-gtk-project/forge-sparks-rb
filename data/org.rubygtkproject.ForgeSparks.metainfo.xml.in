@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<component type="desktop">
+  <id>org.rubygtkproject.ForgeSparks</id>
+  <launchable type="desktop-id">org.rubygtkproject.ForgeSparks.desktop</launchable>
+  <translation type="gettext">forge-sparks</translation>
+
+  <name translate="no">Forge Sparks</name>
+  <summary>Get Git forges notifications</summary>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>MIT</project_license>
+  <url type="homepage">https://github.com/ruby-gtk-project/forge-sparks-rb</url>
+  <url type="bugtracker">https://github.com/ruby-gtk-project/forge-sparks-rb/issues</url>
+  <url type="vcs-browser">https://github.com/ruby-gtk-project/forge-sparks-rb</url>
+  <developer id="com.mardojai">
+      <name translate="no">Rafael Mardojai CM</name>
+  </developer>
+
+  <branding>
+    <color type="primary" scheme_preference="light">#d69b6a</color>
+    <color type="primary" scheme_preference="dark">#4d3928</color>
+  </branding>
+
+  <description>
+    <p>Simple notifier app with support for GitLab, Github, Gitea and Forgejo.</p>
+    <p>This is a Ruby GTK4 and Libadwaita port of Forge Sparks, written against the original as its specification.</p>
+  </description>
+
+  <content_rating type="oars-1.1" />
+
+  <requires>
+    <display_length compare="ge">360</display_length>
+  </requires>
+
+  <recommends>
+    <control>keyboard</control>
+    <control>pointing</control>
+    <control>touch</control>
+  </recommends>
+
+  <kudos>
+    <kudo>HiDpiIcon</kudo>
+    <kudo>HighContrast</kudo>
+    <kudo>ModernToolkit</kudo>
+  </kudos>
+</component>
