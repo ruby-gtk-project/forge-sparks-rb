@@ -122,7 +122,7 @@ class PreferencesDialog < Adwaita::PreferencesDialog
     # value, hands it to the window, and re-requests autostart with it,
     # because an autostart that cannot keep running has nothing to start.
     def on_background_changed
-      background_row.enable_expansion.then do |enabled|
+      background_row.enable_expansion?.then do |enabled|
         unless enabled == @settings['hide-on-close']
           @settings['hide-on-close'] = enabled
           if @on_hide_on_close_changed

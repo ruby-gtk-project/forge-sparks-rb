@@ -138,7 +138,18 @@ module GtkDriver
 
     private
 
+      # An app may be activated more than once in a run — forge-sparks has an
+      # `app.activate` action that re-emits it, which is how a notification
+      # click raises the window — and the steps are a single script, so only
+      # the first activation starts them.
       def schedule(application)
+        unless @scheduled
+          @scheduled = true
+          start_steps(application)
+        end
+      end
+
+      def start_steps(application)
         index = 0
 
         GLib::Timeout.add(@interval) do

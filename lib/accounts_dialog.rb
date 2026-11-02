@@ -27,6 +27,8 @@ class AccountsDialog < Adwaita::Dialog
     @accounts = accounts
     @on_changed = on_changed
     @listed = []
+    @error_icons = {}
+    @watched = []
 
     self.title = 'Accounts'
     self.content_width = CONTENT_WIDTH
@@ -55,10 +57,6 @@ class AccountsDialog < Adwaita::Dialog
             accounts_stack.tap do |stack|
               stack.add_named(empty_page, 'empty')
               stack.add_named(accounts_list, 'accounts')
-
-              accounts_list.signal_connect('row-activated') do |_list, row|
-                open_edit_account(row.index)
-              end
             end
           end
         end
@@ -147,6 +145,11 @@ class AccountsDialog < Adwaita::Dialog
         row.activatable = true
         row.add_suffix(auth_error_icon(account))
         row.add_suffix(Gtk::Image.new(icon_name: 'go-next-symbolic'))
+
+        # Upstream connects the row's own "activated" signal, and that is the
+        # signal an AdwActionRow emits: its activate_signal is "activated", so
+        # activating the row never reaches the list box's "row-activated".
+        row.signal_connect('activated') { open_edit_account(account) }
       end
     end
 
@@ -155,6 +158,29 @@ class AccountsDialog < Adwaita::Dialog
         image.tooltip_text = 'Account authentication failed!'
         image.add_css_class('error')
         image.visible = account.auth_failed?
+        watch_auth_failed(account, image)
+      end
+    end
+
+    # Upstream binds the icon's visibility to the account's auth-failed
+    # property, so a dialog that is already open shows the error the moment a
+    # fetch fails and loses it again when the account recovers. There is no
+    # property to bind here, so the account's change callback moves it — once
+    # per account, through the icon the latest #refresh built.
+    def watch_auth_failed(account, image)
+      @error_icons[account.id] = image
+
+      unless @watched.include?(account.id)
+        @watched << account.id
+        account.on_change { |changed| update_auth_error_icon(changed) }
+      end
+    end
+
+    def update_auth_error_icon(account)
+      @error_icons[account.id].then do |image|
+        if image
+          image.visible = account.auth_failed?
+        end
       end
     end
 
@@ -165,14 +191,10 @@ class AccountsDialog < Adwaita::Dialog
       end
     end
 
-    def open_edit_account(index)
-      @listed[index].then do |account|
-        if account
-          AccountDialog.new(account, accounts: @accounts, on_saved: method(:account_saved)).tap do |dialog|
-            dialog.build
-            dialog.present(self)
-          end
-        end
+    def open_edit_account(account)
+      AccountDialog.new(account, accounts: @accounts, on_saved: method(:account_saved)).tap do |dialog|
+        dialog.build
+        dialog.present(self)
       end
     end
 

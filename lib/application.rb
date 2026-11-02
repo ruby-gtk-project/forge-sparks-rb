@@ -271,7 +271,11 @@ class Application
       if launcher.launch_finish(result)
         @window.resolve_notification(id)
       end
-    rescue GLib::Error => e
+    # A handler-less URI comes back as Gtk::DialogError::Failed, which carries
+    # GLib::ErrorInfo but does not descend from GLib::Error, and an exception
+    # that escapes a Gio async callback takes the process down with it — so
+    # this catches the whole StandardError family and not just GLib::Error.
+    rescue StandardError, GLib::Error => e
       warn "Could not open the notification: #{e.message}"
     end
 

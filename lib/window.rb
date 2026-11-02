@@ -503,7 +503,7 @@ class Window < Adwaita::ApplicationWindow
     # and nothing here touches a widget. The result it hands back is what the
     # main loop needs to update the UI.
     def fetch_all
-      { notifications: [], failures: {}, user_ids: {} }.tap do |result|
+      { notifications: [], failures: {}, user_ids: {}, succeeded: [] }.tap do |result|
         @accounts.accounts.each do |account|
           fetch_account(account, result)
         end
@@ -514,6 +514,7 @@ class Window < Adwaita::ApplicationWindow
       forge_for(account, result).then do |forge|
         if forge
           result[:notifications].concat(forge.get_notifications)
+          result[:succeeded] << account.id
         end
       end
     rescue StandardError, GLib::Error => e
@@ -573,12 +574,26 @@ class Window < Adwaita::ApplicationWindow
         end
       end
 
+      result[:succeeded].each { |account_id| resolve_recovered(account_id) }
       result[:failures].each { |account_id, error| handle_failure(account_id, error) }
 
       if @network_error && result[:notifications].empty?
         main_stack.visible_child_name = 'notifications'
       else
         show_notifications(result[:notifications])
+      end
+    end
+
+    # Upstream clears the token error as soon as the account it was reported
+    # for answers a request again, which is what takes the banner back down
+    # without the user having to touch the account.
+    def resolve_recovered(account_id)
+      if @auth_failed == account_id
+        @accounts.get_account_by_id(account_id).then do |account|
+          if account
+            resolve_token_error(account)
+          end
+        end
       end
     end
 
