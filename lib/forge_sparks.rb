@@ -1,3 +1,4 @@
 # frozen_string_literal: true
 
-require_relative "forge_sparks/application"
+# The gem entry point: requiring it loads the whole port.
+require_relative "main"

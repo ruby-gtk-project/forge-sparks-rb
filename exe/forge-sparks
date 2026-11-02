@@ -3,4 +3,4 @@
 
 require "forge_sparks"
 
-ForgeSparks::Application.new.build.run
+Main.run(ARGV)
