@@ -96,6 +96,19 @@ Gem::Specification.new do |spec|
   spec.executables = ["forge-sparks"]
   spec.require_paths = ["lib"]
 
+  # Runtime dependencies: the GTK4/Libadwaita toolkit this app is built on,
+  # gettext for the translation catalogue, and ashpd, the Rust XDG Desktop
+  # Portal client this fork's binding-gem policy requires every app wire in.
+  # Its 0.1.1 release covers Account/Camera/OpenUri/Screenshot/Settings/Trash
+  # only, none of which this app needs — it has no Background or Secret
+  # portal, so the hand-rolled autostart file and secret-tool token store in
+  # lib/util.rb, lib/preferences_dialog.rb and lib/accounts_manager.rb stay.
+  spec.add_dependency("gtk4")
+  spec.add_dependency("adwaita")
+  spec.add_dependency("glib2")
+  spec.add_dependency("gettext")
+  spec.add_dependency("ashpd")
+
   # NOTE: It is preferable to list development dependencies in the gemspec due to increased
   #       visibility and discoverability.
   #       However, development dependencies in gemspec will install on
