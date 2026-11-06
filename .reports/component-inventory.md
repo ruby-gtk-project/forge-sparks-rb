@@ -3,21 +3,34 @@
 Upstream: `origin/main` (GJS + blueprint, meson, gjspack bundler).
 Port: the `ruby` branch of this repo.
 
-**State of the port (re-surveyed on the current `ruby` HEAD).** The scaffold is
-gone and 22 `lib/*.rb` files, ~4,000 lines, stand against upstream's 23
-components: every widget unit, model, forge backend, the settings store, the
-stylesheet and the assets are written. Two gaps remain, and nothing else:
+**State of the port (re-surveyed on the current `ruby` HEAD, commit
+`18f35e9`).** All 23 upstream components now have a port file. The two gaps
+the previous survey found are both closed:
 
-1. **`po/` — missing entirely.** No catalogue, no gettext at runtime, every
-   string inline English. Upstream ships 23 locales plus the `.pot`, and
-   `relativeDate`'s plural forms need `ngettext`.
-2. **Packaging data — partial.** `data/` has the nine status icons, the
-   empty-state illustration and the app icons, but not the `.desktop`,
-   metainfo or D-Bus service files, so there is no desktop entry.
+1. **`po/` — ported.** `lib/translation.rb` binds the `forge-sparks` text
+   domain and hands out `_`/`n_`/`p_`; `po/` holds the `.pot`, upstream's
+   full 26-locale `LINGUAS` set and `po/update-catalogue.sh`, which extracts,
+   merges and compiles into `data/locale` (not committed, built by the dev
+   shell). `relativeDate`'s plural forms go through `n_`.
+2. **Packaging data — ported.** `data/org.rubygtkproject.ForgeSparks.desktop.in`,
+   `.metainfo.xml.in` and `.service.in` exist alongside the nine status icons,
+   the empty-state illustration and the app icons; the flake installs and
+   validates the desktop entry and compiles the 26 catalogues.
 
-Scan corroborating the reading below (clean export of `origin/main`,
-`component-identification/scripts/component-scan.sh`): 141 rows, 36 distinct
-widget types, 20 distinct CSS classes, 9 distinct signals, 18 distinct actions.
+No gaps remain at the file/component level. Two commits since the previous
+survey (`42e7519` → `df72503` → `18f35e9`) also fixed three defects a drive
+script found (account-row activation signal, an async error type that crashed
+the process, and a driver re-run bug) and extended the drive script to 207
+checks — DRIVE OK, CHECKS OK (70).
+
+Scan corroborating the reading below (clean `git archive origin/main`,
+`component-identification/scripts/component-scan.sh`, re-run for this
+survey): 141 rows, 39 distinct widget types, 16 distinct CSS classes, 8
+distinct signals, 17 distinct actions. The port's own scan of `lib/`: 116
+rows — fewer because the scan counts static declarations and the port's
+widgets of the same type collapse into one row per file where upstream's
+equivalent is split across a `.js`/`.blp` pair; it is not a gap count (see
+the per-file tables below, each already checked against upstream).
 
 Upstream is a two-file-per-component GJS app: each widget class is a `.js`
 beside its `.blp`, and the port merges the pair into one `lib/*.rb`. House
@@ -341,22 +354,27 @@ Nine status icons (`commit`, `discussion`, `issue`, `issue-done`,
 picture) and the app icons in `data/`. The desktop file and metainfo carry the
 user-visible name "Forge Sparks" and summary "Get Git forges notifications".
 
-Present: **partly** — `data/icons/*-symbolic.svg` (all nine), `data/alldone.svg`,
-`data/forge-sparks.svg` and `data/forge-sparks-symbolic.svg` are in the port.
-Still missing: the `.desktop`, metainfo and D-Bus service files, so the app has
-no desktop entry.
+Present: **yes** — `data/icons/*-symbolic.svg` (all nine), `data/alldone.svg`,
+`data/forge-sparks.svg`/`-symbolic.svg`, plus
+`data/org.rubygtkproject.ForgeSparks.desktop.in`, `.metainfo.xml.in` and
+`.service.in`, each named after this port's app id and finished by the
+install step (translations merged with `msgfmt --desktop`/`--xml`, `@bindir@`
+pointed at the installed launcher).
 
 ## po/ — translations
 
-23 locales (`ar ca cs de es et fa fi fr hi hr ia it ka kk nb_NO nl pt pt_BR ru
+26 locales (`ar ca cs de es et fa fi fr hi hr ia it ka kk nb_NO nl pt pt_BR ru
 sv ta tr uk vi zh_Hans` per `po/LINGUAS`) plus
 `com.mardojai.ForgeSparks.pot`. `po/POTFILES` lists 26 files; every `.blp` and
 every `.js` holding a translated string is in it. The port needs the same
 catalogue reachable and `ngettext` for `relativeDate`'s plural forms.
 
-Present: **no**. There is no `po/` in the port and no gettext at runtime; every
-user-visible string is inline English, and `lib/util.rb` hand-picks the plural
-form where upstream calls `ngettext`. This is the one whole-component gap left.
+Present: **yes**. `po/` carries the port's own `forge-sparks.pot`, upstream's
+same 26 `LINGUAS` locales (merged against the new template — most land at 59
+of 64 messages; the five extra are strings this port added), `POTFILES` and
+`update-catalogue.sh`. `lib/translation.rb` binds the `forge-sparks` domain
+and `lib/util.rb`'s relative dates go through `n_`, matching upstream's
+`ngettext`.
 
 ---
 
@@ -385,10 +403,10 @@ form where upstream calls `ngettext`. This is the one whole-component gap left.
 | 19 | `src/main.js` + `src/com.mardojai.ForgeSparks` | `lib/main.rb` | entry point, CLI options | yes |
 | 20 | `data/com.mardojai.ForgeSparks.gschema.xml` | `lib/settings.rb` | settings store (JSON, same key set) | yes |
 | 21 | `src/style.css` + `src/style-dark.css` | `lib/style.rb` | CSS provider (light/dark) | yes |
-| 22 | `src/icons/*.svg`, `src/assets/alldone.svg`, `data/*.desktop.in.in`, metainfo | `data/` | assets + packaging data | partly |
-| 23 | `po/` (23 locales + pot) | `po/` | translation catalogue | no |
+| 22 | `src/icons/*.svg`, `src/assets/alldone.svg`, `data/*.desktop.in.in`, metainfo | `data/` | assets + packaging data | yes |
+| 23 | `po/` (26 locales + pot) | `po/` | translation catalogue | yes |
 
 Seven of these are widget units (1–7); the remaining sixteen are the models,
-backends, settings, styling, assets and translations they need. 21 of 23 are
-done; what is left is the translation catalogue (#23) and the desktop/metainfo
-packaging data (#22).
+backends, settings, styling, assets and translations they need. 23 of 23 are
+done — full parity at the component/file level. Nothing identified by this
+survey remains unported.
