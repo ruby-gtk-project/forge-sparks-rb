@@ -3,79 +3,82 @@
 | | |
 |---|---|
 | Upstream | `origin/main` @ `3df28d2` (GJS + Blueprint) |
-| Port | `ruby` @ `e0bd336` (re-audited; previous pass was at `3f45b15`) |
+| Port | `ruby` @ `5570f99` (re-audited; previous pass was at `e0bd336`, two commits behind) |
 
-This document records what Step 1 of the `component-identification` skill
-found, scoped to re-verifying the existing `.reports/component-inventory.md`
-(written by an earlier pass) rather than re-deriving it from zero — that file's
-per-file widget/CSS/signal/action tables were spot-checked against upstream
-source during this audit and are accurate as inventory. This document adds
-what that inventory under-reports: components whose *behaviour*, not their
-widget tree, differs from upstream, and one dependency that is declared but
-never identified as a component owner at all.
+This document re-verifies `.reports/component-inventory.md`'s per-file
+widget/CSS/signal/action tables against upstream source rather than
+re-deriving the inventory from zero, and records what has changed in the
+two commits (`0bcf2cc`, `5570f99`) landed since the previous pass of this
+file.
 
-## Confirmed present, 1:1, by direct scan (not merely by file existing)
+## Confirmed present, 1:1, by direct scan
 
-- **Status icons** — upstream `src/icons/*.svg` (9 files: commit, discussion,
-  issue, issue-done, merge, merge-denied, merge-draft, merge-merged, tag) all
-  exist at `data/icons/*.svg` with identical basenames, and
-  `lib/notification.rb:13` resolves them from that path — not just copied,
-  wired.
-- **`po/LINGUAS`** — same 26-locale set as upstream, order differs only
-  (cosmetic, not a gap).
-- **Primary menu** — `Gio::Menu` built in `lib/window.rb`, 5 items across 2
+- **Status icons** — upstream `src/icons/*.svg` (9 files) all exist at
+  `data/icons/*.svg` with identical basenames, wired from
+  `lib/notification.rb:13`.
+- **`po/LINGUAS`** — same 26-locale set as upstream (order differs only).
+- **Primary menu** — `Gio::Menu` in `lib/window.rb`, 5 items across 2
   sections, matching `window.blp`'s `menu menu`.
 - **Shortcuts dialog** — `lib/shortcuts_dialog.rb`'s `SECTIONS` reproduces
   upstream's 3 `C_("shortcut window", …)` items byte-for-byte including the
-  pgettext context (verified against `git show origin/main:src/gtk/help-overlay.blp`).
+  pgettext context.
+- **Background/autostart preference widgets** — `Adw.ExpanderRow` +
+  2 switches in both upstream (`src/widgets/preferences.js`) and the port
+  (`lib/preferences_dialog.rb`); same structural shape, confirmed again
+  this round.
 
-## New component found during this audit: the XDG background portal (missing)
+## What changed since the previous pass: the background portal is now a real D-Bus component
 
-Upstream's `src/util.js` (`requestBackground`, `setBackgroundStatus`) and
-`src/widgets/preferences.js` (`_onBackgroundChanged`) together are one
-component: the "keep running in the background" / "run on startup" toggle,
-backed by `Xdp.Portal` (libportal), with its own 4 user-facing strings:
+The previous pass of this document found that upstream's background-portal
+component (`src/util.js`'s `requestBackground`/`setBackgroundStatus`,
+backed by `Xdp.Portal`) had **no port at all** — the port's substitute was
+hide-on-close plus an XDG autostart `.desktop` file, with `ashpd` 0.1.1 (the
+gemspec's declared binding) confirmed live to lack a `Background` portal
+interface (`Ashpd.constants` has no `Background`).
 
-- `"Allow running Forge Sparks on background."`
-- `"Allow running Forge Sparks on startup."`
-- `"Monitoring new notifications"`
-- `"The request failed."`
+Commit `0bcf2cc` ("Bind the real XDG background portal over D-Bus, write
+real specs"), landed since, replaces that substitute. `lib/util.rb:111-180`
+now talks to `org.freedesktop.portal.Background` directly over D-Bus via
+`ruby-dbus` (`DBus::SessionBus.instance`, `RequestBackground`/`SetStatus`
+method calls with real `DBus::Error`/`ServiceUnknown` handling), and
+`ashpd` is gone from the gemspec entirely (`grep -rn ashpd *.gemspec`
+confirms it only in comments, no `add_dependency` line). This audit
+re-read the implementation this round: it is a genuine binding, not a
+second substitute dressed differently — `test/drive_window.rb`'s autostart
+steps now exercise the real D-Bus call and fail honestly
+(`DBus::Error`/`ServiceUnknown`) under `xvfb` with no portal daemon present,
+rather than asserting a filesystem side effect.
 
-**The port builds no portal component.** `lib/util.rb:15-33` and
-`lib/preferences_dialog.rb:15-30` both carry a comment stating upstream's
-portal behaviour is replaced: "keep running in the background" is the
-window's own hide-on-close, and "run on startup" writes an XDG autostart
-`.desktop` file instead of asking `Xdp.Portal`. Since the previous pass of
-this audit (`3f45b15`), commit `e0bd336` rewrote this comment and the claim
-it makes changed from false to verified-true: it now says `ashpd` 0.1.1 (the
-gemspec dependency) was checked live — `Ashpd.constants` on the installed
-gem returns only `Account, Camera, OpenUri, Screenshot, Settings, Trash,
-VERSION`, no `Background` — and cites that as the reason the gem is not
-required anywhere in `lib/`. This audit reran that exact check
-(`nix develop --command ruby -e "require 'ashpd'; puts Ashpd.constants.sort"`)
-and confirms it: the gem genuinely cannot bind the background portal. The
-dependency is still declared in the gemspec and still never `require`d in
-`lib/` — a dead dependency, not a false claim about one — see
-`.reports/accountability-ensurance.md` for whether that residue is worth
-removing.
+**This closes the behavioural gap this report previously tracked.** It
+does **not** close the component fully: see the finding below.
 
-`Util.sandboxed?` (`lib/util.rb:83`, checks `/.flatpak-info`) was dead code
-with no caller as of `3f45b15`. `e0bd336` wired it in:
-`Util.request_autostart` (`lib/util.rb:103-108`) now refuses outright and
-warns when `sandboxed?` is true, instead of reporting a no-op file write as
-a granted request. That specific finding from the previous pass is closed.
+## New finding this round: the component's text did not travel with its behaviour
 
-What remains unported, regardless of the ashpd finding above: upstream's
-`requestBackground`'s two permission-reason strings and `setBackgroundStatus`'s
-status message have no equivalent call site in the port at all, because the
-substitute mechanism (hide-on-close + an autostart file) never asks for
-background permission or reports a running-in-background status to
-anything. That is a real, still-open behavioural gap, tracked in
-`.reports/component-parity.md` and `.reports/translation-parity.md` — it
-did not close when the dead-code and false-comment issues did.
+`lib/util.rb:112` and `:137` now contain, as live `_()`-wrapped Ruby
+literals, upstream's three background-portal strings
+(`"Allow running Forge Sparks on background."`,
+`"Allow running Forge Sparks on startup."`, `"Monitoring new
+notifications"`). But `po/forge-sparks.pot` has had no commit touch it
+since `e0bd336` — two commits before `0bcf2cc` put these strings back into
+the code — and a direct `grep` against the current `.pot` confirms none of
+the three are in it. `_()` marking a string translatable does not add it to
+the catalogue; that requires re-running extraction, which did not happen
+here. This is a real gap in the component's Text axis, open right now, not
+a historical one — see `.reports/translation-parity.md` and
+`.reports/component-parity.md` for the full account, and
+`.reports/accountability-ensurance.md` for the false-green claim ("23/23 on
+all four axes") this produced in two other reports that checked the code
+but not the catalogue.
+
+`Util.sandboxed?` (checks `/.flatpak-info`) remains wired into
+`Util.request_background`/`Util.request_autostart`'s sandboxed-refusal path,
+confirmed unchanged this round.
 
 ## Rule check
 
 Per `component-identification` Step 4, enums/constants (`Util::APP_ID`,
-`SECTIONS` keys) are not counted as widgets above; they are cited only where
-they carry translatable text, per this skill's text-axis guidance.
+`SECTIONS` keys) are not counted as widgets above; they are cited only
+where they carry translatable text, per this skill's text-axis guidance.
+This round's finding above is exactly that axis — a case where the widget
+tree and behaviour axes closed but the text axis, checked against the
+actual `.pot` rather than the source files, did not.

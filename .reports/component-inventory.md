@@ -28,10 +28,19 @@ report's "Present: yes" for `lib/util.rb` was once at odds with (see
 `.reports/accountability-ensurance.md`'s Finding 1) is closed —
 `Util.request_background`/`#set_background_status` now bind the real XDG
 background portal over D-Bus, so "Present: yes" for that row is no longer
-just file-existence, it is behaviour parity too. See
-`.reports/component-parity.md` for the 23/23 verdict. The drive script's
-check count changed shape to 201 (the autostart steps now exercise a real
-D-Bus call, not a file-write stand-in) — still 0 failed.
+just file-existence, it is behaviour parity too. The drive script's check
+count changed shape to 201 (the autostart steps now exercise a real D-Bus
+call, not a file-write stand-in) — still 0 failed.
+
+**Correction, this round:** the behaviour is fixed but `po/forge-sparks.pot`
+was never re-extracted to add the three strings `0bcf2cc` put back into
+`lib/util.rb`, so the unit is not fully closed — see
+`.reports/component-parity.md` (now 22/23 on all four axes, not 23/23) and
+`.reports/accountability-ensurance.md` Finding 1. The 207-checks figure
+quoted earlier in this document (around commit `18f35e9`) predates the
+autostart rewrite and is not the current count; 201 is current and
+reproduced, see `.reports/test-parity.md` Finding on the 207-vs-201
+discrepancy.
 
 Scan corroborating the reading below (clean `git archive origin/main`,
 `component-identification/scripts/component-scan.sh`, re-run for this

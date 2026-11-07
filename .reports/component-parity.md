@@ -3,99 +3,76 @@
 | | |
 |---|---|
 | Upstream | `origin/main` @ `3df28d2` |
-| Port | `ruby` @ `0bcf2cc` (re-audited this round; previous pass was at `e0bd336`) |
-| Units with full 4-axis parity | 23 / 23 — see **Verdict** below, which supersedes the 22/23 finding the rest of this file documents |
-
-Built on `.reports/component-inventory.md`'s per-file tables (count/CSS/signal
-axes already checked there and spot-verified here) plus this audit's own
-Step 5 (drive) and text-axis work. 22 of the 23 upstream units hold on all
-four axes. One does not — unchanged from the previous pass's bottom line,
-though the shape of what's wrong with that one unit has changed: commit
-`e0bd336` ("Fix the background-portal toast text and the sandboxed autostart
-lie") landed since and fixed two of the four sub-findings below. It did not,
-and by its own commit message could not, close the unit itself.
+| Port | `ruby` @ `5570f99` (re-audited this round; previous pass was at `0bcf2cc`, one commit behind) |
+| Units covered | all 23 from `.reports/component-inventory.md`, re-checked on four axes: structure, behaviour, text, rule-check |
+| Runtime gate reproduced this round | `test/drive_window.rb` → **201 of 201 checks passed, DRIVE OK**; `test/check_models.rb` → **70 of 70 checks passed, CHECKS OK**; `ruby -Ilib -S rspec spec/` → **21 examples, 0 failures** |
 
 ## Unit: background/autostart preference — `src/util.js` + `src/widgets/preferences.js` → `lib/util.rb` + `lib/preferences_dialog.rb`
 
 | Axis | Upstream | Port | Verdict |
 |---|---|---|---|
-| Count | `Adw.ExpanderRow` (background), 2 switches (startup, hidden) | Same 3 widgets | parity |
-| Style | `show-enable-switch`, `expanded: true` | same | parity |
-| **Behaviour** | Toggling asks `Xdp.Portal` (real XDG background portal); grants autostart only if the portal says yes; `setBackgroundStatus` tells the portal what message to show while running | Toggling writes/removes an XDG autostart `.desktop` file; no portal call anywhere, because `ashpd` 0.1.1 (the gem this fork's policy requires) has no `Background` portal binding at all, verified live this audit via `Ashpd.constants` | **gap, but now honestly bounded** — see below |
-| **Text** | `"Allow running Forge Sparks on background."`, `"Allow running Forge Sparks on startup."`, `"Monitoring new notifications"`, `"The request failed."` | 1 of 4 restored (`"The request failed."`, `lib/preferences_dialog.rb:148`); the other 3 still don't exist anywhere in `lib/` or `po/forge-sparks.pot` | **gap, reduced from 4 strings to 3** |
+| Structure | `Adw.ExpanderRow` (background) + 2 switches (startup, hidden) | Same 3 widgets | parity |
+| Behaviour | `Xdp.Portal.request_background`/`set_background_status` over the XDG Background portal | `Util.request_background`/`#set_background_status` speak `org.freedesktop.portal.Background` directly over D-Bus via `ruby-dbus` (`lib/util.rb:111-141`); real `RequestBackground`/`SetStatus` calls, real `DBus::Error`/`ServiceUnknown` handling | **parity** — re-verified live this round by reading the implementation; `test/drive_window.rb`'s autostart steps exercise the real call and fail honestly under `xvfb` with no portal daemon present |
+| Text | 4 strings: `"Allow running Forge Sparks on background."`, `"Allow running Forge Sparks on startup."`, `"Monitoring new notifications"`, `"The request failed."` | All 4 strings exist **in `lib/` source**, wrapped in `_()`/default args. But only 1 of the 4 (`"The request failed."`) exists in `po/forge-sparks.pot`. The other 3 are absent from the catalogue entirely. | **gap** — see below |
+| Rule check | n/a | n/a | n/a |
 
-**What changed since the previous pass (`3f45b15`):** commit `e0bd336`
-("Fix the background-portal toast text and the sandboxed autostart lie")
-fixed two distinct sub-bugs this report previously called out:
+### Why this is still a gap, not a closed item
 
-1. **The false-success report is gone.** `Util.sandboxed?` is now consulted
-   by `Util.request_autostart` (`lib/util.rb:103-108`): a request made while
-   sandboxed now refuses up front and warns, rather than reporting a no-op
-   autostart-file write as a granted request. Re-read live this audit —
-   confirmed.
-2. **The toast-string reword is gone.** `"The request failed."` is restored
-   verbatim for the background row (`lib/preferences_dialog.rb:148`), and
-   `"The autostart request failed."` is now used *only* for the two
-   autostart-specific toggles (`lib/preferences_dialog.rb:161,174`), matching
-   upstream's `src/widgets/preferences.js:73,109,146` exactly — both the
-   message and which of the three toggles each one belongs to.
+The two previous passes of this report (and `.reports/component-inventory.md`
+and `.reports/accountability-ensurance.md`) declared this unit fully closed
+— "23/23 units now hold on all four axes" — on the strength of `grep -n
+"Allow running Forge Sparks\|Monitoring new notifications" lib/*.rb`
+returning all three strings. That grep is real and its result is real. But
+it only checks that the strings exist as Ruby literals inside `_()` calls —
+it does not check that they were ever extracted into the gettext catalogue
+those calls feed. Running the actual translation-parity check this round
+(`.reports/translation-parity.md`) finds the opposite: none of the three
+appear in `po/forge-sparks.pot`, which has had no commit touch it since
+`e0bd336`, two commits before the one (`0bcf2cc`) that put these calls back
+into the code.
 
-**What did not change, and is not fixable by a comment or a flag:** the
-background permission request and the "Monitoring new notifications"
-status message are portal-only behaviour with no non-portal substitute
-upstream defines, and `ashpd` 0.1.1 cannot bind that portal (confirmed live:
-`Ashpd.constants` has no `Background`). So three upstream strings and the
-one behaviour that would carry them still have no port, not because of an
-undocumented lie this time, but because the dependency the fork committed to
-cannot do the job. That is still a parity gap — the unit is still 22/23, not
-23/23 — but it is no longer a case of the report believing something false;
-it is a case of a real, currently-unresolvable hole, which is a different
-finding to act on (swap or extend the binding gem, or hand-roll the D-Bus
-call) than "wire up the gem that's already there."
+Consequence for an end user: a translator working from
+`po/forge-sparks.pot` today has no record that these three strings exist to
+translate. Every locale but the source language will show them in English
+indefinitely, regardless of how correct the D-Bus call behind them is. The
+**behaviour** axis is genuinely fixed — the portal call is real, not a
+stand-in — but the **text** axis is not, and "all four axes hold" is not
+true of this unit yet. This is the Text-axis gap this round's census found;
+see `.reports/accountability-ensurance.md` for the false-green claim that
+resulted in the two previous passes.
 
-**Row location:** `lib/util.rb:15-33,83-119`, `lib/preferences_dialog.rb:15-30,136-196`.
-**Behaviour still owed:** a background-portal binding this gem doesn't
-provide — either a different/newer `ashpd` release, a different gem, or a
-hand-rolled D-Bus call to `org.freedesktop.portal.Background` — to carry the
-three remaining strings and the real allow/deny semantics. Until then, this
-is an accurate, bounded gap rather than a lie about one; it is still not
-parity.
+**Fix:** regenerate `po/forge-sparks.pot` (the project's own
+`po/update-catalogue.sh`, or `xgettext` over `lib/**/*.rb` with the same
+keywords) and add the three missing msgids, then re-run the extraction to
+confirm nothing else drifted since `18f35e9`.
 
-## The other 22 units
+## All other units
 
-Window, shortcuts dialog, application/actions/About, account dialog, accounts
-dialog, accounts manager, forge backends (×4), notification model,
-notification row, notifications list, preferences dialog's own
-startup/hidden rows (as distinct from the background-portal call above),
-settings, style, main entry point, translation module: count, CSS, signal and
-text axes hold under both a static read of the per-file tables and this
-audit's live drive (`test/drive_window.rb`, 207/207 checks; `test/check_models.rb`,
-70/70 checks — both re-run during this audit, not taken on faith).
-
-Screenshot step confirms rendering for the units the driver shoots
-(`09-shortcuts.png`, `10-primary-menu.png`, `11-about.png`, etc. under the
-driver's `shots` dir) — not re-captured in this pass since the driver's own
-checks against those widgets already passed live.
+Spot-re-checked this round against the current `po/forge-sparks.pot` census
+and the live drive/spec runs; no other structural, behavioural or rule-check
+regression found relative to the previous pass's tables (shortcuts dialog,
+primary menu, status icons, forge backends, notification model, settings
+round-trip, account dialog, preferences dialog's other two toggles, about
+dialog, empty state, error toasts). Not re-walked widget-by-widget from zero
+in this pass — the previous two passes' direct scans are trusted for
+structure/rule-check on units this round found no code change touching —
+but every behaviour claim that this round's grep/census could independently
+verify (drive script, spec suite, `.pot` diff) was re-run live rather than
+re-quoted.
 
 ## Verdict
 
-**Superseded — closed this round.** The gap this report's body describes
-(background/autostart, 22/23) was fixed by commit `0bcf2cc` ("Bind the real
-XDG background portal over D-Bus, write real specs"), landed after this
-report's last audit (`e0bd336`) and re-verified live in this round:
-`Util.request_background`/`Util.set_background_status` (`lib/util.rb:95-139`)
-now speak `org.freedesktop.portal.Background` directly over D-Bus through
-`ruby-dbus`, instead of the autostart-file substitute this report
-documents above. `ashpd` is gone from the gemspec entirely (`grep -rn
-ashpd lib/*.gemspec` finds it only in explanatory comments, not a
-dependency line or a `require`). All three upstream strings this report
-said were missing are now present verbatim: `"Allow running Forge Sparks
-on background."` and `"Allow running Forge Sparks on startup."`
-(`lib/util.rb:112`) and `"Monitoring new notifications"`
-(`lib/util.rb:137`). **23 / 23 units now hold on all four axes** — this
-report's own historical 22/23 finding above is the record of what the gap
-was, not the current state. Re-confirmed this round: `test/drive_window.rb`
-(201/201, the autostart-specific checks changed shape since they now
-exercise a real D-Bus call that fails honestly with `ServiceUnknown` under
-`xvfb` rather than asserting a file write) and `test/check_models.rb`
-(70/70), both re-run live, not taken on faith.
+**22 of 23 units hold on all four axes. 1 of 23 (background/autostart) holds
+on structure and behaviour, not on text**, because `po/forge-sparks.pot`
+fell behind a code change that re-added three translatable strings without
+re-extracting them. Not "23/23," contrary to the previous two passes of
+this report and of `.reports/component-inventory.md`.
+
+The runtime gate numbers this round reproduces live are **201/201** for
+`test/drive_window.rb` and **70/70** for `test/check_models.rb` — matching
+the task's stated gate. Several of this report's own prior passes, and
+`.reports/test-parity.md` as it stood before this round, instead asserted
+**207/207** for the drive script at this same point in history. That number
+does not match either a fresh run performed this round or the commit
+message of `0bcf2cc` itself, which records 201/201. See
+`.reports/accountability-ensurance.md` for that finding.
