@@ -99,50 +99,20 @@
         # development bundle — rubocop, rspec, yard, the kettle-dev stack — and
         # must not end up in a packaged app's runtime closure. nix/Gemfile holds
         # the gemspec's runtime dependencies only.
-        # ashpd carries a Rust extension, and its precompiled platform gems need no
-        # compiler. Gemfile.lock names every platform the gem ships, so bundix writes
-        # the one entry it always writes: no platform, and the source gem's hash --
-        # which would want cargo to build it, and fails here as
-        #   hash mismatch in fixed-output derivation 'ashpd-0.1.1.gem.drv'
-        # because the fetch gets a platform gem and the lock recorded the source one.
         #
-        # The platform belongs to the system being built for rather than to the
-        # lockfile, so the entry is rewritten into the platform gem for this system.
-        # This is the pattern async-matrix uses for vodozemac.
-        #
-        # These hashes are for the version Gemfile.lock resolves: a bump needs them
-        # recomputed with
-        #   nix-prefetch-url https://rubygems.org/downloads/ashpd-<v>-<platform>.gem
-        ashpdPlatforms = {
-          x86_64-linux  = { platform = "x86_64-linux";  sha256 = "0pnjv2rszvd10dvn3qmgf5vlkgmkjnkj18phvbvaya1arsm3ph9s"; };
-          aarch64-linux = { platform = "aarch64-linux"; sha256 = "156x0l8fal0n05k6ya6qdfgl8277595mrg6gx0syis6dx3rr8fk7"; };
-          x86_64-darwin = { platform = "x86_64-darwin"; sha256 = "0dq81l7pkmxpkxp9i6g3wwdj9pynp4jl691sw8d6q58qww5a2ag8"; };
-          aarch64-darwin = { platform = "arm64-darwin"; sha256 = "19xfp65ag0mmp55kkwwq9qg0vmm1pxfswf9qca55b81k9phw2bbq"; };
-        };
-
+        # ruby-dbus is pure Ruby — no native extension, no platform gem, no
+        # typelib — so unlike the ashpd gem this flake carried before it, the
+        # plain gemfile/lockfile/gemset bundix writes needs no per-platform
+        # patching.
         appGemset = import ./nix/gemset.nix;
-
-        ashpdGem =
-          let
-            selected = ashpdPlatforms.${system} or (throw
-              "ashpd has no precompiled gem for ${system}");
-            generic = appGemset.ashpd;
-          in
-          generic // {
-            version = "${generic.version}-${selected.platform}";
-            source = generic.source // { sha256 = selected.sha256; };
-          };
 
         gems = pkgs.bundlerEnv {
           name = "forge-sparks-gems";
           ruby = pkgs.ruby_3_4;
           inherit gemConfig;
-          # gemfile/lockfile/gemset explicitly rather than `gemdir`, because the
-          # gemset is patched above to select ashpd's platform gem; gemdir would
-          # read nix/gemset.nix unmodified and fetch the source gem.
           gemfile = ./nix/Gemfile;
           lockfile = ./nix/Gemfile.lock;
-          gemset = appGemset // { ashpd = ashpdGem; };
+          gemset = appGemset;
         };
 
         # The launcher is whatever the gemspec installs into exe/. Reading the
@@ -296,8 +266,6 @@ ${pkgs.lib.optionalString (appId != null) ''
           # XDG_DATA_DIRS; without these the window opens with blank icons.
           shellHook = ''
             export XDG_DATA_DIRS="${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}:${pkgs.gtk4}/share/gsettings-schemas/${pkgs.gtk4.name}:${pkgs.adwaita-icon-theme}/share:$XDG_DATA_DIRS"
-            # bundlerEnv installs the platform gem ashpd, so forcing the ruby
-            # platform asks bundler for a gem which is not there.
             export BUNDLE_FORCE_RUBY_PLATFORM=false
             export GI_TYPELIB_PATH="${typelibPath}''${GI_TYPELIB_PATH:+:$GI_TYPELIB_PATH}"
             export RUBYLIB="$PWD/lib''${RUBYLIB:+:$RUBYLIB}"
@@ -306,7 +274,14 @@ ${pkgs.lib.optionalString (appId != null) ''
             echo "forge-sparks devshell — ruby $(ruby -e 'print RUBY_VERSION')"
             echo "run the app:   xvfb-run ruby exe/forge-sparks"
             echo "drive the app: xvfb-run ruby test/drive_*.rb"
-            echo "run the specs: ruby -e 'require \"rspec/core\"; exit RSpec::Core::Runner.run([\"--format\", \"progress\", \"--require\", \"spec_helper\", \"spec\"])'"
+            # No "run the specs" line: spec/ has no *_spec.rb files yet (only
+            # spec_helper.rb and README.md), and spec_helper.rb requires
+            # kettle/test/rspec, which this shell does not carry — that gem is
+            # only in the root dev Gemfile, which itself currently cannot
+            # resolve on this Ruby (kettle-family >= 1.3.37 wants Ruby >= 4.0).
+            # A banner line naming a command here would exit 0 on an empty
+            # suite without ever having run one, which is worse than naming
+            # nothing.
           '';
         };
       });

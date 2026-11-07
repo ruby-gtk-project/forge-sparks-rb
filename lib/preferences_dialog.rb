@@ -14,18 +14,14 @@ require_relative 'translation'
 #
 # Upstream asks the XDG background portal (Xdp.Portal) to grant each of
 # these and saves whatever the portal answered, so a refused request switches
-# the row back off and raises a toast. `ashpd` 0.1.1, the gem this fork's
-# binding-gem policy requires, does not bind the background portal — its
-# constants are only Account, Camera, OpenUri, Screenshot, Settings and
-# Trash (checked live: `Ashpd.constants` on this gem has no `Background`) —
-# so it cannot be used here. "Keep running in the background" is instead the
-# window's own hide-on-close, and the two autostart switches write the XDG
-# autostart desktop file the portal would have written. That file has no
-# effect inside a sandbox, where only the real portal would work, so
-# `Util.request_autostart` refuses the request outright when
-# `Util.sandboxed?` instead of reporting the file write as a granted request.
-# The flow is otherwise the same: the request can fail, and the row follows
-# what actually happened, with the same two upstream toast strings
+# the row back off and raises a toast. `ashpd` 0.1.1 cannot carry that call
+# (its constants are only Account, Camera, OpenUri, Screenshot, Settings and
+# Trash — checked live: no `Background`), so `Util.request_background` below
+# speaks to org.freedesktop.portal.Background directly over D-Bus through
+# `ruby-dbus` instead — the same interface Xdp.Portal uses underneath. The
+# flow is the same as upstream: the request can fail (refused by the user,
+# or simply because no portal implementation is running), and the row
+# follows what actually happened, with the same two upstream toast strings
 # ("The request failed." for the background row, "The autostart request
 # failed." for the two autostart switches).
 #
@@ -177,15 +173,15 @@ class PreferencesDialog < Adwaita::PreferencesDialog
       end
     end
 
-    # Writes or removes the autostart entry, saves what actually happened, and
-    # puts the switch back where reality left it.
+    # Asks the background portal for the autostart permission, saves what it
+    # actually granted, and puts the switch back where reality left it.
     #
     # `failure_message` matches which upstream string the caller is standing
     # in for: _onBackgroundChanged's "The request failed." or
     # _onStartupChanged / _onStartupHiddenChanged's "The autostart request
     # failed.".
     def apply_autostart(enabled, hidden:, failure_message:)
-      Util.request_autostart(enabled, hidden: hidden).then do |success|
+      Util.request_background(autostart: enabled, hidden: hidden).then do |success|
         @settings['autostart'] = enabled && success
         update_startup_switch(@settings['autostart'])
 

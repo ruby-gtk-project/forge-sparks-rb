@@ -3,7 +3,8 @@
 require 'json'
 require 'net/http'
 require 'uri'
-require 'fileutils'
+require 'timeout'
+require 'dbus'
 require 'gtk4'
 
 require_relative 'settings'
@@ -14,7 +15,7 @@ require_relative 'translation'
 # through, the desktop-integration helpers behind the preferences switches and
 # the relative date formatter used by the notification rows.
 #
-# Three things differ from upstream and are deliberate:
+# Two things differ from upstream and are deliberate:
 #
 # * The session is Ruby's Net::HTTP rather than libsoup. There is no Soup
 #   binding in ruby-gnome, and the forges only need "send this request, give
@@ -22,15 +23,17 @@ require_relative 'translation'
 # * Requests run on a worker thread handed back to the main loop by #defer,
 #   which is this port's stand-in for upstream's async/await: GTK is only ever
 #   touched from the main loop.
-# * Upstream asks the XDG background portal (libportal) for permission to keep
-#   running and to autostart. `ashpd` 0.1.1, the binding gem this fork's
-#   policy requires, does not cover the background portal (only Account,
-#   Camera, OpenUri, Screenshot, Settings and Trash), so "keep running in the
-#   background" is the window's own hide-on-close, and "run on startup"
-#   writes the XDG autostart desktop file the portal would have written on
-#   our behalf. That file does nothing inside a sandbox, so #request_autostart
-#   refuses outright when #sandboxed? rather than reporting the write as a
-#   granted request.
+#
+# Upstream asks the XDG background portal (libportal's Xdp.Portal) for
+# permission to keep running and to autostart, and to set a status message
+# while it does. `ashpd` 0.1.1, the binding gem this fork's policy named,
+# does not cover the Background portal (only Account, Camera, OpenUri,
+# Screenshot, Settings and Trash — checked live: `Ashpd.constants` has no
+# `Background`), so this talks to org.freedesktop.portal.Background
+# directly over D-Bus through `ruby-dbus`, which is pure Ruby and needs no
+# typelib. #request_background and #set_background_status below are
+# RequestBackground and SetStatus on that interface — the same two calls
+# Xdp.Portal#request_background and #set_background_status make underneath.
 #
 module Util
   extend Translation
@@ -77,70 +80,100 @@ module Util
     end
   end
 
-  # True when the app is running from a Flatpak sandbox, where the autostart
-  # file below has no effect and the portal upstream uses would be the only
-  # way to ask for the same thing.
+  PORTAL_BUS_NAME = 'org.freedesktop.portal.Desktop'
+  PORTAL_OBJECT_PATH = '/org/freedesktop/portal/desktop'
+  PORTAL_BACKGROUND_INTERFACE = 'org.freedesktop.portal.Background'
+  PORTAL_REQUEST_INTERFACE = 'org.freedesktop.portal.Request'
+
+  # How long to wait for the user to answer the portal's permission dialog
+  # before giving up, same shape as upstream waiting on the portal's async
+  # result forever but bounded, since nothing here is cancellable.
+  PORTAL_REQUEST_TIMEOUT = 120
+
+  # True when the app is running from a Flatpak sandbox. Upstream only
+  # bothers setting the background status message (below) in this case,
+  # since that is the one thing a sandboxed, hidden app can still surface to
+  # the user.
   def sandboxed? = File.exist?('/.flatpak-info')
 
-  def autostart_file
-    File.join(
-      ENV.fetch('XDG_CONFIG_HOME', File.expand_path('~/.config')),
-      'autostart',
-      "#{APP_ID}.desktop",
-    )
-  end
-
-  def autostart? = File.exist?(autostart_file)
-
-  # Writes or removes the autostart desktop entry, and reports whether the
-  # state asked for is the state on disk afterwards — the same boolean
-  # upstream gets back from the portal request.
+  # Requests background and, optionally, autostart permission from the real
+  # XDG background portal.
   #
-  # Inside a sandbox the autostart file has no effect at all (the portal
-  # upstream asks instead is the only thing that would work there), so a
-  # request made while sandboxed? is true is refused up front rather than
-  # reporting a write that succeeded as a request that was granted.
-  def request_autostart(enabled, hidden: false)
-    if sandboxed?
-      warn 'Cannot request autostart: running in a sandbox without the ' \
-           'XDG background portal.'
-      return false
-    end
-
-    if enabled
-      write_autostart_file(hidden: hidden)
-    else
-      remove_autostart_file
-    end
-    autostart? == enabled
-  rescue SystemCallError => e
-    warn "Could not update #{autostart_file}: #{e.message}"
-    false
-  end
-
-  def write_autostart_file(hidden: false)
+  # Ported from upstream's requestBackground(window, autostart, hidden):
+  # the reason shown to the user depends on which permission is being asked
+  # for (exactly as upstream picks it — autostart gets the "on background"
+  # reason, plain background gets "on startup"), and the command line only
+  # gets --hidden when both autostart and hidden are requested. Success is
+  # the portal's Request.Response signal reporting its "success" code, the
+  # same thing libportal's request_background_finish checks.
+  #
+  # @return [Boolean] whether the request was granted
+  def request_background(autostart: false, hidden: false)
+    reason = autostart ? _('Allow running Forge Sparks on background.') : _('Allow running Forge Sparks on startup.')
     command = [AUTOSTART_COMMAND]
-    if hidden
+    if autostart && hidden
       command << HIDDEN_FLAG
     end
 
-    FileUtils.mkdir_p(File.dirname(autostart_file))
-    File.write(autostart_file, <<~DESKTOP)
-      [Desktop Entry]
-      Type=Application
-      Name=#{APP_NAME}
-      Comment=Get Git forges notifications
-      Exec=#{command.join(' ')}
-      Icon=#{APP_ID}
-      Terminal=false
-      X-GNOME-Autostart-enabled=true
-    DESKTOP
+    response_code, = portal_request(
+      'RequestBackground',
+      'reason'      => reason,
+      'autostart'   => autostart,
+      'commandline' => command,
+    )
+    response_code.zero?
+  rescue DBus::Error, SystemCallError, Timeout::Error => e
+    warn "Background portal request failed: #{e.message}"
+    false
   end
 
-  def remove_autostart_file
-    if File.exist?(autostart_file)
-      File.delete(autostart_file)
+  # Sets the status message the background portal shows for this app while
+  # it runs hidden, e.g. in a shell's background-apps indicator.
+  #
+  # Ported from upstream's setBackgroundStatus(message): upstream only calls
+  # it under Xdp.Portal.running_under_sandbox(), so this does the same.
+  # Unlike #request_background this is a plain method call with no Request
+  # object or user dialog behind it, so it is fire-and-forget.
+  def set_background_status(message = _('Monitoring new notifications'))
+    if sandboxed?
+      portal_mutex.synchronize { portal_background_interface.SetStatus('message' => message) }
     end
+  rescue DBus::Error, SystemCallError => e
+    warn "Could not set the background status: #{e.message}"
+  end
+
+  def portal_background_interface
+    @portal_background_interface ||= DBus::SessionBus.instance
+      .service(PORTAL_BUS_NAME)
+      .object(PORTAL_OBJECT_PATH)
+      .tap(&:introspect)[PORTAL_BACKGROUND_INTERFACE]
+  end
+
+  def portal_mutex = @portal_mutex ||= Mutex.new
+
+  # Calls `method_name` (RequestBackground) on the background portal and
+  # blocks until its Request object emits the Response signal, which is how
+  # every "request" method on an XDG portal reports its result: the method
+  # call itself only returns a handle to watch.
+  #
+  # @return [Array(Integer, Hash)] the response code and results dict
+  def portal_request(method_name, options)
+    bus = DBus::SessionBus.instance
+    response = nil
+
+    portal_mutex.synchronize do
+      handle_path = portal_background_interface.send(method_name, '', options)
+      request = bus.service(PORTAL_BUS_NAME).object(handle_path).tap(&:introspect)
+      request[PORTAL_REQUEST_INTERFACE].on_signal('Response') do |code, results|
+        response = [code, results]
+      end
+
+      Timeout.timeout(PORTAL_REQUEST_TIMEOUT) do
+        bus.wait_for_message until response
+      end
+    end
+
+    response
   end
 
   # Get relative date string from a Time.

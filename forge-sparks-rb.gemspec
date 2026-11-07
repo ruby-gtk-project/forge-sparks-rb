@@ -97,17 +97,19 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   # Runtime dependencies: the GTK4/Libadwaita toolkit this app is built on,
-  # gettext for the translation catalogue, and ashpd, the Rust XDG Desktop
-  # Portal client this fork's binding-gem policy requires every app wire in.
-  # Its 0.1.1 release covers Account/Camera/OpenUri/Screenshot/Settings/Trash
-  # only, none of which this app needs — it has no Background or Secret
-  # portal, so the hand-rolled autostart file and secret-tool token store in
-  # lib/util.rb, lib/preferences_dialog.rb and lib/accounts_manager.rb stay.
+  # gettext for the translation catalogue, and ruby-dbus, used to speak to
+  # org.freedesktop.portal.Background directly. `ashpd` 0.1.1 (this fork's
+  # previously declared portal binding) only covers Account, Camera, OpenUri,
+  # Screenshot, Settings and Trash — no Background portal — so it cannot
+  # carry the background/autostart permission request upstream's Xdp.Portal
+  # makes; ruby-dbus is pure Ruby, needs no typelib, and calls the portal's
+  # D-Bus interface (RequestBackground/SetStatus) the way Xdp.Portal does
+  # internally. See lib/util.rb.
   spec.add_dependency("gtk4")
   spec.add_dependency("adwaita")
   spec.add_dependency("glib2")
   spec.add_dependency("gettext")
-  spec.add_dependency("ashpd")
+  spec.add_dependency("ruby-dbus")
 
   # NOTE: It is preferable to list development dependencies in the gemspec due to increased
   #       visibility and discoverability.

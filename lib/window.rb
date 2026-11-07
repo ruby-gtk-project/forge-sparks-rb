@@ -162,6 +162,7 @@ class Window < Adwaita::ApplicationWindow
         @settings.remember(self)
         false
       end
+      signal_connect('notify::visible') { on_window_hide }
 
       start
     end
@@ -447,6 +448,15 @@ class Window < Adwaita::ApplicationWindow
 
   private
 
+    # Sets the background portal's status message once the window actually
+    # goes invisible (hidden rather than closed), the same guard upstream's
+    # _onWindowHide puts around setBackgroundStatus().
+    def on_window_hide
+      unless visible?
+        Util.set_background_status
+      end
+    end
+
     def build_menu_button
       Gtk::MenuButton.new.tap do |button|
         button.primary = true
@@ -479,13 +489,16 @@ class Window < Adwaita::ApplicationWindow
 
     # --- First run ------------------------------------------------------
 
-    # Upstream asks the portal for background permission here and saves the
-    # answer as hide-on-close. Without a portal the app can simply keep
-    # running, so that is the default the first run records.
+    # Asks the background portal for permission to keep running, the same
+    # as upstream's _firstRun() awaiting requestBackground(this, false), and
+    # saves whatever it granted as hide-on-close — a refused request leaves
+    # the window closing normally instead of hiding.
     def first_run
-      @settings['hide-on-close'] = true
-      @settings['first-run'] = true
-      self.hide_on_close = true
+      Util.request_background(autostart: false).then do |granted|
+        @settings['hide-on-close'] = granted
+        @settings['first-run'] = true
+        self.hide_on_close = granted
+      end
     end
 
     # --- Fetching -------------------------------------------------------

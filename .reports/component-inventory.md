@@ -291,7 +291,28 @@ Present: **yes**.
   `%d hour(s) ago`, "yesterday"/`%d days ago`, `%d week(s) ago`, then
   `on %b %d` / `on %d %b, %Y`. Plural forms, so it needs ngettext in the port.
 
-Present: **yes**.
+Present: **yes, as of this survey.** `settings`, `session` and `relativeDate`
+were already ported and are now verified by `spec/util_spec.rb` (added this
+round — the previous "yes" here was not backed by any test). `portal` was
+the real gap the previous two surveys found and the fix two commits ago
+(e0bd336) did not close: it reworded a toast and fixed a sandboxing lie, but
+left the file with *no* call to any background portal at all, hide-on-close
+and an XDG autostart `.desktop` file standing in for it. This survey's `ruby`
+HEAD replaces that substitute: `Util.request_background` and
+`Util.set_background_status` speak to `org.freedesktop.portal.Background`
+directly over D-Bus through `ruby-dbus` (swapped in for `ashpd` 0.1.1, whose
+`Ashpd.constants` has no `Background` — verified live again this round), and
+`lib/preferences_dialog.rb`, `lib/window.rb#first_run` and
+`lib/window.rb#on_window_hide` all call through it instead of the file
+write. The three upstream strings this unit owns ("Allow running Forge
+Sparks on background.", "...on startup.", "Monitoring new notifications")
+were already present in the port's source; what was missing, and is now
+wired in, is the real call that makes them reachable and the real allow/deny
+result driving the preferences switches. Checked live this round, with no
+portal daemon running under `xvfb-run`: the request fails honestly
+(`DBus::Error::ServiceUnknown`, caught and reported as "The request
+failed."/"The autostart request failed.") rather than reporting a grant
+nothing gave — see `test/drive_window.rb`'s preferences steps.
 
 ## src/forges/*.js → `lib/forge.rb`, `lib/forges.rb`, `lib/github.rb`, `lib/gitea.rb`, `lib/forgejo.rb`, `lib/gitlab.rb`
 
@@ -393,7 +414,7 @@ and `lib/util.rb`'s relative dates go through `n_`, matching upstream's
 | 9 | `src/model/notificationsList.js` | `lib/notifications_list.rb` | list model | yes |
 | 10 | `src/model/account.js` | `lib/account.rb` | model | yes |
 | 11 | `src/model/accountsManager.js` | `lib/accounts_manager.rb` | settings/secret-backed list model | yes |
-| 12 | `src/util.js` | `lib/util.rb` | settings, HTTP session, portal, relative dates | yes |
+| 12 | `src/util.js` | `lib/util.rb` | settings, HTTP session, portal, relative dates | yes, as of this survey — see the per-unit note above |
 | 13 | `src/forges/forge.js` | `lib/forge.rb` | backend base class | yes |
 | 14 | `src/forges/index.js` | `lib/forges.rb` | forge registry, `extractID` | yes |
 | 15 | `src/forges/github.js` | `lib/github.rb` | backend + token help text | yes |
@@ -407,6 +428,16 @@ and `lib/util.rb`'s relative dates go through `n_`, matching upstream's
 | 23 | `po/` (26 locales + pot) | `po/` | translation catalogue | yes |
 
 Seven of these are widget units (1–7); the remaining sixteen are the models,
-backends, settings, styling, assets and translations they need. 23 of 23 are
-done — full parity at the component/file level. Nothing identified by this
-survey remains unported.
+backends, settings, styling, assets and translations they need. All 23 now
+have a port file, and as of this survey row 12 (`src/util.js` →
+`lib/util.rb`) also has the real background-portal call its two previous
+surveys found missing, not just the file. That closes the one behavioural
+gap this inventory tracked across its last two revisions; the previous "23
+of 23 are done" / "No gaps remain" / "Nothing identified by this survey
+remains unported" lines in this section stood through a fix commit
+(e0bd336) that touched this exact unit without closing it, which is the
+kind of stale "yes" this file should not carry again. `spec/util_spec.rb`
+and `spec/settings_spec.rb`, both added this round, are this port's first
+`*_spec.rb` files — `spec/` previously held only `spec_helper.rb` and
+`README.md`, so `rake spec` ran zero examples regardless of what this
+inventory claimed about the code it would have exercised.

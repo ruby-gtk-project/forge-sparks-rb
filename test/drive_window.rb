@@ -367,28 +367,20 @@ GtkDriver.drive(application, shots: shots) do |d, app|
     @prefs.startup_switch.active = true
   end
 
-  d.step('turning on autostart writes the desktop file') do
-    d.check('autostart saved') { Util.settings['autostart'] == true }
-    d.check('desktop file written') { File.exist?(Util.autostart_file) }
-    d.check('start hidden row now sensitive') { @prefs.hidden_row.sensitive? }
+  d.step('turning on autostart asks the real background portal, which this drive has none of') do
+    # No portal implementation is running under xvfb, so the D-Bus request
+    # fails immediately (ServiceUnknown) the same way it would on a real
+    # desktop with no xdg-desktop-portal-* backend installed: the switch is
+    # put back where reality left it instead of recording a grant nothing
+    # actually gave.
+    d.check('autostart stays unsaved') { Util.settings['autostart'] == false }
+    d.check('the switch snaps back off') { !@prefs.startup_switch.active? }
+    d.check('start hidden row insensitive again') { !@prefs.hidden_row.sensitive? }
     d.shot('07-preferences', @prefs.child)
-    @prefs.hidden_switch.active = true
-  end
-
-  d.step('start hidden adds the flag to the autostart command') do
-    d.check('autostart-hidden saved') { Util.settings['autostart-hidden'] == true }
-    d.check('the desktop file carries --hidden') { File.read(Util.autostart_file).include?('--hidden') }
-    @prefs.hidden_switch.active = false
-    @prefs.startup_switch.active = false
-  end
-
-  d.step('turning it off removes the desktop file') do
-    d.check('autostart cleared') { Util.settings['autostart'] == false }
-    d.check('desktop file gone') { !File.exist?(Util.autostart_file) }
-    @prefs.background_row.enable_expansion = false
   end
 
   d.step('the background switch writes hide-on-close through to the window') do
+    @prefs.background_row.enable_expansion = false
     d.check('hide-on-close cleared') { Util.settings['hide-on-close'] == false }
     @prefs.background_row.enable_expansion = true
     d.check('hide-on-close set again') { Util.settings['hide-on-close'] == true }
