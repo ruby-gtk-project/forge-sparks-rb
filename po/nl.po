@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: forge-sparks 0.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/ruby-gtk-project/forge-sparks-rb/"
 "issues\n"
-"POT-Creation-Date: 2026-11-02 23:17+0000\n"
+"POT-Creation-Date: 2026-11-07 12:44+0000\n"
 "PO-Revision-Date: 2026-02-24 21:09+0000\n"
 "Last-Translator: Thomas Boom <thomasnowprod@proton.me>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/forge-sparks/forge-"
@@ -191,19 +191,23 @@ msgstr "Markeren als gelezen"
 msgid "Show Forge Sparks"
 msgstr "Forge Sparks weergeven"
 
-#: lib/preferences_dialog.rb:81
+#: lib/preferences_dialog.rb:90
 msgid "Keep Running in Background"
 msgstr "Actief blijven op achter­grond"
 
-#: lib/preferences_dialog.rb:89
+#: lib/preferences_dialog.rb:98
 msgid "Run on Startup"
 msgstr "Uitvoeren bij opstarten"
 
-#: lib/preferences_dialog.rb:103
+#: lib/preferences_dialog.rb:112
 msgid "Start Hidden"
 msgstr "Verborgen starten"
 
-#: lib/preferences_dialog.rb:167
+#: lib/preferences_dialog.rb:148
+msgid "The request failed."
+msgstr "De aanvraag is mislukt."
+
+#: lib/preferences_dialog.rb:161 lib/preferences_dialog.rb:174
 msgid "The autostart request failed."
 msgstr "De aanvraag om automatisch te starten is mislukt."
 
@@ -233,33 +237,33 @@ msgstr "Afsluiten"
 msgid "Keyboard Shortcuts"
 msgstr "_Sneltoetsen"
 
-#: lib/util.rb:140 lib/util.rb:145
+#: lib/util.rb:155 lib/util.rb:160
 msgid "now"
 msgstr "nu"
 
 #. Translators: relative date
-#: lib/util.rb:148
+#: lib/util.rb:163
 msgid "%d minute ago"
 msgid_plural "%d minutes ago"
 msgstr[0] "%d minuut geleden"
 msgstr[1] "%d minuten geleden"
 
 #. Translators: relative date
-#: lib/util.rb:152
+#: lib/util.rb:167
 msgid "%d hour ago"
 msgid_plural "%d hours ago"
 msgstr[0] "%d uur geleden"
 msgstr[1] "%d uur geleden"
 
 #. Translators: relative date
-#: lib/util.rb:157
+#: lib/util.rb:172
 msgid "yesterday"
 msgid_plural "%d days ago"
 msgstr[0] "gisteren"
 msgstr[1] "%d dagen geleden"
 
 #. Translators: relative date
-#: lib/util.rb:162
+#: lib/util.rb:177
 msgid "%d week ago"
 msgid_plural "%d weeks ago"
 msgstr[0] "%d week geleden"
@@ -267,7 +271,7 @@ msgstr[1] "%d weken geleden"
 
 #. Translators: relative date, %s is date formatted as "May 01"
 #. Translators: relative date, %s is date formatted as "01 May, 2022"
-#: lib/util.rb:166 lib/util.rb:169
+#: lib/util.rb:181 lib/util.rb:184
 msgid "on %s"
 msgstr "op %s"
 
@@ -348,9 +352,6 @@ msgstr ""
 
 #~ msgid "Monitoring new notifications"
 #~ msgstr "Bijhouden van nieuwe meldingen"
-
-#~ msgid "The request failed."
-#~ msgstr "De aanvraag is mislukt."
 
 #~ msgid "Forge Sparks requires the <i>api</i> scopes granted."
 #~ msgstr "Forge Sparks vereist dat de <i>api</i>-scopes zijn toegekend."

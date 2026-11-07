@@ -12,13 +12,22 @@ require_relative 'translation'
 # "Keep Running in Background", and inside it "Run on Startup" and "Start
 # Hidden", the second only sensitive while the first is on.
 #
-# Upstream asks the XDG background portal to grant each of these and saves
-# whatever the portal answered, so a refused request switches the row back
-# off and raises a toast. There is no portal binding for Ruby, and a portal
-# only exists inside a sandbox, so here "keep running in the background" is
-# the window's own hide-on-close and the two autostart switches write the XDG
-# autostart desktop file the portal would have written. The flow is the same:
-# the request can fail, and the row follows what actually happened.
+# Upstream asks the XDG background portal (Xdp.Portal) to grant each of
+# these and saves whatever the portal answered, so a refused request switches
+# the row back off and raises a toast. `ashpd` 0.1.1, the gem this fork's
+# binding-gem policy requires, does not bind the background portal — its
+# constants are only Account, Camera, OpenUri, Screenshot, Settings and
+# Trash (checked live: `Ashpd.constants` on this gem has no `Background`) —
+# so it cannot be used here. "Keep running in the background" is instead the
+# window's own hide-on-close, and the two autostart switches write the XDG
+# autostart desktop file the portal would have written. That file has no
+# effect inside a sandbox, where only the real portal would work, so
+# `Util.request_autostart` refuses the request outright when
+# `Util.sandboxed?` instead of reporting the file write as a granted request.
+# The flow is otherwise the same: the request can fail, and the row follows
+# what actually happened, with the same two upstream toast strings
+# ("The request failed." for the background row, "The autostart request
+# failed." for the two autostart switches).
 #
 class PreferencesDialog < Adwaita::PreferencesDialog
   include Translation
@@ -133,7 +142,11 @@ class PreferencesDialog < Adwaita::PreferencesDialog
           end
 
           autostart = @settings['autostart'] && enabled
-          apply_autostart(autostart, hidden: autostart && @settings['autostart-hidden'])
+          apply_autostart(
+            autostart,
+            hidden:          autostart && @settings['autostart-hidden'],
+            failure_message: _('The request failed.'),
+          )
         end
       end
     end
@@ -142,7 +155,11 @@ class PreferencesDialog < Adwaita::PreferencesDialog
       startup_switch.active?.then do |active|
         unless active == @settings['autostart']
           hidden_row.sensitive = active
-          apply_autostart(active, hidden: @settings['autostart-hidden'])
+          apply_autostart(
+            active,
+            hidden:          @settings['autostart-hidden'],
+            failure_message: _('The autostart request failed.'),
+          )
         end
       end
     end
@@ -151,20 +168,29 @@ class PreferencesDialog < Adwaita::PreferencesDialog
       hidden_switch.active?.then do |active|
         unless active == @settings['autostart-hidden']
           @settings['autostart-hidden'] = active
-          apply_autostart(@settings['autostart'], hidden: active)
+          apply_autostart(
+            @settings['autostart'],
+            hidden:          active,
+            failure_message: _('The autostart request failed.'),
+          )
         end
       end
     end
 
     # Writes or removes the autostart entry, saves what actually happened, and
     # puts the switch back where reality left it.
-    def apply_autostart(enabled, hidden:)
+    #
+    # `failure_message` matches which upstream string the caller is standing
+    # in for: _onBackgroundChanged's "The request failed." or
+    # _onStartupChanged / _onStartupHiddenChanged's "The autostart request
+    # failed.".
+    def apply_autostart(enabled, hidden:, failure_message:)
       Util.request_autostart(enabled, hidden: hidden).then do |success|
         @settings['autostart'] = enabled && success
         update_startup_switch(@settings['autostart'])
 
         unless success
-          add_toast(Adwaita::Toast.new(_('The autostart request failed.')))
+          add_toast(Adwaita::Toast.new(failure_message))
         end
       end
     end

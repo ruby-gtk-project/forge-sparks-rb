@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: forge-sparks 0.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/ruby-gtk-project/forge-sparks-rb/"
 "issues\n"
-"POT-Creation-Date: 2026-11-02 23:17+0000\n"
+"POT-Creation-Date: 2026-11-07 12:44+0000\n"
 "PO-Revision-Date: 2026-01-30 10:01+0000\n"
 "Last-Translator: Ricky Tigg <ricky.tigg@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/forge-sparks/"
@@ -190,19 +190,23 @@ msgstr "Merkitse luetuksi"
 msgid "Show Forge Sparks"
 msgstr "Näytä Forge Sparks"
 
-#: lib/preferences_dialog.rb:81
+#: lib/preferences_dialog.rb:90
 msgid "Keep Running in Background"
 msgstr "Jatka suoritusta taustalla"
 
-#: lib/preferences_dialog.rb:89
+#: lib/preferences_dialog.rb:98
 msgid "Run on Startup"
 msgstr "Suorita käynnistyksen yhteydessä"
 
-#: lib/preferences_dialog.rb:103
+#: lib/preferences_dialog.rb:112
 msgid "Start Hidden"
 msgstr "Käynnistä pienennettynä"
 
-#: lib/preferences_dialog.rb:167
+#: lib/preferences_dialog.rb:148
+msgid "The request failed."
+msgstr "Pyyntö epäonnistui."
+
+#: lib/preferences_dialog.rb:161 lib/preferences_dialog.rb:174
 msgid "The autostart request failed."
 msgstr "Automaattikäynnistyksen pyyntö epäonnistui."
 
@@ -232,33 +236,33 @@ msgstr "Lopeta"
 msgid "Keyboard Shortcuts"
 msgstr "_Pikanäppäimet"
 
-#: lib/util.rb:140 lib/util.rb:145
+#: lib/util.rb:155 lib/util.rb:160
 msgid "now"
 msgstr "nyt"
 
 #. Translators: relative date
-#: lib/util.rb:148
+#: lib/util.rb:163
 msgid "%d minute ago"
 msgid_plural "%d minutes ago"
 msgstr[0] "%d minuutti sitten"
 msgstr[1] "%d minuuttia sitten"
 
 #. Translators: relative date
-#: lib/util.rb:152
+#: lib/util.rb:167
 msgid "%d hour ago"
 msgid_plural "%d hours ago"
 msgstr[0] "%d tunti sitten"
 msgstr[1] "%d tuntia sitten"
 
 #. Translators: relative date
-#: lib/util.rb:157
+#: lib/util.rb:172
 msgid "yesterday"
 msgid_plural "%d days ago"
 msgstr[0] "eilen"
 msgstr[1] "%d päivää sitten"
 
 #. Translators: relative date
-#: lib/util.rb:162
+#: lib/util.rb:177
 msgid "%d week ago"
 msgid_plural "%d weeks ago"
 msgstr[0] "%d viikko sitten"
@@ -266,7 +270,7 @@ msgstr[1] "%d viikkoa sitten"
 
 #. Translators: relative date, %s is date formatted as "May 01"
 #. Translators: relative date, %s is date formatted as "01 May, 2022"
-#: lib/util.rb:166 lib/util.rb:169
+#: lib/util.rb:181 lib/util.rb:184
 msgid "on %s"
 msgstr "%s"
 
@@ -346,9 +350,6 @@ msgstr ""
 
 #~ msgid "Monitoring new notifications"
 #~ msgstr "Tarkkaillaan uusia ilmoituksia"
-
-#~ msgid "The request failed."
-#~ msgstr "Pyyntö epäonnistui."
 
 #~ msgid "Forge Sparks requires the <i>api</i> scopes granted."
 #~ msgstr "Forge Sparks vaatii myönnetyt <i>api</i>-laajuudet."

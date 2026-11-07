@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: forge-sparks 0.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/ruby-gtk-project/forge-sparks-rb/"
 "issues\n"
-"POT-Creation-Date: 2026-11-02 23:17+0000\n"
+"POT-Creation-Date: 2026-11-07 12:44+0000\n"
 "PO-Revision-Date: 2024-02-15 17:02+0000\n"
 "Last-Translator: Kinten Le <kinten108101@protonmail.com>\n"
 "Language-Team: Vietnamese <https://hosted.weblate.org/projects/forge-sparks/"
@@ -193,19 +193,23 @@ msgstr "Đánh dấu đã đọc"
 msgid "Show Forge Sparks"
 msgstr "Hiển thị Forge Sparks"
 
-#: lib/preferences_dialog.rb:81
+#: lib/preferences_dialog.rb:90
 msgid "Keep Running in Background"
 msgstr "Chạy tiếp trong nền"
 
-#: lib/preferences_dialog.rb:89
+#: lib/preferences_dialog.rb:98
 msgid "Run on Startup"
 msgstr "Chạy khi khởi động máy"
 
-#: lib/preferences_dialog.rb:103
+#: lib/preferences_dialog.rb:112
 msgid "Start Hidden"
 msgstr "Ẩn khi bắt đầu"
 
-#: lib/preferences_dialog.rb:167
+#: lib/preferences_dialog.rb:148
+msgid "The request failed."
+msgstr "Yêu cầu thất bại."
+
+#: lib/preferences_dialog.rb:161 lib/preferences_dialog.rb:174
 msgid "The autostart request failed."
 msgstr "Yêu cầu tự khởi động thất bại."
 
@@ -235,37 +239,37 @@ msgstr "Thoát"
 msgid "Keyboard Shortcuts"
 msgstr "_Phím tắt"
 
-#: lib/util.rb:140 lib/util.rb:145
+#: lib/util.rb:155 lib/util.rb:160
 msgid "now"
 msgstr "bây giờ"
 
 #. Translators: relative date
-#: lib/util.rb:148
+#: lib/util.rb:163
 msgid "%d minute ago"
 msgid_plural "%d minutes ago"
 msgstr[0] "%d phút trước"
 
 #. Translators: relative date
-#: lib/util.rb:152
+#: lib/util.rb:167
 msgid "%d hour ago"
 msgid_plural "%d hours ago"
 msgstr[0] "%d tiếng trước"
 
 #. Translators: relative date
-#: lib/util.rb:157
+#: lib/util.rb:172
 msgid "yesterday"
 msgid_plural "%d days ago"
 msgstr[0] "%d ngày trước"
 
 #. Translators: relative date
-#: lib/util.rb:162
+#: lib/util.rb:177
 msgid "%d week ago"
 msgid_plural "%d weeks ago"
 msgstr[0] "%d tuần trước"
 
 #. Translators: relative date, %s is date formatted as "May 01"
 #. Translators: relative date, %s is date formatted as "01 May, 2022"
-#: lib/util.rb:166 lib/util.rb:169
+#: lib/util.rb:181 lib/util.rb:184
 msgid "on %s"
 msgstr "vào %s"
 
@@ -345,9 +349,6 @@ msgstr ""
 
 #~ msgid "Monitoring new notifications"
 #~ msgstr "Theo dõi các thông báo mới"
-
-#~ msgid "The request failed."
-#~ msgstr "Yêu cầu thất bại."
 
 #, fuzzy
 #~ msgid "Forge Sparks requires the <i>api</i> scopes granted."

@@ -23,10 +23,14 @@ require_relative 'translation'
 #   which is this port's stand-in for upstream's async/await: GTK is only ever
 #   touched from the main loop.
 # * Upstream asks the XDG background portal (libportal) for permission to keep
-#   running and to autostart. There is no portal binding either, and a portal
-#   is only present inside a sandbox, so "keep running in the background" is
-#   the window's own hide-on-close, and "run on startup" writes the XDG
-#   autostart desktop file that the portal would have written on our behalf.
+#   running and to autostart. `ashpd` 0.1.1, the binding gem this fork's
+#   policy requires, does not cover the background portal (only Account,
+#   Camera, OpenUri, Screenshot, Settings and Trash), so "keep running in the
+#   background" is the window's own hide-on-close, and "run on startup"
+#   writes the XDG autostart desktop file the portal would have written on
+#   our behalf. That file does nothing inside a sandbox, so #request_autostart
+#   refuses outright when #sandboxed? rather than reporting the write as a
+#   granted request.
 #
 module Util
   extend Translation
@@ -91,7 +95,18 @@ module Util
   # Writes or removes the autostart desktop entry, and reports whether the
   # state asked for is the state on disk afterwards — the same boolean
   # upstream gets back from the portal request.
+  #
+  # Inside a sandbox the autostart file has no effect at all (the portal
+  # upstream asks instead is the only thing that would work there), so a
+  # request made while sandboxed? is true is refused up front rather than
+  # reporting a write that succeeded as a request that was granted.
   def request_autostart(enabled, hidden: false)
+    if sandboxed?
+      warn 'Cannot request autostart: running in a sandbox without the ' \
+           'XDG background portal.'
+      return false
+    end
+
     if enabled
       write_autostart_file(hidden: hidden)
     else
