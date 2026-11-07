@@ -1,8 +1,9 @@
 # Accountability ensurance — forge-sparks
 
-Port re-audited at `ruby` @ `e0bd336` (previous pass was `3f45b15`; one
-commit, "Fix the background-portal toast text and the sandboxed autostart
-lie," landed in between and is accounted for below).
+Port re-audited at `ruby` @ `0bcf2cc` (previous pass was `e0bd336`; one
+commit, "Bind the real XDG background portal over D-Bus, write real specs,"
+landed in between — plus this round's own fix to make the specs it added
+actually runnable — and both are accounted for below).
 
 Scan: `find-excuses.sh` re-run this round over `lib/`, `exe/` — still clean,
 no excuse construction in the port's own source — and over `.reports/`
@@ -61,18 +62,22 @@ inventory's own authorship trail stays intact for whoever reads it next; see
 `.reports/component-parity.md` and `.reports/translation-parity.md` for the
 gap itself.
 
-**Status this round: still open.** One commit (`e0bd336`) landed on the
-branch between the previous pass and this one, and it fixed two real bugs
-in the code (see Finding 3 and `.reports/component-parity.md`), but it did
-not touch `.reports/component-inventory.md`. Re-read this round, line
-411-412 still reads "23 of 23 are done ... Nothing identified by this survey
-remains unported," and line 12 still reads "No gaps remain at the
-file/component level," and line 293 still reads "Present: **yes**" for
-`lib/util.rb`. All three are still false: the background-portal permission
-request and its "Monitoring new notifications" status message are still not
-ported, for a reason now well-documented (`ashpd` 0.1.1 cannot bind that
-portal) but still not ported. A false green that survives one commit cycle
-unnoticed is exactly the risk this finding is for.
+**Status this round: closed — the behaviour caught up with the claim.**
+Commit `0bcf2cc` ("Bind the real XDG background portal over D-Bus, write
+real specs"), landed after this finding's last pass, rewrote
+`Util.request_background`/`Util.set_background_status` to speak
+`org.freedesktop.portal.Background` directly over D-Bus (`lib/util.rb:95-139`,
+via `ruby-dbus`), carrying the real allow/deny semantics and all three
+upstream strings this finding named as missing — verified live this round
+(`grep -n "Allow running Forge Sparks\|Monitoring new notifications"
+lib/*.rb` finds all three). `lib/util.rb:293`'s "Present: **yes**" is no
+longer a false statement about this behaviour; it is now true. This is the
+inverse of the usual failure this skill looks for — a prior round's
+documented false green turning out, on the *next* round's re-check, to have
+been fixed in the code without the inventory being corrected first — so it
+is recorded here rather than silently dropped: the previous finding was
+correct when written, and the gap it named is the one commit `0bcf2cc`
+closed.
 
 ## Finding 2 — a declared dependency with no caller (downgraded this round: no longer a false claim, still dead weight)
 
@@ -87,16 +92,15 @@ audit reran that check itself (`nix develop --command ruby -e "require
 'ashpd'; puts Ashpd.constants.sort"`) and confirms the claim is true — not
 re-asserted, actually re-verified.
 
-What remains, and is worth recording even though it is no longer a false
-claim: `forge-sparks-rb.gemspec:110` still declares `ashpd` as a runtime
-dependency, and `grep -rn "ashpd\|Ashpd" lib/ exe/` still returns nothing —
-`require 'ashpd'` appears nowhere in the app. The gem is dead weight: an
-honestly-documented reason it isn't used is not the same as it being used,
-and every install still pulls in a gem the app never loads. Either drop the
-dependency (and say in the comment that it was tried and found not to
-cover this portal, rather than keeping it installed) or find a use for it
-elsewhere the app actually needs a portal (e.g. `Screenshot` or `OpenUri`,
-both of which are things forge-sparks arguably could use and does not yet).
+**Closed this round.** `0bcf2cc` dropped the dead dependency outright:
+`forge-sparks-rb.gemspec` no longer declares `ashpd` (`grep -n ashpd
+*.gemspec` finds it only inside an explanatory comment, not a
+`spec.add_dependency` line), and `nix/Gemfile(.lock)`, `nix/gemset.nix` and
+`flake.nix` had its platform-gem nix machinery removed alongside it. The
+app now declares and uses `ruby-dbus` for exactly the portal call `ashpd`
+could not make. Re-verified this round: `grep -rn "ashpd\|Ashpd"
+lib/*.gemspec lib/*.rb` returns only the explanatory prose quoted above,
+never a `require` or a dependency declaration.
 
 ## Finding 3 — dead code shaped like an unfinished adaptation (closed this round)
 
@@ -112,18 +116,25 @@ pointed at, but by the gap actually being narrowed (false-success removed,
 even though the underlying "no real portal" limitation remains — see
 Finding 1 and `.reports/component-parity.md`).
 
-## Finding 4 — a green test command that tests nothing
+## Finding 4 — a green test command that tests nothing (closed this round)
 
-`rake spec` and the dev shell's advertised "run the specs" command both
-execute RSpec against `spec/`, which holds only `spec_helper.rb` and
-`README.md` — zero `*_spec.rb` files. Both commands exit 0 with "0
-examples, 0 failures." Nobody has yet mistaken this for a passing suite in
-any report reviewed for this audit, so it is not (yet) a false claim
-anywhere written down — it is flagged here because it is loaded exactly like
-one: a command that reads as "the tests pass" and has never run a single
-assertion. See `.reports/test-parity.md` for the suites that are real
-(`test/check_models.rb`, `test/drive_window.rb`, both re-run live this
-audit) and are not this.
+`0bcf2cc` added `spec/util_spec.rb` and `spec/settings_spec.rb`, so `spec/`
+is no longer empty, but as found at the start of this round those specs
+could not actually run in this fork's own dev shell: `spec_helper.rb`
+hard-required `kettle/test/rspec` (a dev-only gem not present on this
+flake's `GEM_PATH`) and `"forge/sparks/rb"` (a module path with no matching
+file — the real entry point is `lib/forge_sparks.rb`), and `.rspec` named a
+`RspecJunitFormatter` that also isn't installed. Every one of those would
+have made `rspec spec/` die before running a single example, the same
+false-green shape this finding originally called out, just with a crash
+instead of a silent 0/0. Fixed this round: `kettle/test/rspec` is now
+behind the same `rescue LoadError` guard already used for
+`kettle-soup-cover`, the library require points at `forge_sparks`, and
+`.rspec` no longer names the missing formatter. Confirmed live: `nix
+develop --command xvfb-run -a ruby -Ilib -S rspec spec/` → **21 examples, 0
+failures** (two re-runs with different random seeds, same result). See
+`.reports/test-parity.md` for the full account, including a real
+`format`-argument warning the spec run surfaced and this round also fixed.
 
 ## What is clean
 
@@ -133,21 +144,24 @@ audit) and are not this.
   exists on this branch to carry a stale ledger claim forward — this audit's
   five reports under `.reports/` are the first parity ledgers written for
   this port.
-- The runtime gate's own numbers (207 checks / 70 checks, both 0 failed)
-  were reproduced live in this session, not copied from the task prompt.
+- The runtime gate's own numbers (201 checks / 70 checks / 21 specs, all 0
+  failed) were reproduced live in this session, not copied from the task
+  prompt or an earlier report.
 
 ## Verdict
 
-**Not clean.** Two of the previous pass's four findings are genuinely
-closed this round (Finding 3, the dead `sandboxed?` guard, now wired in;
-and half of Finding 2, the comment that used to contradict the gemspec,
-now doesn't). Finding 1 — `.reports/component-inventory.md`'s "23 of 23,
-nothing remains unported" standing uncorrected next to the behaviour it
-itself describes as missing — is unchanged and still the most serious item
-here: it is a false green that survived an entire commit cycle that fixed
-two real bugs in the exact feature it claims is done, without anyone
-touching the report. Finding 4 (the empty `spec/` suite reading as a green
-test command) is also unchanged. Fixing code without correcting the
-document that claims the code was already fine is itself worth flagging:
-it is evidence the inventory is not being read as a live ledger by whoever
-is doing the fixing.
+**Clean, this round.** All four findings this report carried forward are
+now closed: Finding 1 (the inventory's "23 of 23" claim) is no longer false
+— `0bcf2cc` made the background-portal behaviour real, so the claim and the
+code now agree. Finding 2's dead dependency is gone, not just
+honestly-commented. Finding 3 stayed closed. Finding 4's specs now actually
+run, after this round's fix to the scaffold that was silently blocking
+them. Re-checked live, not asserted: `find-excuses.sh` still clean over
+`lib/`, `exe/`, no `TODO`/`FIXME`/`not implemented`/`for now` anywhere in
+either (the only "todo" hits are GitLab's own domain noun, `lib/gitlab.rb`),
+`test/drive_window.rb` (201/201 — the autostart checks changed shape to
+match the real D-Bus call, not a filesystem stand-in, but still 0 failed),
+`test/check_models.rb` (70/70) and `spec/` (21/21) all re-run this session.
+This verdict does not retroactively bless the previous rounds' "Not clean"
+calls — they were correct when written, against the code that existed
+then.

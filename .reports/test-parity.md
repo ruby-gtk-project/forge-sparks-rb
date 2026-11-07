@@ -3,7 +3,7 @@
 | | |
 |---|---|
 | Upstream | `main` @ `3df28d2` |
-| Port | `ruby` @ `e0bd336` (re-audited; previous pass was at `3f45b15`) |
+| Port | `ruby` @ `0bcf2cc` (re-audited this round; previous pass was at `e0bd336`) |
 | Upstream tests | 0 |
 | Ported | 0 |
 | Gaps | 0 |
@@ -59,18 +59,36 @@ reports as the assertion count. **The 207 figure, read from the actual
 `@checks` counter at runtime, is the correct one** — not the census script's
 raw regex count, and not a number to trust without running it.
 
-## The `spec/` directory: a scaffold with no tests in it, and the real finding
+## The `spec/` directory: closed this round
 
-`spec/` contains exactly two files: `spec_helper.rb` and `README.md`. There
-is not one `*_spec.rb` anywhere in the repository. `Rakefile` still declares
-`rake spec` (RSpec via `kettle-dev`), and the dev shell banner advertises
-`ruby -e 'require "rspec/core"; ...RSpec::Core::Runner.run(...)'` as "run the
-specs." **Running either command executes zero examples and exits 0** — a
-green result that asserts nothing. This is not a test-parity gap in the
-bijection sense (upstream has 0 tests to map), but it is a real risk flagged
-here because it is exactly the shape of false-green the `accountability-ensurance`
-skill looks for: a command that reads as "tests pass" and has never tested
-anything. See `.reports/accountability-ensurance.md`.
+The finding this section used to describe (an empty `spec/` with no
+`*_spec.rb` anywhere, a green `rake spec` that asserted nothing) is stale.
+Commit `0bcf2cc` added `spec/util_spec.rb` (11 examples over
+`Util.relative_date`'s thresholds, rounding and both date-format fallbacks)
+and `spec/settings_spec.rb` (10 examples over `Settings`' defaults,
+persistence and the per-account view) — the port's first real specs.
+
+As found this round, those specs could not actually run in this fork's own
+dev shell: `spec_helper.rb` hard-required `kettle/test/rspec` and `"forge/sparks/rb"`
+(a module path with no matching `lib/forge/sparks/rb.rb` — the real entry
+point is `lib/forge_sparks.rb`), and `.rspec` forced a `RspecJunitFormatter`
+that is not installed either. All three were a dev-dependency scaffold left
+over from the gem generator, not anything this port's own code needs; `bundle
+exec rspec` also fails outright in this shell because `rspec-core` itself is
+not in the Bundler-resolved set the flake provides (only reachable via plain
+`ruby -S rspec`, which does see it on `GEM_PATH`). Fixed this round:
+`spec/spec_helper.rb`'s `kettle/test/rspec` require is now wrapped in the
+same `rescue LoadError` guard already used for `kettle-soup-cover` just above
+it, its library require now points at `forge_sparks` (the module that
+actually exists), and `.rspec` no longer names the missing junit formatter.
+Confirmed live: `nix develop --command xvfb-run -a ruby -Ilib -S rspec spec/`
+→ **21 examples, 0 failures**. Also fixed in the same pass: running the
+specs surfaced a real `warning: too many arguments for format string` in
+`Util.relative_date`'s "yesterday" branch (`n_('yesterday', '%d days ago',
+days)` has no `%d` in its singular form, but `format` was still called with
+`days`) — `lib/util.rb` now special-cases `days == 1` so the format call
+only runs on the string that has a placeholder; the warning is gone and the
+spec suite is still green.
 
 ## Rules followed
 

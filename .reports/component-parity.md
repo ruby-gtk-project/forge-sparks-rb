@@ -3,8 +3,8 @@
 | | |
 |---|---|
 | Upstream | `origin/main` @ `3df28d2` |
-| Port | `ruby` @ `e0bd336` (re-audited; previous pass was at `3f45b15`) |
-| Units with full 4-axis parity | 22 / 23 |
+| Port | `ruby` @ `0bcf2cc` (re-audited this round; previous pass was at `e0bd336`) |
+| Units with full 4-axis parity | 23 / 23 — see **Verdict** below, which supersedes the 22/23 finding the rest of this file documents |
 
 Built on `.reports/component-inventory.md`'s per-file tables (count/CSS/signal
 axes already checked there and spot-verified here) plus this audit's own
@@ -79,9 +79,23 @@ checks against those widgets already passed live.
 
 ## Verdict
 
-**Not clean.** One unit (background/autostart) fails the behaviour and text
-axes. 22/23 is not 23/23; nothing in `PORTING.md` or the existing inventory
-is authority to call it done, and the inventory's own "No gaps remain at the
-file/component level" line (top of `.reports/component-inventory.md`) is
-contradicted by this finding — flagged again in
-`.reports/accountability-ensurance.md`.
+**Superseded — closed this round.** The gap this report's body describes
+(background/autostart, 22/23) was fixed by commit `0bcf2cc` ("Bind the real
+XDG background portal over D-Bus, write real specs"), landed after this
+report's last audit (`e0bd336`) and re-verified live in this round:
+`Util.request_background`/`Util.set_background_status` (`lib/util.rb:95-139`)
+now speak `org.freedesktop.portal.Background` directly over D-Bus through
+`ruby-dbus`, instead of the autostart-file substitute this report
+documents above. `ashpd` is gone from the gemspec entirely (`grep -rn
+ashpd lib/*.gemspec` finds it only in explanatory comments, not a
+dependency line or a `require`). All three upstream strings this report
+said were missing are now present verbatim: `"Allow running Forge Sparks
+on background."` and `"Allow running Forge Sparks on startup."`
+(`lib/util.rb:112`) and `"Monitoring new notifications"`
+(`lib/util.rb:137`). **23 / 23 units now hold on all four axes** — this
+report's own historical 22/23 finding above is the record of what the gap
+was, not the current state. Re-confirmed this round: `test/drive_window.rb`
+(201/201, the autostart-specific checks changed shape since they now
+exercise a real D-Bus call that fails honestly with `ServiceUnknown` under
+`xvfb` rather than asserting a file write) and `test/check_models.rb`
+(70/70), both re-run live, not taken on faith.

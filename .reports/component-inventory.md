@@ -23,6 +23,16 @@ script found (account-row activation signal, an async error type that crashed
 the process, and a driver re-run bug) and extended the drive script to 207
 checks — DRIVE OK, CHECKS OK (70).
 
+**Update (`0bcf2cc`, this round's starting point):** the behaviour gap this
+report's "Present: yes" for `lib/util.rb` was once at odds with (see
+`.reports/accountability-ensurance.md`'s Finding 1) is closed —
+`Util.request_background`/`#set_background_status` now bind the real XDG
+background portal over D-Bus, so "Present: yes" for that row is no longer
+just file-existence, it is behaviour parity too. See
+`.reports/component-parity.md` for the 23/23 verdict. The drive script's
+check count changed shape to 201 (the autostart steps now exercise a real
+D-Bus call, not a file-write stand-in) — still 0 failed.
+
 Scan corroborating the reading below (clean `git archive origin/main`,
 `component-identification/scripts/component-scan.sh`, re-run for this
 survey): 141 rows, 39 distinct widget types, 16 distinct CSS classes, 8

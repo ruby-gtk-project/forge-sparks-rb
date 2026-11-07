@@ -20,11 +20,18 @@ rescue LoadError => error
 end
 
 # External RSpec & related config
-require "kettle/test/rspec"
 # `kettle/test/rspec` installs harness helpers documented in spec/README.md.
+# Not every environment this gem is developed in has `kettle-test` installed
+# (it's a gemspec dev dependency, not a runtime one), so its absence must not
+# stop the suite that already exists from running.
+begin
+  require "kettle/test/rspec"
+rescue LoadError => error
+  raise error unless error.message.include?("kettle")
+end
 
 # This library
-require "forge/sparks/rb"
+require "forge_sparks"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

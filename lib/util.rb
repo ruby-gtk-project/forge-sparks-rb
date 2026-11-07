@@ -201,8 +201,12 @@ module Util
         end
       elsif minutes < 10_080
         (minutes / 1440.0).round.then do |days|
-          # Translators: relative date
-          format(n_('yesterday', '%d days ago', days), days)
+          if days == 1
+            _('yesterday')
+          else
+            # Translators: relative date
+            format(n_('yesterday', '%d days ago', days), days)
+          end
         end
       elsif minutes < 40_320
         (minutes / 10_080.0).round.then do |weeks|
