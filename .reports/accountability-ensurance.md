@@ -1,10 +1,18 @@
 # Accountability ensurance — forge-sparks
 
-Scan: `find-excuses.sh` over `lib/`, `exe/` (clean — no excuse construction
-found in the port's own source) and over `.reports/`, `PORTING.md` (no
-`PORTING.md` exists on this branch). The excuse-construction scanner is not
-where this round's finding is, which is itself worth saying: the danger here
-is not a labeled skip, it is a **report that states completeness while
+Port re-audited at `ruby` @ `e0bd336` (previous pass was `3f45b15`; one
+commit, "Fix the background-portal toast text and the sandboxed autostart
+lie," landed in between and is accounted for below).
+
+Scan: `find-excuses.sh` re-run this round over `lib/`, `exe/` — still clean,
+no excuse construction in the port's own source — and over `.reports/`
+(no `PORTING.md` exists on this branch). The only hits inside `.reports/`
+are the scanner matching this document's and others' own prose *discussing*
+excuse phrases ("by design", "n/a", "unported", etc. appearing as quoted
+examples of what to watch for), not an excuse actually being made; read in
+context, none of them is live. The excuse-construction scanner is not where
+this round's finding is, which is itself worth saying: the danger here is
+not a labeled skip, it is a **report that states completeness while
 documenting, in its own prose, the gap that contradicts the claim.**
 
 ## Finding 1 — a false green in `.reports/component-inventory.md` (the most serious kind)
@@ -53,30 +61,56 @@ inventory's own authorship trail stays intact for whoever reads it next; see
 `.reports/component-parity.md` and `.reports/translation-parity.md` for the
 gap itself.
 
-## Finding 2 — a declared dependency with no caller
+**Status this round: still open.** One commit (`e0bd336`) landed on the
+branch between the previous pass and this one, and it fixed two real bugs
+in the code (see Finding 3 and `.reports/component-parity.md`), but it did
+not touch `.reports/component-inventory.md`. Re-read this round, line
+411-412 still reads "23 of 23 are done ... Nothing identified by this survey
+remains unported," and line 12 still reads "No gaps remain at the
+file/component level," and line 293 still reads "Present: **yes**" for
+`lib/util.rb`. All three are still false: the background-portal permission
+request and its "Monitoring new notifications" status message are still not
+ported, for a reason now well-documented (`ashpd` 0.1.1 cannot bind that
+portal) but still not ported. A false green that survives one commit cycle
+unnoticed is exactly the risk this finding is for.
 
-`forge-sparks-rb.gemspec:110` adds `ashpd` as a runtime dependency, by a
-commit titled "Wire in the gemspec's missing runtime dependencies and
-ashpd." `ashpd` is a Ruby binding to the XDG Desktop Portal — the exact
-thing `lib/util.rb:26` and `lib/preferences_dialog.rb:17` both say, in
-comments, does not exist ("There is no portal binding for Ruby" /
-"There is no portal binding either"). `grep -rn "ashpd\|Ashpd" lib/ exe/`
-returns nothing. Either the comment is stale and the gem was added to use
-later and never was, or the gem was added without checking what it does.
-Either way the gemspec now ships a dependency the app never loads, and the
-comment beside the feature it would implement asserts something the
-gemspec contradicts. One of the two is wrong and nobody reconciled them.
+## Finding 2 — a declared dependency with no caller (downgraded this round: no longer a false claim, still dead weight)
 
-## Finding 3 — dead code shaped like an unfinished adaptation
+At the previous pass (`3f45b15`), `lib/util.rb` and `lib/preferences_dialog.rb`
+carried comments claiming "there is no portal binding for Ruby," while the
+gemspec declared `ashpd` — which is exactly such a binding — as a dependency,
+contradicting the comment. That contradiction is fixed in `e0bd336`: both
+comments now say, specifically, that `ashpd` 0.1.1 has no `Background`
+portal binding (only `Account, Camera, OpenUri, Screenshot, Settings,
+Trash`), and state that this was checked live via `Ashpd.constants`. This
+audit reran that check itself (`nix develop --command ruby -e "require
+'ashpd'; puts Ashpd.constants.sort"`) and confirms the claim is true — not
+re-asserted, actually re-verified.
 
-`Util.sandboxed?` (`lib/util.rb:79`, checks `/.flatpak-info`) has no caller
-anywhere in `lib/` or `test/`. It reads as a half-finished attempt to gate
-the autostart-file substitute on sandbox state — exactly the gate that
-Finding 1's gap needs — abandoned before it was wired to anything. Not
-reported as an excuse (there is no comment claiming it is unused on
-purpose), but it is the shape of exactly what this skill warns about: work
-started toward closing a gap, stopped, and left silent rather than recorded
-as an owed behaviour.
+What remains, and is worth recording even though it is no longer a false
+claim: `forge-sparks-rb.gemspec:110` still declares `ashpd` as a runtime
+dependency, and `grep -rn "ashpd\|Ashpd" lib/ exe/` still returns nothing —
+`require 'ashpd'` appears nowhere in the app. The gem is dead weight: an
+honestly-documented reason it isn't used is not the same as it being used,
+and every install still pulls in a gem the app never loads. Either drop the
+dependency (and say in the comment that it was tried and found not to
+cover this portal, rather than keeping it installed) or find a use for it
+elsewhere the app actually needs a portal (e.g. `Screenshot` or `OpenUri`,
+both of which are things forge-sparks arguably could use and does not yet).
+
+## Finding 3 — dead code shaped like an unfinished adaptation (closed this round)
+
+At the previous pass, `Util.sandboxed?` (`lib/util.rb:79`, checks
+`/.flatpak-info`) had no caller anywhere in `lib/` or `test/` — exactly the
+shape of work started toward closing a gap and abandoned before being wired
+to anything. `e0bd336` wired it in: `Util.request_autostart`
+(`lib/util.rb:103-108`, current line numbers) now calls `sandboxed?` first
+and refuses the request if true, instead of reporting a no-op file write as
+granted. Re-read this round: the method now has a real caller and a real
+effect on behaviour. This finding is closed, not by excusing the gap it
+pointed at, but by the gap actually being narrowed (false-success removed,
+even though the underlying "no real portal" limitation remains — see
+Finding 1 and `.reports/component-parity.md`).
 
 ## Finding 4 — a green test command that tests nothing
 
@@ -104,7 +138,16 @@ audit) and are not this.
 
 ## Verdict
 
-**Not clean.** The most serious finding — a report's own verdict
-contradicting the behaviour its own prose documented three paragraphs
-earlier — is exactly the failure mode this skill is for, and it was found in
-the one document this org already trusted as settled.
+**Not clean.** Two of the previous pass's four findings are genuinely
+closed this round (Finding 3, the dead `sandboxed?` guard, now wired in;
+and half of Finding 2, the comment that used to contradict the gemspec,
+now doesn't). Finding 1 — `.reports/component-inventory.md`'s "23 of 23,
+nothing remains unported" standing uncorrected next to the behaviour it
+itself describes as missing — is unchanged and still the most serious item
+here: it is a false green that survived an entire commit cycle that fixed
+two real bugs in the exact feature it claims is done, without anyone
+touching the report. Finding 4 (the empty `spec/` suite reading as a green
+test command) is also unchanged. Fixing code without correcting the
+document that claims the code was already fine is itself worth flagging:
+it is evidence the inventory is not being read as a live ledger by whoever
+is doing the fixing.

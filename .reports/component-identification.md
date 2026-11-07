@@ -3,7 +3,7 @@
 | | |
 |---|---|
 | Upstream | `origin/main` @ `3df28d2` (GJS + Blueprint) |
-| Port | `ruby` @ `3f45b15` |
+| Port | `ruby` @ `e0bd336` (re-audited; previous pass was at `3f45b15`) |
 
 This document records what Step 1 of the `component-identification` skill
 found, scoped to re-verifying the existing `.reports/component-inventory.md`
@@ -41,24 +41,38 @@ backed by `Xdp.Portal` (libportal), with its own 4 user-facing strings:
 - `"Monitoring new notifications"`
 - `"The request failed."`
 
-**The port builds no portal component.** `lib/util.rb:25-28` and
-`lib/preferences_dialog.rb:15-20` both carry a comment stating upstream's
-portal behaviour is replaced by writing an XDG autostart `.desktop` file
-instead ("There is no portal binding for Ruby"), and
-`lib/preferences_dialog.rb:167` raises a toast on failure with the msgid
-`"The autostart request failed."` — a different string, a different
-mechanism, no `Xdp.Portal` object anywhere in `lib/`.
+**The port builds no portal component.** `lib/util.rb:15-33` and
+`lib/preferences_dialog.rb:15-30` both carry a comment stating upstream's
+portal behaviour is replaced: "keep running in the background" is the
+window's own hide-on-close, and "run on startup" writes an XDG autostart
+`.desktop` file instead of asking `Xdp.Portal`. Since the previous pass of
+this audit (`3f45b15`), commit `e0bd336` rewrote this comment and the claim
+it makes changed from false to verified-true: it now says `ashpd` 0.1.1 (the
+gemspec dependency) was checked live — `Ashpd.constants` on the installed
+gem returns only `Account, Camera, OpenUri, Screenshot, Settings, Trash,
+VERSION`, no `Background` — and cites that as the reason the gem is not
+required anywhere in `lib/`. This audit reran that exact check
+(`nix develop --command ruby -e "require 'ashpd'; puts Ashpd.constants.sort"`)
+and confirms it: the gem genuinely cannot bind the background portal. The
+dependency is still declared in the gemspec and still never `require`d in
+`lib/` — a dead dependency, not a false claim about one — see
+`.reports/accountability-ensurance.md` for whether that residue is worth
+removing.
 
-This claim ("no portal binding for Ruby") is itself false: the gemspec
-declares `ashpd` (`forge-sparks-rb.gemspec:110`), which **is** a Ruby binding
-to the XDG Desktop Portal D-Bus API, added by the commit
-"Wire in the gemspec's missing runtime dependencies and ashpd". `grep -rn
-"ashpd\|Ashpd" lib/` returns nothing — the dependency is declared and never
-required or called. See `.reports/accountability-ensurance.md`.
+`Util.sandboxed?` (`lib/util.rb:83`, checks `/.flatpak-info`) was dead code
+with no caller as of `3f45b15`. `e0bd336` wired it in:
+`Util.request_autostart` (`lib/util.rb:103-108`) now refuses outright and
+warns when `sandboxed?` is true, instead of reporting a no-op file write as
+a granted request. That specific finding from the previous pass is closed.
 
-`Util.sandboxed?` (`lib/util.rb:79`, checks `/.flatpak-info`) is defined and
-never called from anywhere in `lib/` or `test/` — dead code left over from
-reasoning about the portal substitution, with no caller to act on its answer.
+What remains unported, regardless of the ashpd finding above: upstream's
+`requestBackground`'s two permission-reason strings and `setBackgroundStatus`'s
+status message have no equivalent call site in the port at all, because the
+substitute mechanism (hide-on-close + an autostart file) never asks for
+background permission or reports a running-in-background status to
+anything. That is a real, still-open behavioural gap, tracked in
+`.reports/component-parity.md` and `.reports/translation-parity.md` — it
+did not close when the dead-code and false-comment issues did.
 
 ## Rule check
 
