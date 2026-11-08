@@ -1,9 +1,8 @@
 # Accountability ensurance — forge-sparks
 
-Port re-audited at `ruby` @ `5570f99` (previous pass was `0bcf2cc`; one
-commit, "Make the real spec suite actually runnable, fix a format warning
-it surfaced," landed in between, plus this round's own re-check of claims
-the previous two passes made).
+Port re-audited at `ruby` @ `2e0c16d` (previous pass was `180f802`/`b609a74`;
+the only commits in between — `b609a74`, `2e0c16d` — touched `.reports/`
+prose, not `lib/`, `exe/` or `po/`).
 
 Scan this round: `grep -rniE 'TODO|FIXME|not implemented|for now|in a
 future|stand-?in|substitut' lib/ exe/` — no excuse construction in the
@@ -13,7 +12,14 @@ domain noun (marking a GitLab to-do item as done), not a skipped feature.
 stand-in for upstream's async/await — a legitimate implementation-technique
 note (GTK's main-loop constraint), not an excuse for missing behaviour; the
 behaviour it describes (worker thread + main-loop dispatch) is real and
-exercised by the drive script. No `PORTING.md` exists on this branch.
+exercised by the drive script. `lib/preferences_dialog.rb:179`'s "standing
+in for" hit (new match this round, same regex) is likewise a legitimate
+comment — it documents which upstream string a shared `failure_message:`
+parameter maps to, not a missing feature. No `PORTING.md` exists on this
+branch; also checked `.reports/` itself this round (not just `lib/`/`exe/`,
+per this skill's instruction) for the same phrases — the only hits are this
+skill's own instructions quoted back in previous rounds' reports, not a new
+excuse.
 
 **This round's findings are not in `lib/` or `exe/` at all — they are in
 `.reports/` and in `po/forge-sparks.pot` itself.** The danger this round is
@@ -22,7 +28,7 @@ a code-level claim correctly, declared victory, and never checked the one
 artifact (the `.pot` file) that the claim's own subject — translatable
 text — actually lives in.
 
-## Finding 1 (new this round) — a false green: "23/23 units hold on all four axes" when the Text axis was never checked against the catalogue
+## Finding 1 (closed, from a previous round) — a false green: "23/23 units hold on all four axes" when the Text axis was never checked against the catalogue
 
 Two of this round's predecessor reports —
 `.reports/component-parity.md` and `.reports/accountability-ensurance.md`
@@ -74,7 +80,7 @@ Text axis is measured against the `.pot`, never against a `lib/*.rb` grep,
 and a future pass should re-run the census rather than trust a prior
 report's count.
 
-## Finding 2 (new this round) — a fabricated check count carried across three reports: "207/207" where both the live run and the commit's own message say 201
+## Finding 2 (corrected, from a previous round) — a fabricated check count carried across three reports: "207/207" where both the live run and the commit's own message say 201
 
 The previous pass of `.reports/test-parity.md` (at `0bcf2cc`) stated,
 twice, that it had re-run `test/drive_window.rb` live and gotten **"207 of
@@ -132,6 +138,37 @@ wrong library path, and `.rspec`'s missing-formatter line. Re-run this
 round: `nix develop --command xvfb-run -a ruby -Ilib -S rspec spec/` → 21
 examples, 0 failures. **Closed**, confirmed by execution, not re-quoted.
 
+## Finding 5 (new this round) — three of four forge backends have never been exercised by any check, and no previous report said so plainly
+
+Every previous round's component-inventory/parity table marked the six
+forge-backend files "Present: yes" without qualification, and
+`.reports/component-parity.md`'s "All other units" section listed "forge
+backends" among units it trusted as unchanged, without distinguishing
+*which* backend any runtime check actually drives. Reading
+`test/drive_window.rb` line by line this round (not just grepping for its
+pass/fail count) found: its own header comment says the run keeps "the
+real GitHub backend, the real fetch loop and the real notification rows...
+exercised with no network" via a `FakeSession` of canned HTTP responses —
+and `grep -n "forge:" test/drive_window.rb` confirms exactly one forge
+literal is ever used to drive a fetch, `'github'`. The Gitea/GitLab steps
+("choosing Gitea swaps the help text and the instance", similarly for
+GitLab) only flip the account-dialog combo row and check the help-text
+label and prefilled URL — they never reach `lib/gitea.rb`'s,
+`lib/forgejo.rb`'s or `lib/gitlab.rb`'s `request`/notification-parsing
+methods. `spec/` has no forge-backend coverage either (`util_spec.rb` and
+`settings_spec.rb` only).
+
+This is not a claim that those three backends are broken — it is that the
+runtime gate's "201/201, 0 failed" has never once run a single line of
+three of the four backends' actual HTTP/parsing logic, and no report
+before this round said so. That is exactly the shape of gap this round's
+task description calls out directly: *"a component no check exercises is
+unverified, not done."* Three-quarters of this unit's backend
+implementations are in that state today. **Status: open** — filed here
+rather than silently added as a caveat to an otherwise-green table, so the
+gap is visible on its own rather than folded into a count that still reads
+"23/23."
+
 ## What is clean
 
 - No excuse-construction phrases in `lib/` or `exe/`.
@@ -139,32 +176,31 @@ examples, 0 failures. **Closed**, confirmed by execution, not re-quoted.
   stale claim forward.
 - The runtime gate's own numbers (201 drive checks, 70 model checks, 21
   specs, all 0 failed) were reproduced live in this session.
+- The two findings from previous rounds (translation-catalogue staleness,
+  the 207-vs-201 count) remain closed/corrected on independent re-check.
 
 ## Verdict
 
-**Clean as of this round's fixes (`180f802`).** Two findings were open at
-the start of this round, both inside `.reports/` itself rather than in the
-port's source, and both are now closed:
+**Not clean — one open finding.** Findings 1 and 2 (translation-catalogue
+staleness, the 207-vs-201 count) were already closed/corrected before this
+round and are re-confirmed, not reopened:
 
-1. A false "23/23, all four axes" / "present verbatim" claim that checked
-   source code instead of the translation catalogue it was actually
-   asserting something about (Finding 1) — the Text axis for the
-   background-portal unit was short by 3 msgids in `po/forge-sparks.pot`.
-   **Closed this round** by regenerating the `.pot`; re-run census in
-   `.reports/translation-parity.md` and `.reports/component-parity.md`
-   confirms 0 gaps / 23 of 23 units.
-2. A fabricated-or-stale "207/207" drive-check count repeated across three
-   report files, none of which independently executed the script against
-   the commit they attached the number to (Finding 2) — the real,
-   reproduced number for every commit since `0bcf2cc` is 201/201.
-   **Already corrected** in the previous round's rewritten reports, and
-   re-confirmed live this round (201/201, unaffected by the `.pot` change).
+1. A false "23/23, all four axes" claim that checked source code instead of
+   the translation catalogue (Finding 1) — **closed**, re-confirmed:
+   `po/forge-sparks.pot` still carries all three strings this round.
+2. A stale "207/207" drive-check count (Finding 2) — **corrected**,
+   re-confirmed: this round's own live run again returns 201/201.
 
-The port's own code (`lib/`, `exe/`) is clean of excuse language and the
-background-portal behaviour fix is real. The false greens this round
-started with were both in the parity ledger, which is exactly where this
-skill says to keep looking even after the source looks clean — and the fix
-for a reports-only false green is to re-run the actual check, not just to
-edit the report's prose, which is what this round did (regenerated the
-`.pot`, then re-ran both the translation-parity census and the drive
-script before writing any of this down).
+Finding 5, filed fresh this round, is open: three of the four forge
+backends (`lib/gitea.rb`, `lib/forgejo.rb`, `lib/gitlab.rb`) have zero
+runtime coverage from any suite — only `lib/github.rb` is driven through an
+actual (faked) HTTP fetch. No previous round's report said this plainly;
+every one of them wrote "forge backends: present, yes" or trusted that line
+unchanged, without checking which backend the one `FakeSession` fixture
+actually names. This is a real, unclosed gap in the runtime gate's reach,
+not a false claim in the code — the backends themselves may well be
+correct, but nothing in this port's test suite would catch it if one of
+them were not. The fix is to extend `test/drive_window.rb` (or add
+backend-level specs) to exercise Gitea, Forgejo and GitLab through
+`FakeSession` the same way GitHub already is, not to write around the gap
+in a future report's prose.

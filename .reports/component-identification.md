@@ -3,7 +3,7 @@
 | | |
 |---|---|
 | Upstream | `origin/main` @ `3df28d2` (GJS + Blueprint) |
-| Port | `ruby` @ `5570f99` (re-audited; previous pass was at `e0bd336`, two commits behind) |
+| Port | `ruby` @ `2e0c16d` (re-audited; previous pass was at `5570f99`) |
 
 This document re-verifies `.reports/component-inventory.md`'s per-file
 widget/CSS/signal/action tables against upstream source rather than
@@ -73,6 +73,24 @@ but not the catalogue.
 `Util.sandboxed?` (checks `/.flatpak-info`) remains wired into
 `Util.request_background`/`Util.request_autostart`'s sandboxed-refusal path,
 confirmed unchanged this round.
+
+## This round (`2e0c16d`): text gap closed, a coverage gap identified instead
+
+`po/forge-sparks.pot` was re-extracted at `180f802` (confirmed: `grep -n
+"Allow running\|Monitoring new notifications" po/forge-sparks.pot` now
+returns all three) — the finding above is closed.
+
+Reading `src/forges/*.js` against `lib/{forge,forges,github,gitea,forgejo,gitlab}.rb`
+again this round for identification purposes: all four backends are
+structurally and textually present (spot-checked `gitlab.js` vs `gitlab.rb`
+line-by-line this round — `tokenText`'s two `_()` calls at the same
+positions, `prettyName`, `allowInstances`, `defaultURL` all present). What
+is not identified anywhere in this report's history is that only one of the
+four backends — GitHub — is ever driven through the drive script's fake
+HTTP session; see `.reports/component-parity.md` and
+`.reports/accountability-ensurance.md` Finding 5 for that gap, which is a
+test-coverage finding, not an identification one — the components
+themselves are correctly identified and present.
 
 ## Rule check
 

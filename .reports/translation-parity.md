@@ -3,7 +3,7 @@
 | | |
 |---|---|
 | Upstream | `origin/main` @ `3df28d2` |
-| Port | `ruby` @ `180f802` (re-audited this round; previous pass of this file was at `5570f99`, one commit behind the `.pot` regeneration) |
+| Port | `ruby` @ `2e0c16d` (re-audited this round; previous pass of this file was at `180f802`) |
 | Upstream msgids | 56 (unique `msgid` lines from `git show origin/main:po/com.mardojai.ForgeSparks.pot`, excluding the empty header) |
 | Ported, present in `po/forge-sparks.pot` | 56 (of 56 upstream; `.pot` has 60 total, 4 are port-only, see Extra) |
 | Gaps | 0 |
@@ -70,6 +70,14 @@ that one upstream string (`src/widgets/preferences.js:66`) was restored into
 - Forge backend help text, relative-date plural forms (`n_`), account/forge
   strings — none appeared on either side of the `comm` diff beyond what is
   listed above, so they match.
+
+## Re-verification this round
+
+Re-ran the full `comm -23`/`comm -13` census fresh against current HEAD
+(not reused): 0 gaps, same 4 extras as the previous pass, same 56/56
+upstream msgids present. No `po/` commit landed between `180f802` and
+`2e0c16d` (those two commits only touched `.reports/`), so an identical
+result confirms the previous pass's number rather than merely repeating it.
 
 ## Rule followed
 

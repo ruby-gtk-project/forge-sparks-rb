@@ -3,7 +3,7 @@
 | | |
 |---|---|
 | Upstream | `origin/main` @ `3df28d2` |
-| Port | `ruby` @ `180f802` (re-audited this round; previous pass was at `5570f99`, one commit before the `.pot` regeneration) |
+| Port | `ruby` @ `2e0c16d` (re-audited this round; previous pass was at `180f802`) |
 | Units covered | all 23 from `.reports/component-inventory.md`, re-checked on four axes: structure, behaviour, text, rule-check |
 | Runtime gate reproduced this round | `test/drive_window.rb` → **201 of 201 checks passed, DRIVE OK**; `test/check_models.rb` → **70 of 70 checks passed, CHECKS OK**; `ruby -Ilib -S rspec spec/` → **21 examples, 0 failures** |
 
@@ -55,25 +55,48 @@ in this pass — the previous two passes' direct scans are trusted for
 structure/rule-check on units this round found no code change touching —
 but every behaviour claim that this round's grep/census could independently
 verify (drive script, spec suite, `.pot` diff) was re-run live rather than
-re-quoted.
+re-quoted. Structural/text parity re-spot-checked directly this round for
+`lib/gitlab.rb` against `src/forges/gitlab.js` — matches.
+
+### New finding this round: the forge-backends unit's Behaviour axis is unevenly covered, not uniformly "parity"
+
+Row 13–18 (`lib/forge.rb`, `lib/forges.rb`, `lib/github.rb`, `lib/gitea.rb`,
+`lib/forgejo.rb`, `lib/gitlab.rb`) have been marked "present: yes" since
+`.reports/component-inventory.md`'s first pass, on structure and text
+grounds that hold up (confirmed again this round for GitLab). But the
+Behaviour axis — does the backend's actual request/notification-parsing
+code run and produce the right result — is only runtime-verified for one
+of the four: `test/drive_window.rb`'s `FakeSession` scripts canned HTTP
+responses for `forge: 'github'` only (`grep -n "forge:" test/drive_window.rb`
+returns exactly one literal, `'github'`), so the account-creation-through-
+notification-on-screen path genuinely exercises `lib/github.rb`'s request
+and parsing code with no network. Gitea, Forgejo and GitLab get only the
+account-dialog combo-row steps ("choosing Gitea swaps the help text and the
+instance", similarly for GitLab) — UI text and default-URL prefill, not a
+single fetch through their `request`/parsing methods. No `spec/` file
+covers any forge backend either. Downgrading this unit from an undifferentiated
+"parity" to: **structure and text — parity (all four); behaviour — parity
+for GitHub only, unverified by any suite for Gitea/Forgejo/GitLab.** This is
+not a claim that those three backends are broken — only that no test in
+this port's suite would catch it if they were. See
+`.reports/test-parity.md` and `.reports/accountability-ensurance.md` for
+the same finding from the test-coverage side.
 
 ## Verdict
 
-**23 of 23 units hold on all four axes**, as of this round's `.pot`
-regeneration (commit `180f802`). Last round it was 22 of 23 — the
-background/autostart unit held on structure and behaviour but not text,
-because `po/forge-sparks.pot` had fallen behind a code change that re-added
-three translatable strings without re-extracting them. That gap is closed
-this round; the "23/23" figure the two passes before last round claimed was
-true in count but false in basis (a `.rb`-only grep, not a `.pot` census),
-and this round's "23/23" is the first one backed by an actual re-run of the
-translation-parity census.
+**22 of 23 units hold on all four axes with full runtime verification; 1
+(forge backends) holds on structure/text but is behaviour-verified for only
+one of its four implementations (GitHub; Gitea/Forgejo/GitLab untested).**
+
+The background/autostart unit's text gap (3 msgids missing from
+`po/forge-sparks.pot`), tracked across the two previous rounds, is
+confirmed still closed this round — `grep -n "Allow running\|Monitoring new
+notifications" po/forge-sparks.pot` returns all three, re-checked live
+rather than re-quoted.
 
 The runtime gate numbers this round reproduces live are **201/201** for
-`test/drive_window.rb` and **70/70** for `test/check_models.rb` — matching
-the task's stated gate. Several of this report's own prior passes, and
-`.reports/test-parity.md` as it stood before this round, instead asserted
-**207/207** for the drive script at this same point in history. That number
-does not match either a fresh run performed this round or the commit
-message of `0bcf2cc` itself, which records 201/201. See
-`.reports/accountability-ensurance.md` for that finding.
+`test/drive_window.rb`, **70/70** for `test/check_models.rb`, and **21/21**
+for `rspec spec/` — matching the task's stated gate exactly. Earlier rounds'
+"207/207" discrepancy (see `.reports/accountability-ensurance.md`) remains
+closed; this round's own re-run again returns 201, not 207, confirming it
+was not a one-off.

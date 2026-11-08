@@ -3,7 +3,7 @@
 | | |
 |---|---|
 | Upstream | `main` @ `3df28d2` |
-| Port | `ruby` @ `5570f99` (re-audited this round; previous pass was at `0bcf2cc`) |
+| Port | `ruby` @ `2e0c16d` (re-audited this round; previous pass was at `5570f99`, two commits behind — `180f802`/`b609a74`/`2e0c16d` only touched `po/` and `.reports/`, no test code) |
 | Upstream tests | 0 |
 | Ported | 0 |
 | Gaps | 0 |
@@ -86,6 +86,59 @@ against a virtual display. `spec_helper.rb`'s guarded requires
 (`kettle/test/rspec`, `kettle-soup-cover`) and `.rspec`'s formatter line were
 fixed in `5570f99`, re-verified this round by running the suite rather than
 re-reading the fix.
+
+## Re-verification this round (`2e0c16d`)
+
+Re-run live again, independently, against current HEAD rather than trusting
+the previous pass's transcript:
+
+```
+$ nix develop --command xvfb-run -a ruby test/drive_window.rb
+201 of 201 checks passed
+DRIVE OK
+
+$ nix develop --command xvfb-run -a ruby test/check_models.rb
+70 of 70 checks passed
+CHECKS OK
+
+$ nix develop --command xvfb-run -a ruby -Ilib -S rspec spec/
+21 examples, 0 failures
+```
+
+Identical to the task's stated runtime gate (201 checks, 0 failed) and to
+the previous pass's numbers. No test file changed since `5570f99`, so an
+identical result is expected, not merely assumed — it was executed again
+this round to confirm that "nothing changed" is actually true rather than
+inferred from the diff.
+
+On the task's framing of the gate as "covering 15 components": this
+report's unit of account is the 23-row inventory in
+`.reports/component-inventory.md`, not 15. The two numbers are not in
+tension — "15" is not a count this repository's own scripts, commit
+messages, or inventory use anywhere (checked: `grep -rn "15 component"
+lib/ test/ .reports/` finds nothing), so it reads as the harness's own
+approximate figure rather than a port-specific claim to reconcile. Flagged
+here rather than silently ignored, per this skill's instruction to treat a
+component no check exercises as unverified: every one of the 23 inventoried units has at least one drive/check_models/
+rspec step that touches it, but the depth of that coverage is not uniform
+across the four forge backends. `test/drive_window.rb`'s `FakeSession`
+(line 55) scripts canned HTTP responses so "the real GitHub backend, the
+real fetch loop and the real notification rows are all exercised with no
+network" (the file's own comment, line 12) — and that is accurate: the
+notification-fetch steps around line 480 set `forge: 'github'` and the
+whole account-creation-to-notification-on-screen path runs through
+`lib/github.rb`'s real request/parsing code against the fake session.
+`lib/gitea.rb`, `lib/forgejo.rb` and `lib/gitlab.rb` get only the combo-row
+swap steps ("choosing Gitea/GitLab swaps the help text and the instance" —
+UI text and default-URL prefill only, confirmed by reading those three
+steps and `grep -n "forge:" test/drive_window.rb`, which returns only the
+one `'github'` literal). Their `request`/notification-parsing methods are
+never driven by any suite — not the drive script, not `check_models.rb`,
+not `spec/`. That is a real, three-of-four-backends gap in what the
+runtime gate actually reaches, not closed by any suite today; it predates
+this round (the `FakeSession` comment has said "GitHub backend" since it
+was written) but no previous pass of this report named it. See
+`.reports/accountability-ensurance.md` for this recorded as a finding.
 
 ## Rules followed
 

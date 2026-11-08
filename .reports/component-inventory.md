@@ -42,7 +42,13 @@ autostart rewrite and is not the current count; 201 is current and
 reproduced, see `.reports/test-parity.md` Finding on the 207-vs-201
 discrepancy.
 
-**Update, this round (`180f802`):** `po/update-catalogue.sh` was re-run and
+**Re-confirmed at `2e0c16d` (this round):** census, drive script and the
+forge-backend coverage gap re-checked live; see
+`.reports/accountability-ensurance.md` Finding 5 for a gap this document's
+"Present: yes" rows for forges 13-18 do not surface — only `lib/github.rb`
+is exercised by any runtime check, not all four.
+
+**Update, previous round (`180f802`):** `po/update-catalogue.sh` was re-run and
 `po/forge-sparks.pot` now carries all three strings — confirmed by
 `.reports/translation-parity.md`'s re-run census (gap 0) and
 `.reports/component-parity.md` (now 23/23 on all four axes). 201/201 on
