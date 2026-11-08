@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: forge-sparks 0.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/ruby-gtk-project/forge-sparks-rb/"
 "issues\n"
-"POT-Creation-Date: 2026-11-07 12:44+0000\n"
+"POT-Creation-Date: 2026-11-08 00:48+0000\n"
 "PO-Revision-Date: 2025-11-06 20:51+0000\n"
 "Last-Translator: Pavel Borecki <pavel.borecki@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/forge-sparks/forge-"
@@ -80,7 +80,7 @@ msgstr "Přístupový token nemá potřebné rozsahy"
 msgid "Unexpected error when creating the account"
 msgstr "Neočekávaná chyba při vytváření účtu"
 
-#: lib/accounts_dialog.rb:36 lib/window.rb:369 lib/window.rb:652
+#: lib/accounts_dialog.rb:36 lib/window.rb:370 lib/window.rb:665
 msgid "Accounts"
 msgstr "Účty"
 
@@ -92,7 +92,7 @@ msgstr "Přidat…"
 msgid "No Accounts"
 msgstr "Žádné účty"
 
-#: lib/accounts_dialog.rb:127 lib/window.rb:299
+#: lib/accounts_dialog.rb:127 lib/window.rb:300
 msgid "Add an account to receive notifications from"
 msgstr "Přidejte účet ze kterého přijímat notifikace"
 
@@ -191,23 +191,23 @@ msgstr "Označit jako přečtené"
 msgid "Show Forge Sparks"
 msgstr "Zobrazit Forge Sparks"
 
-#: lib/preferences_dialog.rb:90
+#: lib/preferences_dialog.rb:86
 msgid "Keep Running in Background"
 msgstr "Ponechat spuštěné na pozadí"
 
-#: lib/preferences_dialog.rb:98
+#: lib/preferences_dialog.rb:94
 msgid "Run on Startup"
 msgstr "Spouštět při startu"
 
-#: lib/preferences_dialog.rb:112
+#: lib/preferences_dialog.rb:108
 msgid "Start Hidden"
 msgstr "Spouštět skryté"
 
-#: lib/preferences_dialog.rb:148
+#: lib/preferences_dialog.rb:144
 msgid "The request failed."
 msgstr "Požadavek se nezdařil."
 
-#: lib/preferences_dialog.rb:161 lib/preferences_dialog.rb:174
+#: lib/preferences_dialog.rb:157 lib/preferences_dialog.rb:170
 msgid "The autostart request failed."
 msgstr "Požadavek na automatické spouštění se nezdařil."
 
@@ -237,12 +237,24 @@ msgstr "Ukončit"
 msgid "Keyboard Shortcuts"
 msgstr "_Klávesové zkratky"
 
-#: lib/util.rb:155 lib/util.rb:160
+#: lib/util.rb:112
+msgid "Allow running Forge Sparks on background."
+msgstr "Umožnit běh Forge Sparks na pozadí."
+
+#: lib/util.rb:112
+msgid "Allow running Forge Sparks on startup."
+msgstr "Umožnit automatické spouštění Forge Sparks po přihlášení do systému."
+
+#: lib/util.rb:137
+msgid "Monitoring new notifications"
+msgstr "Monitorují se nové notifikace"
+
+#: lib/util.rb:188 lib/util.rb:193
 msgid "now"
 msgstr "nyní"
 
 #. Translators: relative date
-#: lib/util.rb:163
+#: lib/util.rb:196
 msgid "%d minute ago"
 msgid_plural "%d minutes ago"
 msgstr[0] "před %d minutou"
@@ -250,7 +262,7 @@ msgstr[1] "před %d minutami"
 msgstr[2] "před %d minutami"
 
 #. Translators: relative date
-#: lib/util.rb:167
+#: lib/util.rb:200
 msgid "%d hour ago"
 msgid_plural "%d hours ago"
 msgstr[0] "před %d hodinou"
@@ -258,7 +270,7 @@ msgstr[1] "před %d hodinami"
 msgstr[2] "před %d hodinami"
 
 #. Translators: relative date
-#: lib/util.rb:172
+#: lib/util.rb:205 lib/util.rb:208
 msgid "yesterday"
 msgid_plural "%d days ago"
 msgstr[0] "včera"
@@ -266,7 +278,7 @@ msgstr[1] "před %d dny"
 msgstr[2] "před %d dny"
 
 #. Translators: relative date
-#: lib/util.rb:177
+#: lib/util.rb:214
 msgid "%d week ago"
 msgid_plural "%d weeks ago"
 msgstr[0] "před %d týdnem"
@@ -275,7 +287,7 @@ msgstr[2] "před %d týdny"
 
 #. Translators: relative date, %s is date formatted as "May 01"
 #. Translators: relative date, %s is date formatted as "01 May, 2022"
-#: lib/util.rb:181 lib/util.rb:184
+#: lib/util.rb:218 lib/util.rb:221
 msgid "on %s"
 msgstr "%s"
 
@@ -284,51 +296,51 @@ msgstr "%s"
 msgid "Forge Sparks"
 msgstr "Forge Sparks"
 
-#: lib/window.rb:298
+#: lib/window.rb:299
 msgid "Welcome to Forge Sparks"
 msgstr "Vítejte ve Forge Sparks"
 
-#: lib/window.rb:309
+#: lib/window.rb:310
 msgid "Add Account…"
 msgstr "Přidat účet…"
 
-#: lib/window.rb:350 lib/window.rb:365
+#: lib/window.rb:351 lib/window.rb:366
 msgid "Mark all as Read"
 msgstr "Označit vše jako přečtené"
 
-#: lib/window.rb:401
+#: lib/window.rb:402
 msgid "No Notifications to Show"
 msgstr "Žádné notifikace k zobrazení"
 
-#: lib/window.rb:432
+#: lib/window.rb:433
 msgid "_Preferences"
 msgstr "_Předvolby"
 
-#: lib/window.rb:433
+#: lib/window.rb:434
 msgid "_Accounts"
 msgstr "Účt_y"
 
-#: lib/window.rb:434
+#: lib/window.rb:435
 msgid "_Keyboard Shortcuts"
 msgstr "_Klávesové zkratky"
 
-#: lib/window.rb:435
+#: lib/window.rb:436
 msgid "About Forge Sparks"
 msgstr "O Forge Sparks"
 
-#: lib/window.rb:442
+#: lib/window.rb:443
 msgid "Quit"
 msgstr "Ukončit"
 
-#: lib/window.rb:454
+#: lib/window.rb:464
 msgid "Main Menu"
 msgstr "Hlavní nabídka"
 
-#: lib/window.rb:636
+#: lib/window.rb:649
 msgid "Account %s authentication failed!"
 msgstr "Přihlášení k účtu %s se nezdařilo!"
 
-#: lib/window.rb:637
+#: lib/window.rb:650
 msgid "The token may have been revoked or expired."
 msgstr "Je možné, že platnost tokenu byla odvolána nebo skončila."
 
@@ -347,13 +359,3 @@ msgid ""
 "This is a Ruby GTK4 and Libadwaita port of Forge Sparks, written against the "
 "original as its specification."
 msgstr ""
-
-#~ msgid "Allow running Forge Sparks on background."
-#~ msgstr "Umožnit běh Forge Sparks na pozadí."
-
-#~ msgid "Allow running Forge Sparks on startup."
-#~ msgstr ""
-#~ "Umožnit automatické spouštění Forge Sparks po přihlášení do systému."
-
-#~ msgid "Monitoring new notifications"
-#~ msgstr "Monitorují se nové notifikace"

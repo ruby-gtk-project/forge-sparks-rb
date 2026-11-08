@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: forge-sparks 0.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/ruby-gtk-project/forge-sparks-rb/"
 "issues\n"
-"POT-Creation-Date: 2026-11-07 12:44+0000\n"
+"POT-Creation-Date: 2026-11-08 00:48+0000\n"
 "PO-Revision-Date: 2024-05-28 16:09+0000\n"
 "Last-Translator: Scrambled777 <weblate.scrambled777@simplelogin.com>\n"
 "Language-Team: Hindi <https://hosted.weblate.org/projects/forge-sparks/forge-"
@@ -80,7 +80,7 @@ msgstr "एक्सेस टोकन में आवश्यक दाय�
 msgid "Unexpected error when creating the account"
 msgstr "खाता बनाते समय अप्रत्याशित त्रुटि"
 
-#: lib/accounts_dialog.rb:36 lib/window.rb:369 lib/window.rb:652
+#: lib/accounts_dialog.rb:36 lib/window.rb:370 lib/window.rb:665
 msgid "Accounts"
 msgstr "खाते"
 
@@ -92,7 +92,7 @@ msgstr "जोड़ें…"
 msgid "No Accounts"
 msgstr "कोई खाता नहीं"
 
-#: lib/accounts_dialog.rb:127 lib/window.rb:299
+#: lib/accounts_dialog.rb:127 lib/window.rb:300
 msgid "Add an account to receive notifications from"
 msgstr "अधिसूचनाएं प्राप्त करने के लिए एक खाता जोड़ें"
 
@@ -191,23 +191,23 @@ msgstr "पठित चिह्नित करें"
 msgid "Show Forge Sparks"
 msgstr "फोर्ज स्पार्क्स दिखाएं"
 
-#: lib/preferences_dialog.rb:90
+#: lib/preferences_dialog.rb:86
 msgid "Keep Running in Background"
 msgstr "पृष्ठभूमि में चालू रखें"
 
-#: lib/preferences_dialog.rb:98
+#: lib/preferences_dialog.rb:94
 msgid "Run on Startup"
 msgstr "शुरुआत पर चलाएं"
 
-#: lib/preferences_dialog.rb:112
+#: lib/preferences_dialog.rb:108
 msgid "Start Hidden"
 msgstr "छुपे हुए प्रारंभ करें"
 
-#: lib/preferences_dialog.rb:148
+#: lib/preferences_dialog.rb:144
 msgid "The request failed."
 msgstr "अनुरोध विफल रहा।"
 
-#: lib/preferences_dialog.rb:161 lib/preferences_dialog.rb:174
+#: lib/preferences_dialog.rb:157 lib/preferences_dialog.rb:170
 msgid "The autostart request failed."
 msgstr "स्वतः प्रारंभ अनुरोध विफल रहा।"
 
@@ -237,33 +237,45 @@ msgstr "बंद करें"
 msgid "Keyboard Shortcuts"
 msgstr "कीबोर्ड शॉर्टकट (_K)"
 
-#: lib/util.rb:155 lib/util.rb:160
+#: lib/util.rb:112
+msgid "Allow running Forge Sparks on background."
+msgstr "पृष्ठभूमि पर फोर्ज स्पार्क्स चलाने की अनुमति दें।"
+
+#: lib/util.rb:112
+msgid "Allow running Forge Sparks on startup."
+msgstr "स्टार्टअप पर फोर्ज स्पार्क्स चलाने की अनुमति दें।"
+
+#: lib/util.rb:137
+msgid "Monitoring new notifications"
+msgstr "नई अधिसूचनाओं की निगरानी"
+
+#: lib/util.rb:188 lib/util.rb:193
 msgid "now"
 msgstr "अभी"
 
 #. Translators: relative date
-#: lib/util.rb:163
+#: lib/util.rb:196
 msgid "%d minute ago"
 msgid_plural "%d minutes ago"
 msgstr[0] "%d मिनट पहले"
 msgstr[1] "%d मिनट पहले"
 
 #. Translators: relative date
-#: lib/util.rb:167
+#: lib/util.rb:200
 msgid "%d hour ago"
 msgid_plural "%d hours ago"
 msgstr[0] "%d घंटा पहले"
 msgstr[1] "%d घंटे पहले"
 
 #. Translators: relative date
-#: lib/util.rb:172
+#: lib/util.rb:205 lib/util.rb:208
 msgid "yesterday"
 msgid_plural "%d days ago"
 msgstr[0] "कल"
 msgstr[1] "%d दिन पहले"
 
 #. Translators: relative date
-#: lib/util.rb:177
+#: lib/util.rb:214
 msgid "%d week ago"
 msgid_plural "%d weeks ago"
 msgstr[0] "%d हफ्ता पहले"
@@ -271,7 +283,7 @@ msgstr[1] "%d हफ्ते पहले"
 
 #. Translators: relative date, %s is date formatted as "May 01"
 #. Translators: relative date, %s is date formatted as "01 May, 2022"
-#: lib/util.rb:181 lib/util.rb:184
+#: lib/util.rb:218 lib/util.rb:221
 msgid "on %s"
 msgstr "%s पर"
 
@@ -280,51 +292,51 @@ msgstr "%s पर"
 msgid "Forge Sparks"
 msgstr "फोर्ज स्पार्क्स"
 
-#: lib/window.rb:298
+#: lib/window.rb:299
 msgid "Welcome to Forge Sparks"
 msgstr "फोर्ज स्पार्क्स में आपका स्वागत है"
 
-#: lib/window.rb:309
+#: lib/window.rb:310
 msgid "Add Account…"
 msgstr "खाता जोड़ें…"
 
-#: lib/window.rb:350 lib/window.rb:365
+#: lib/window.rb:351 lib/window.rb:366
 msgid "Mark all as Read"
 msgstr "सभी पठित चिह्नित करें"
 
-#: lib/window.rb:401
+#: lib/window.rb:402
 msgid "No Notifications to Show"
 msgstr "दिखाने के लिए कोई अधिसूचना नहीं"
 
-#: lib/window.rb:432
+#: lib/window.rb:433
 msgid "_Preferences"
 msgstr "प्राथमिकताएं (_P)"
 
-#: lib/window.rb:433
+#: lib/window.rb:434
 msgid "_Accounts"
 msgstr "खाता (_A)"
 
-#: lib/window.rb:434
+#: lib/window.rb:435
 msgid "_Keyboard Shortcuts"
 msgstr "कीबोर्ड शॉर्टकट (_K)"
 
-#: lib/window.rb:435
+#: lib/window.rb:436
 msgid "About Forge Sparks"
 msgstr "फोर्ज स्पार्क्स के बारे में"
 
-#: lib/window.rb:442
+#: lib/window.rb:443
 msgid "Quit"
 msgstr "बंद करें"
 
-#: lib/window.rb:454
+#: lib/window.rb:464
 msgid "Main Menu"
 msgstr "मुख्य मेनू"
 
-#: lib/window.rb:636
+#: lib/window.rb:649
 msgid "Account %s authentication failed!"
 msgstr "खाता %s प्रमाणीकरण विफल!"
 
-#: lib/window.rb:637
+#: lib/window.rb:650
 msgid "The token may have been revoked or expired."
 msgstr "टोकन रद्द या समाप्त हो सकता है।"
 
@@ -342,15 +354,6 @@ msgid ""
 "This is a Ruby GTK4 and Libadwaita port of Forge Sparks, written against the "
 "original as its specification."
 msgstr ""
-
-#~ msgid "Allow running Forge Sparks on background."
-#~ msgstr "पृष्ठभूमि पर फोर्ज स्पार्क्स चलाने की अनुमति दें।"
-
-#~ msgid "Allow running Forge Sparks on startup."
-#~ msgstr "स्टार्टअप पर फोर्ज स्पार्क्स चलाने की अनुमति दें।"
-
-#~ msgid "Monitoring new notifications"
-#~ msgstr "नई अधिसूचनाओं की निगरानी"
 
 #~ msgid "Forge Sparks requires the <i>api</i> scopes granted."
 #~ msgstr "फोर्ज स्पार्क्स को दिए गए <i>api</i> स्कोप की आवश्यकता है।"

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: forge-sparks 0.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/ruby-gtk-project/forge-sparks-rb/"
 "issues\n"
-"POT-Creation-Date: 2026-11-07 12:44+0000\n"
+"POT-Creation-Date: 2026-11-08 00:48+0000\n"
 "PO-Revision-Date: 2025-08-30 16:01+0000\n"
 "Last-Translator: Sabri Ünal <yakushabb@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/forge-sparks/"
@@ -80,7 +80,7 @@ msgstr "Erişim jetonu gerekli yetkilere sahip değil"
 msgid "Unexpected error when creating the account"
 msgstr "Hesap oluşturulurken beklenmeyen hata"
 
-#: lib/accounts_dialog.rb:36 lib/window.rb:369 lib/window.rb:652
+#: lib/accounts_dialog.rb:36 lib/window.rb:370 lib/window.rb:665
 msgid "Accounts"
 msgstr "Hesaplar"
 
@@ -92,7 +92,7 @@ msgstr "Ekle…"
 msgid "No Accounts"
 msgstr "Hesap Yok"
 
-#: lib/accounts_dialog.rb:127 lib/window.rb:299
+#: lib/accounts_dialog.rb:127 lib/window.rb:300
 msgid "Add an account to receive notifications from"
 msgstr "Bildirim almak içi hesap ekleyin"
 
@@ -195,23 +195,23 @@ msgstr "Okundu İmle"
 msgid "Show Forge Sparks"
 msgstr "Forge Sparks Göster"
 
-#: lib/preferences_dialog.rb:90
+#: lib/preferences_dialog.rb:86
 msgid "Keep Running in Background"
 msgstr "Arka Planda Çalışmaya Devam Et"
 
-#: lib/preferences_dialog.rb:98
+#: lib/preferences_dialog.rb:94
 msgid "Run on Startup"
 msgstr "Başlangıçta Çalıştır"
 
-#: lib/preferences_dialog.rb:112
+#: lib/preferences_dialog.rb:108
 msgid "Start Hidden"
 msgstr "Gizli Başla"
 
-#: lib/preferences_dialog.rb:148
+#: lib/preferences_dialog.rb:144
 msgid "The request failed."
 msgstr "İstek başarısız oldu."
 
-#: lib/preferences_dialog.rb:161 lib/preferences_dialog.rb:174
+#: lib/preferences_dialog.rb:157 lib/preferences_dialog.rb:170
 msgid "The autostart request failed."
 msgstr "Kendiliğinde başlatma isteği başarısız oldu."
 
@@ -241,33 +241,45 @@ msgstr "Çık"
 msgid "Keyboard Shortcuts"
 msgstr "_Klavye Kısayolları"
 
-#: lib/util.rb:155 lib/util.rb:160
+#: lib/util.rb:112
+msgid "Allow running Forge Sparks on background."
+msgstr "Forge Sparksʼın arka planda çalışmasına izin ver."
+
+#: lib/util.rb:112
+msgid "Allow running Forge Sparks on startup."
+msgstr "Forge Sparksʼın başlangıçta çalışmasına izin ver."
+
+#: lib/util.rb:137
+msgid "Monitoring new notifications"
+msgstr "Yeni bildirimleri izle"
+
+#: lib/util.rb:188 lib/util.rb:193
 msgid "now"
 msgstr "şimdi"
 
 #. Translators: relative date
-#: lib/util.rb:163
+#: lib/util.rb:196
 msgid "%d minute ago"
 msgid_plural "%d minutes ago"
 msgstr[0] "%d dakika önce"
 msgstr[1] "%d dakika önce"
 
 #. Translators: relative date
-#: lib/util.rb:167
+#: lib/util.rb:200
 msgid "%d hour ago"
 msgid_plural "%d hours ago"
 msgstr[0] "%d saat önce"
 msgstr[1] "%d saat önce"
 
 #. Translators: relative date
-#: lib/util.rb:172
+#: lib/util.rb:205 lib/util.rb:208
 msgid "yesterday"
 msgid_plural "%d days ago"
 msgstr[0] "dün"
 msgstr[1] "%d gün önce"
 
 #. Translators: relative date
-#: lib/util.rb:177
+#: lib/util.rb:214
 msgid "%d week ago"
 msgid_plural "%d weeks ago"
 msgstr[0] "%d hafta önce"
@@ -275,7 +287,7 @@ msgstr[1] "%d hafta önce"
 
 #. Translators: relative date, %s is date formatted as "May 01"
 #. Translators: relative date, %s is date formatted as "01 May, 2022"
-#: lib/util.rb:181 lib/util.rb:184
+#: lib/util.rb:218 lib/util.rb:221
 msgid "on %s"
 msgstr "%s"
 
@@ -284,51 +296,51 @@ msgstr "%s"
 msgid "Forge Sparks"
 msgstr "Forge Sparks"
 
-#: lib/window.rb:298
+#: lib/window.rb:299
 msgid "Welcome to Forge Sparks"
 msgstr "Forge Sparksʼa Hoş Geldiniz"
 
-#: lib/window.rb:309
+#: lib/window.rb:310
 msgid "Add Account…"
 msgstr "Hesap Ekle…"
 
-#: lib/window.rb:350 lib/window.rb:365
+#: lib/window.rb:351 lib/window.rb:366
 msgid "Mark all as Read"
 msgstr "Tümünü Okundu İmle"
 
-#: lib/window.rb:401
+#: lib/window.rb:402
 msgid "No Notifications to Show"
 msgstr "Gösterilecek Bildirim Yok"
 
-#: lib/window.rb:432
+#: lib/window.rb:433
 msgid "_Preferences"
 msgstr "_Tercihler"
 
-#: lib/window.rb:433
+#: lib/window.rb:434
 msgid "_Accounts"
 msgstr "_Hesaplar"
 
-#: lib/window.rb:434
+#: lib/window.rb:435
 msgid "_Keyboard Shortcuts"
 msgstr "_Klavye Kısayolları"
 
-#: lib/window.rb:435
+#: lib/window.rb:436
 msgid "About Forge Sparks"
 msgstr "Forge Sparks Hakkında"
 
-#: lib/window.rb:442
+#: lib/window.rb:443
 msgid "Quit"
 msgstr "Çık"
 
-#: lib/window.rb:454
+#: lib/window.rb:464
 msgid "Main Menu"
 msgstr "Ana Menü"
 
-#: lib/window.rb:636
+#: lib/window.rb:649
 msgid "Account %s authentication failed!"
 msgstr "%s hesabının kimlik doğrulaması başarısız oldu!"
 
-#: lib/window.rb:637
+#: lib/window.rb:650
 msgid "The token may have been revoked or expired."
 msgstr "Token iptal edilmiş veya süresi dolmuş olabilir."
 
@@ -346,15 +358,6 @@ msgid ""
 "This is a Ruby GTK4 and Libadwaita port of Forge Sparks, written against the "
 "original as its specification."
 msgstr ""
-
-#~ msgid "Allow running Forge Sparks on background."
-#~ msgstr "Forge Sparksʼın arka planda çalışmasına izin ver."
-
-#~ msgid "Allow running Forge Sparks on startup."
-#~ msgstr "Forge Sparksʼın başlangıçta çalışmasına izin ver."
-
-#~ msgid "Monitoring new notifications"
-#~ msgstr "Yeni bildirimleri izle"
 
 #~ msgid "Forge Sparks requires the <i>api</i> scopes granted."
 #~ msgstr "Forge Sparks <i>api</i> kapsamına ihtiyaç duyar."

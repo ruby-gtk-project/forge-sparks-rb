@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: forge-sparks 0.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/ruby-gtk-project/forge-sparks-rb/"
 "issues\n"
-"POT-Creation-Date: 2026-11-07 12:44+0000\n"
+"POT-Creation-Date: 2026-11-08 00:48+0000\n"
 "PO-Revision-Date: 2026-08-20 12:52+0000\n"
 "Last-Translator: Димко <Dymkovych@proton.me>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/forge-sparks/"
@@ -81,7 +81,7 @@ msgstr "Токен доступу не має необхідних діапаз�
 msgid "Unexpected error when creating the account"
 msgstr "Неочікувана помилка при створенні облікового запису"
 
-#: lib/accounts_dialog.rb:36 lib/window.rb:369 lib/window.rb:652
+#: lib/accounts_dialog.rb:36 lib/window.rb:370 lib/window.rb:665
 msgid "Accounts"
 msgstr "Облікові записи"
 
@@ -93,7 +93,7 @@ msgstr "Додати…"
 msgid "No Accounts"
 msgstr "Немає облікових записів"
 
-#: lib/accounts_dialog.rb:127 lib/window.rb:299
+#: lib/accounts_dialog.rb:127 lib/window.rb:300
 msgid "Add an account to receive notifications from"
 msgstr "Додати обліковий запис для отримання повідомлень від"
 
@@ -194,23 +194,23 @@ msgstr "Відзначити як прочитане"
 msgid "Show Forge Sparks"
 msgstr "Показати Forge Sparks"
 
-#: lib/preferences_dialog.rb:90
+#: lib/preferences_dialog.rb:86
 msgid "Keep Running in Background"
 msgstr "Продовжувати працювати у фоновому режимі"
 
-#: lib/preferences_dialog.rb:98
+#: lib/preferences_dialog.rb:94
 msgid "Run on Startup"
 msgstr "Запустити під час запуску"
 
-#: lib/preferences_dialog.rb:112
+#: lib/preferences_dialog.rb:108
 msgid "Start Hidden"
 msgstr "Початок приховано"
 
-#: lib/preferences_dialog.rb:148
+#: lib/preferences_dialog.rb:144
 msgid "The request failed."
 msgstr "Запит не виконано."
 
-#: lib/preferences_dialog.rb:161 lib/preferences_dialog.rb:174
+#: lib/preferences_dialog.rb:157 lib/preferences_dialog.rb:170
 msgid "The autostart request failed."
 msgstr "Запит на автозапуск не вдалося виконати."
 
@@ -240,12 +240,24 @@ msgstr "Вийти"
 msgid "Keyboard Shortcuts"
 msgstr "_Клавіатурні скорочення"
 
-#: lib/util.rb:155 lib/util.rb:160
+#: lib/util.rb:112
+msgid "Allow running Forge Sparks on background."
+msgstr "Дозволити запуск Forge Sparks у фоновому режимі."
+
+#: lib/util.rb:112
+msgid "Allow running Forge Sparks on startup."
+msgstr "Дозволити запуск Forge Sparks під час запуску системи."
+
+#: lib/util.rb:137
+msgid "Monitoring new notifications"
+msgstr "Шукаю нові сповіщення"
+
+#: lib/util.rb:188 lib/util.rb:193
 msgid "now"
 msgstr "зараз"
 
 #. Translators: relative date
-#: lib/util.rb:163
+#: lib/util.rb:196
 msgid "%d minute ago"
 msgid_plural "%d minutes ago"
 msgstr[0] "%d хвилину тому"
@@ -253,7 +265,7 @@ msgstr[1] "%d хвилини тому"
 msgstr[2] "%d хвилин тому"
 
 #. Translators: relative date
-#: lib/util.rb:167
+#: lib/util.rb:200
 msgid "%d hour ago"
 msgid_plural "%d hours ago"
 msgstr[0] "%d годину тому"
@@ -261,7 +273,7 @@ msgstr[1] "%d години тому"
 msgstr[2] "%d годин тому"
 
 #. Translators: relative date
-#: lib/util.rb:172
+#: lib/util.rb:205 lib/util.rb:208
 msgid "yesterday"
 msgid_plural "%d days ago"
 msgstr[0] "Вчора"
@@ -269,7 +281,7 @@ msgstr[1] "%d дні тому"
 msgstr[2] "%d днів тому"
 
 #. Translators: relative date
-#: lib/util.rb:177
+#: lib/util.rb:214
 msgid "%d week ago"
 msgid_plural "%d weeks ago"
 msgstr[0] "%d тиждень тому"
@@ -278,7 +290,7 @@ msgstr[2] "%d тижнів тому"
 
 #. Translators: relative date, %s is date formatted as "May 01"
 #. Translators: relative date, %s is date formatted as "01 May, 2022"
-#: lib/util.rb:181 lib/util.rb:184
+#: lib/util.rb:218 lib/util.rb:221
 msgid "on %s"
 msgstr "на %s"
 
@@ -287,51 +299,51 @@ msgstr "на %s"
 msgid "Forge Sparks"
 msgstr "Forge Sparks"
 
-#: lib/window.rb:298
+#: lib/window.rb:299
 msgid "Welcome to Forge Sparks"
 msgstr "Ласкаво просимо до Forge Sparks"
 
-#: lib/window.rb:309
+#: lib/window.rb:310
 msgid "Add Account…"
 msgstr "Додати обліковий запис…"
 
-#: lib/window.rb:350 lib/window.rb:365
+#: lib/window.rb:351 lib/window.rb:366
 msgid "Mark all as Read"
 msgstr "Позначити все як прочитане"
 
-#: lib/window.rb:401
+#: lib/window.rb:402
 msgid "No Notifications to Show"
 msgstr "Немає сповіщень для показу"
 
-#: lib/window.rb:432
+#: lib/window.rb:433
 msgid "_Preferences"
 msgstr "_Налаштування"
 
-#: lib/window.rb:433
+#: lib/window.rb:434
 msgid "_Accounts"
 msgstr "_Облікові записи"
 
-#: lib/window.rb:434
+#: lib/window.rb:435
 msgid "_Keyboard Shortcuts"
 msgstr "_Клавіатурні скорочення"
 
-#: lib/window.rb:435
+#: lib/window.rb:436
 msgid "About Forge Sparks"
 msgstr "Про Forge Sparks"
 
-#: lib/window.rb:442
+#: lib/window.rb:443
 msgid "Quit"
 msgstr "Вийти"
 
-#: lib/window.rb:454
+#: lib/window.rb:464
 msgid "Main Menu"
 msgstr "Головне меню"
 
-#: lib/window.rb:636
+#: lib/window.rb:649
 msgid "Account %s authentication failed!"
 msgstr "Не вдалося виконати автентифікацію облікового запису %s!"
 
-#: lib/window.rb:637
+#: lib/window.rb:650
 msgid "The token may have been revoked or expired."
 msgstr "Можливо, токен було анульовано або термін його дії закінчився."
 
@@ -349,15 +361,6 @@ msgid ""
 "This is a Ruby GTK4 and Libadwaita port of Forge Sparks, written against the "
 "original as its specification."
 msgstr ""
-
-#~ msgid "Allow running Forge Sparks on background."
-#~ msgstr "Дозволити запуск Forge Sparks у фоновому режимі."
-
-#~ msgid "Allow running Forge Sparks on startup."
-#~ msgstr "Дозволити запуск Forge Sparks під час запуску системи."
-
-#~ msgid "Monitoring new notifications"
-#~ msgstr "Шукаю нові сповіщення"
 
 #~ msgid "Forge Sparks requires the <i>api</i> scopes granted."
 #~ msgstr "Для Forge Sparks потрібні надані області <i>api</i>."

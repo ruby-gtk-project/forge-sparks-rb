@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: forge-sparks 0.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/ruby-gtk-project/forge-sparks-rb/"
 "issues\n"
-"POT-Creation-Date: 2026-11-07 12:44+0000\n"
+"POT-Creation-Date: 2026-11-08 00:48+0000\n"
 "PO-Revision-Date: 2026-02-24 21:09+0000\n"
 "Last-Translator: Thomas Boom <thomasnowprod@proton.me>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/forge-sparks/forge-"
@@ -80,7 +80,7 @@ msgstr "De toegangssleutel heeft niet de benodigde scopes"
 msgid "Unexpected error when creating the account"
 msgstr "Onverwachte fout tijdens het aanmaken van het account"
 
-#: lib/accounts_dialog.rb:36 lib/window.rb:369 lib/window.rb:652
+#: lib/accounts_dialog.rb:36 lib/window.rb:370 lib/window.rb:665
 msgid "Accounts"
 msgstr "Accounts"
 
@@ -92,7 +92,7 @@ msgstr "Toevoegen…"
 msgid "No Accounts"
 msgstr "Geen accounts"
 
-#: lib/accounts_dialog.rb:127 lib/window.rb:299
+#: lib/accounts_dialog.rb:127 lib/window.rb:300
 msgid "Add an account to receive notifications from"
 msgstr "Voeg een account toe om meldingen van te krijgen"
 
@@ -191,23 +191,23 @@ msgstr "Markeren als gelezen"
 msgid "Show Forge Sparks"
 msgstr "Forge Sparks weergeven"
 
-#: lib/preferences_dialog.rb:90
+#: lib/preferences_dialog.rb:86
 msgid "Keep Running in Background"
 msgstr "Actief blijven op achter­grond"
 
-#: lib/preferences_dialog.rb:98
+#: lib/preferences_dialog.rb:94
 msgid "Run on Startup"
 msgstr "Uitvoeren bij opstarten"
 
-#: lib/preferences_dialog.rb:112
+#: lib/preferences_dialog.rb:108
 msgid "Start Hidden"
 msgstr "Verborgen starten"
 
-#: lib/preferences_dialog.rb:148
+#: lib/preferences_dialog.rb:144
 msgid "The request failed."
 msgstr "De aanvraag is mislukt."
 
-#: lib/preferences_dialog.rb:161 lib/preferences_dialog.rb:174
+#: lib/preferences_dialog.rb:157 lib/preferences_dialog.rb:170
 msgid "The autostart request failed."
 msgstr "De aanvraag om automatisch te starten is mislukt."
 
@@ -237,33 +237,45 @@ msgstr "Afsluiten"
 msgid "Keyboard Shortcuts"
 msgstr "_Sneltoetsen"
 
-#: lib/util.rb:155 lib/util.rb:160
+#: lib/util.rb:112
+msgid "Allow running Forge Sparks on background."
+msgstr "Sta toe dat Forge Sparks op de achtergrond actief blijft."
+
+#: lib/util.rb:112
+msgid "Allow running Forge Sparks on startup."
+msgstr "Sta toe dat Forge Sparks start bij het opstarten van het systeem."
+
+#: lib/util.rb:137
+msgid "Monitoring new notifications"
+msgstr "Bijhouden van nieuwe meldingen"
+
+#: lib/util.rb:188 lib/util.rb:193
 msgid "now"
 msgstr "nu"
 
 #. Translators: relative date
-#: lib/util.rb:163
+#: lib/util.rb:196
 msgid "%d minute ago"
 msgid_plural "%d minutes ago"
 msgstr[0] "%d minuut geleden"
 msgstr[1] "%d minuten geleden"
 
 #. Translators: relative date
-#: lib/util.rb:167
+#: lib/util.rb:200
 msgid "%d hour ago"
 msgid_plural "%d hours ago"
 msgstr[0] "%d uur geleden"
 msgstr[1] "%d uur geleden"
 
 #. Translators: relative date
-#: lib/util.rb:172
+#: lib/util.rb:205 lib/util.rb:208
 msgid "yesterday"
 msgid_plural "%d days ago"
 msgstr[0] "gisteren"
 msgstr[1] "%d dagen geleden"
 
 #. Translators: relative date
-#: lib/util.rb:177
+#: lib/util.rb:214
 msgid "%d week ago"
 msgid_plural "%d weeks ago"
 msgstr[0] "%d week geleden"
@@ -271,7 +283,7 @@ msgstr[1] "%d weken geleden"
 
 #. Translators: relative date, %s is date formatted as "May 01"
 #. Translators: relative date, %s is date formatted as "01 May, 2022"
-#: lib/util.rb:181 lib/util.rb:184
+#: lib/util.rb:218 lib/util.rb:221
 msgid "on %s"
 msgstr "op %s"
 
@@ -280,51 +292,51 @@ msgstr "op %s"
 msgid "Forge Sparks"
 msgstr "Forge Sparks"
 
-#: lib/window.rb:298
+#: lib/window.rb:299
 msgid "Welcome to Forge Sparks"
 msgstr "Welkom bij Forge Sparks"
 
-#: lib/window.rb:309
+#: lib/window.rb:310
 msgid "Add Account…"
 msgstr "Account toevoegen…"
 
-#: lib/window.rb:350 lib/window.rb:365
+#: lib/window.rb:351 lib/window.rb:366
 msgid "Mark all as Read"
 msgstr "Alles als gelezen markeren"
 
-#: lib/window.rb:401
+#: lib/window.rb:402
 msgid "No Notifications to Show"
 msgstr "Geen meldingen om te tonen"
 
-#: lib/window.rb:432
+#: lib/window.rb:433
 msgid "_Preferences"
 msgstr "_Voorkeuren"
 
-#: lib/window.rb:433
+#: lib/window.rb:434
 msgid "_Accounts"
 msgstr "_Accounts"
 
-#: lib/window.rb:434
+#: lib/window.rb:435
 msgid "_Keyboard Shortcuts"
 msgstr "_Sneltoetsen"
 
-#: lib/window.rb:435
+#: lib/window.rb:436
 msgid "About Forge Sparks"
 msgstr "Over Forge Sparks"
 
-#: lib/window.rb:442
+#: lib/window.rb:443
 msgid "Quit"
 msgstr "Afsluiten"
 
-#: lib/window.rb:454
+#: lib/window.rb:464
 msgid "Main Menu"
 msgstr "Hoofdmenu"
 
-#: lib/window.rb:636
+#: lib/window.rb:649
 msgid "Account %s authentication failed!"
 msgstr "Authenticatie van account %s mislukt!"
 
-#: lib/window.rb:637
+#: lib/window.rb:650
 msgid "The token may have been revoked or expired."
 msgstr "Het token is mogelijk ingetrokken of verlopen."
 
@@ -343,15 +355,6 @@ msgid ""
 "This is a Ruby GTK4 and Libadwaita port of Forge Sparks, written against the "
 "original as its specification."
 msgstr ""
-
-#~ msgid "Allow running Forge Sparks on background."
-#~ msgstr "Sta toe dat Forge Sparks op de achtergrond actief blijft."
-
-#~ msgid "Allow running Forge Sparks on startup."
-#~ msgstr "Sta toe dat Forge Sparks start bij het opstarten van het systeem."
-
-#~ msgid "Monitoring new notifications"
-#~ msgstr "Bijhouden van nieuwe meldingen"
 
 #~ msgid "Forge Sparks requires the <i>api</i> scopes granted."
 #~ msgstr "Forge Sparks vereist dat de <i>api</i>-scopes zijn toegekend."

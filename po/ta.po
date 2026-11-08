@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: forge-sparks 0.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/ruby-gtk-project/forge-sparks-rb/"
 "issues\n"
-"POT-Creation-Date: 2026-11-07 12:44+0000\n"
+"POT-Creation-Date: 2026-11-08 00:48+0000\n"
 "PO-Revision-Date: 2026-03-02 09:09+0000\n"
 "Last-Translator: தமிழ்நேரம் <tamilneram247@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/forge-sparks/forge-"
@@ -80,7 +80,7 @@ msgstr "அணுகல் டோக்கனில் தேவையான ந
 msgid "Unexpected error when creating the account"
 msgstr "கணக்கை உருவாக்கும் போது எதிர்பாராத பிழை"
 
-#: lib/accounts_dialog.rb:36 lib/window.rb:369 lib/window.rb:652
+#: lib/accounts_dialog.rb:36 lib/window.rb:370 lib/window.rb:665
 msgid "Accounts"
 msgstr "கணக்குகள்"
 
@@ -92,7 +92,7 @@ msgstr "சேர்க்கவும்…"
 msgid "No Accounts"
 msgstr "கணக்குகள் இல்லை"
 
-#: lib/accounts_dialog.rb:127 lib/window.rb:299
+#: lib/accounts_dialog.rb:127 lib/window.rb:300
 msgid "Add an account to receive notifications from"
 msgstr "அறிவிப்புகளைப் பெற ஒரு கணக்கைச் சேர்க்கவும்"
 
@@ -191,23 +191,23 @@ msgstr "படித்தபடி குறி"
 msgid "Show Forge Sparks"
 msgstr "ஃபோர்ச் ச்பார்க்சைக் காட்டு"
 
-#: lib/preferences_dialog.rb:90
+#: lib/preferences_dialog.rb:86
 msgid "Keep Running in Background"
 msgstr "பின்னணியில் தொடர்ந்து இயங்கும்"
 
-#: lib/preferences_dialog.rb:98
+#: lib/preferences_dialog.rb:94
 msgid "Run on Startup"
 msgstr "தொடக்கத்தில் இயக்கவும்"
 
-#: lib/preferences_dialog.rb:112
+#: lib/preferences_dialog.rb:108
 msgid "Start Hidden"
 msgstr "மறைக்கத் தொடங்குங்கள்"
 
-#: lib/preferences_dialog.rb:148
+#: lib/preferences_dialog.rb:144
 msgid "The request failed."
 msgstr "கோரிக்கை தோல்வியடைந்தது."
 
-#: lib/preferences_dialog.rb:161 lib/preferences_dialog.rb:174
+#: lib/preferences_dialog.rb:157 lib/preferences_dialog.rb:170
 msgid "The autostart request failed."
 msgstr "ஆட்டோச்டார்ட் கோரிக்கை தோல்வியடைந்தது."
 
@@ -237,33 +237,45 @@ msgstr "வெளியேறு"
 msgid "Keyboard Shortcuts"
 msgstr "விசைப்பலகை குறுக்குவழிகள்"
 
-#: lib/util.rb:155 lib/util.rb:160
+#: lib/util.rb:112
+msgid "Allow running Forge Sparks on background."
+msgstr "பின்னணியில் ஃபோர்ச் தீப்பொறிகளை இயக்க அனுமதிக்கவும்."
+
+#: lib/util.rb:112
+msgid "Allow running Forge Sparks on startup."
+msgstr "தொடக்கத்தில் ஃபோர்ச் தீப்பொறிகளை இயக்க அனுமதிக்கவும்."
+
+#: lib/util.rb:137
+msgid "Monitoring new notifications"
+msgstr "புதிய அறிவிப்புகளை கண்காணித்தல்"
+
+#: lib/util.rb:188 lib/util.rb:193
 msgid "now"
 msgstr "இப்போது"
 
 #. Translators: relative date
-#: lib/util.rb:163
+#: lib/util.rb:196
 msgid "%d minute ago"
 msgid_plural "%d minutes ago"
 msgstr[0] "%d மணித்துளி முன்பு"
 msgstr[1] "%d நிமிடங்களுக்கு முன்பு"
 
 #. Translators: relative date
-#: lib/util.rb:167
+#: lib/util.rb:200
 msgid "%d hour ago"
 msgid_plural "%d hours ago"
 msgstr[0] "%d மணி நேரத்திற்கு முன்பு"
 msgstr[1] "%d மணிநேரங்களுக்கு முன்பு"
 
 #. Translators: relative date
-#: lib/util.rb:172
+#: lib/util.rb:205 lib/util.rb:208
 msgid "yesterday"
 msgid_plural "%d days ago"
 msgstr[0] "நேற்று"
 msgstr[1] "%d சில நாட்களுக்கு முன்பு"
 
 #. Translators: relative date
-#: lib/util.rb:177
+#: lib/util.rb:214
 msgid "%d week ago"
 msgid_plural "%d weeks ago"
 msgstr[0] "%d வாரத்திற்கு முன்பு"
@@ -271,7 +283,7 @@ msgstr[1] "%d வாரங்களுக்கு முன்பு"
 
 #. Translators: relative date, %s is date formatted as "May 01"
 #. Translators: relative date, %s is date formatted as "01 May, 2022"
-#: lib/util.rb:181 lib/util.rb:184
+#: lib/util.rb:218 lib/util.rb:221
 msgid "on %s"
 msgstr "%s"
 
@@ -280,51 +292,51 @@ msgstr "%s"
 msgid "Forge Sparks"
 msgstr "ஃபோர்ச் தீப்பொறிகள்"
 
-#: lib/window.rb:298
+#: lib/window.rb:299
 msgid "Welcome to Forge Sparks"
 msgstr "ஃபோர்ச் ச்பார்க்சுக்கு வருக"
 
-#: lib/window.rb:309
+#: lib/window.rb:310
 msgid "Add Account…"
 msgstr "கணக்கைச் சேர்க்கவும்…"
 
-#: lib/window.rb:350 lib/window.rb:365
+#: lib/window.rb:351 lib/window.rb:366
 msgid "Mark all as Read"
 msgstr "அனைத்தையும் படித்தபடி குறிக்கவும்"
 
-#: lib/window.rb:401
+#: lib/window.rb:402
 msgid "No Notifications to Show"
 msgstr "காட்ட அறிவிப்புகள் எதுவும் இல்லை"
 
-#: lib/window.rb:432
+#: lib/window.rb:433
 msgid "_Preferences"
 msgstr "_ முனைகள்"
 
-#: lib/window.rb:433
+#: lib/window.rb:434
 msgid "_Accounts"
 msgstr "_ கணக்குகள்"
 
-#: lib/window.rb:434
+#: lib/window.rb:435
 msgid "_Keyboard Shortcuts"
 msgstr "விசைப்பலகை குறுக்குவழிகள்"
 
-#: lib/window.rb:435
+#: lib/window.rb:436
 msgid "About Forge Sparks"
 msgstr "ஃபோர்ச் ச்பார்க்ச் பற்றி"
 
-#: lib/window.rb:442
+#: lib/window.rb:443
 msgid "Quit"
 msgstr "வெளியேறு"
 
-#: lib/window.rb:454
+#: lib/window.rb:464
 msgid "Main Menu"
 msgstr "பட்டியல் விளையாடுங்கள்"
 
-#: lib/window.rb:636
+#: lib/window.rb:649
 msgid "Account %s authentication failed!"
 msgstr "கணக்கு %s ஏற்பு தோல்வியடைந்தது!"
 
-#: lib/window.rb:637
+#: lib/window.rb:650
 msgid "The token may have been revoked or expired."
 msgstr "கிள்ளாக்கு ரத்து செய்யப்பட்டிருக்கலாம் அல்லது காலாவதியானது."
 
@@ -343,15 +355,6 @@ msgid ""
 "This is a Ruby GTK4 and Libadwaita port of Forge Sparks, written against the "
 "original as its specification."
 msgstr ""
-
-#~ msgid "Allow running Forge Sparks on background."
-#~ msgstr "பின்னணியில் ஃபோர்ச் தீப்பொறிகளை இயக்க அனுமதிக்கவும்."
-
-#~ msgid "Allow running Forge Sparks on startup."
-#~ msgstr "தொடக்கத்தில் ஃபோர்ச் தீப்பொறிகளை இயக்க அனுமதிக்கவும்."
-
-#~ msgid "Monitoring new notifications"
-#~ msgstr "புதிய அறிவிப்புகளை கண்காணித்தல்"
 
 #~ msgid "Forge Sparks requires the <i>api</i> scopes granted."
 #~ msgstr "ஃபோர்ச் ச்பார்க்சுக்கு <i> பநிஇ </i> ச்கோப்புகள் தேவை."

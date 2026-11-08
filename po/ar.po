@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: forge-sparks 0.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/ruby-gtk-project/forge-sparks-rb/"
 "issues\n"
-"POT-Creation-Date: 2026-11-07 12:44+0000\n"
+"POT-Creation-Date: 2026-11-08 00:48+0000\n"
 "PO-Revision-Date: 2025-07-28 10:02+0000\n"
 "Last-Translator: Ahmed Najmawi <iramosu@protonmail.com>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/forge-sparks/"
@@ -81,7 +81,7 @@ msgstr "لا يملك رمز الوصول النطاقات المطلوبة"
 msgid "Unexpected error when creating the account"
 msgstr "حدث خطأ غير متوقع عند إنشاء الحساب"
 
-#: lib/accounts_dialog.rb:36 lib/window.rb:369 lib/window.rb:652
+#: lib/accounts_dialog.rb:36 lib/window.rb:370 lib/window.rb:665
 msgid "Accounts"
 msgstr "الحسابات"
 
@@ -93,7 +93,7 @@ msgstr "أضِف…"
 msgid "No Accounts"
 msgstr "لا توجد حسابات"
 
-#: lib/accounts_dialog.rb:127 lib/window.rb:299
+#: lib/accounts_dialog.rb:127 lib/window.rb:300
 msgid "Add an account to receive notifications from"
 msgstr "أضِف حسابًا لتستلم التنبيهات منه"
 
@@ -190,23 +190,23 @@ msgstr "علِّم كمقروء"
 msgid "Show Forge Sparks"
 msgstr "أظهِر «فورج سباركس»"
 
-#: lib/preferences_dialog.rb:90
+#: lib/preferences_dialog.rb:86
 msgid "Keep Running in Background"
 msgstr "أبقِ التشغيل في الخلفية"
 
-#: lib/preferences_dialog.rb:98
+#: lib/preferences_dialog.rb:94
 msgid "Run on Startup"
 msgstr "شغِّل عند بدء التشغيل"
 
-#: lib/preferences_dialog.rb:112
+#: lib/preferences_dialog.rb:108
 msgid "Start Hidden"
 msgstr "ابدأ مخفيًا"
 
-#: lib/preferences_dialog.rb:148
+#: lib/preferences_dialog.rb:144
 msgid "The request failed."
 msgstr "أخفق الطلب."
 
-#: lib/preferences_dialog.rb:161 lib/preferences_dialog.rb:174
+#: lib/preferences_dialog.rb:157 lib/preferences_dialog.rb:170
 msgid "The autostart request failed."
 msgstr "أخفق طلب التشغيل الآلي."
 
@@ -236,12 +236,24 @@ msgstr "اخرُج"
 msgid "Keyboard Shortcuts"
 msgstr "ا_ختصارات لوحة المفاتيح"
 
-#: lib/util.rb:155 lib/util.rb:160
+#: lib/util.rb:112
+msgid "Allow running Forge Sparks on background."
+msgstr "اسمح بتشغيل «فورج سباركس» في الخلفية."
+
+#: lib/util.rb:112
+msgid "Allow running Forge Sparks on startup."
+msgstr "اسمح بتشغيل «فورج سباركس» عند بدء التشغيل."
+
+#: lib/util.rb:137
+msgid "Monitoring new notifications"
+msgstr "تُراقَب التنبيهات الجديدة"
+
+#: lib/util.rb:188 lib/util.rb:193
 msgid "now"
 msgstr "الآن"
 
 #. Translators: relative date
-#: lib/util.rb:163
+#: lib/util.rb:196
 msgid "%d minute ago"
 msgid_plural "%d minutes ago"
 msgstr[0] "منذ أقل من دقيقة"
@@ -252,7 +264,7 @@ msgstr[4] "منذ %d دقيقة"
 msgstr[5] "منذ %d دقيقة"
 
 #. Translators: relative date
-#: lib/util.rb:167
+#: lib/util.rb:200
 msgid "%d hour ago"
 msgid_plural "%d hours ago"
 msgstr[0] "منذ أقل من ساعة"
@@ -263,7 +275,7 @@ msgstr[4] "منذ %d ساعة"
 msgstr[5] "منذ %d ساعة"
 
 #. Translators: relative date
-#: lib/util.rb:172
+#: lib/util.rb:205 lib/util.rb:208
 msgid "yesterday"
 msgid_plural "%d days ago"
 msgstr[0] "اليوم"
@@ -274,7 +286,7 @@ msgstr[4] "منذ %d يومًا"
 msgstr[5] "منذ %d يوم"
 
 #. Translators: relative date
-#: lib/util.rb:177
+#: lib/util.rb:214
 msgid "%d week ago"
 msgid_plural "%d weeks ago"
 msgstr[0] "منذ أقل من أسبوع"
@@ -286,7 +298,7 @@ msgstr[5] "منذ %d أسبوع"
 
 #. Translators: relative date, %s is date formatted as "May 01"
 #. Translators: relative date, %s is date formatted as "01 May, 2022"
-#: lib/util.rb:181 lib/util.rb:184
+#: lib/util.rb:218 lib/util.rb:221
 msgid "on %s"
 msgstr "في %s"
 
@@ -295,51 +307,51 @@ msgstr "في %s"
 msgid "Forge Sparks"
 msgstr "فورج سباركس"
 
-#: lib/window.rb:298
+#: lib/window.rb:299
 msgid "Welcome to Forge Sparks"
 msgstr "أهلًا بك في «فورج سباركس»"
 
-#: lib/window.rb:309
+#: lib/window.rb:310
 msgid "Add Account…"
 msgstr "أضِف حسابًا…"
 
-#: lib/window.rb:350 lib/window.rb:365
+#: lib/window.rb:351 lib/window.rb:366
 msgid "Mark all as Read"
 msgstr "علِّم الكل كمقروء"
 
-#: lib/window.rb:401
+#: lib/window.rb:402
 msgid "No Notifications to Show"
 msgstr "لا توجد تنبيهات لعرضها"
 
-#: lib/window.rb:432
+#: lib/window.rb:433
 msgid "_Preferences"
 msgstr "ال_تفضيلات"
 
-#: lib/window.rb:433
+#: lib/window.rb:434
 msgid "_Accounts"
 msgstr "ال_حسابات"
 
-#: lib/window.rb:434
+#: lib/window.rb:435
 msgid "_Keyboard Shortcuts"
 msgstr "ا_ختصارات لوحة المفاتيح"
 
-#: lib/window.rb:435
+#: lib/window.rb:436
 msgid "About Forge Sparks"
 msgstr "عَنْ «فورج سباركس»"
 
-#: lib/window.rb:442
+#: lib/window.rb:443
 msgid "Quit"
 msgstr "اخرُج"
 
-#: lib/window.rb:454
+#: lib/window.rb:464
 msgid "Main Menu"
 msgstr "القائمة الرئيسة"
 
-#: lib/window.rb:636
+#: lib/window.rb:649
 msgid "Account %s authentication failed!"
 msgstr "تعذَّرت مصادقة الحساب %s!"
 
-#: lib/window.rb:637
+#: lib/window.rb:650
 msgid "The token may have been revoked or expired."
 msgstr "قد يكون الرمز ملغيًا أو انتهت صلاحيته."
 
@@ -359,12 +371,3 @@ msgid ""
 "This is a Ruby GTK4 and Libadwaita port of Forge Sparks, written against the "
 "original as its specification."
 msgstr ""
-
-#~ msgid "Allow running Forge Sparks on background."
-#~ msgstr "اسمح بتشغيل «فورج سباركس» في الخلفية."
-
-#~ msgid "Allow running Forge Sparks on startup."
-#~ msgstr "اسمح بتشغيل «فورج سباركس» عند بدء التشغيل."
-
-#~ msgid "Monitoring new notifications"
-#~ msgstr "تُراقَب التنبيهات الجديدة"
