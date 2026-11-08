@@ -32,15 +32,22 @@ just file-existence, it is behaviour parity too. The drive script's check
 count changed shape to 201 (the autostart steps now exercise a real D-Bus
 call, not a file-write stand-in) — still 0 failed.
 
-**Correction, this round:** the behaviour is fixed but `po/forge-sparks.pot`
+**Correction, previous round:** the behaviour was fixed but `po/forge-sparks.pot`
 was never re-extracted to add the three strings `0bcf2cc` put back into
-`lib/util.rb`, so the unit is not fully closed — see
-`.reports/component-parity.md` (now 22/23 on all four axes, not 23/23) and
-`.reports/accountability-ensurance.md` Finding 1. The 207-checks figure
-quoted earlier in this document (around commit `18f35e9`) predates the
+`lib/util.rb`, so the unit was not fully closed — see
+`.reports/component-parity.md` (22/23 on all four axes, not 23/23 at that
+point) and `.reports/accountability-ensurance.md` Finding 1. The 207-checks
+figure quoted earlier in this document (around commit `18f35e9`) predates the
 autostart rewrite and is not the current count; 201 is current and
 reproduced, see `.reports/test-parity.md` Finding on the 207-vs-201
 discrepancy.
+
+**Update, this round (`180f802`):** `po/update-catalogue.sh` was re-run and
+`po/forge-sparks.pot` now carries all three strings — confirmed by
+`.reports/translation-parity.md`'s re-run census (gap 0) and
+`.reports/component-parity.md` (now 23/23 on all four axes). 201/201 on
+`test/drive_window.rb` reproduced again live this round, unchanged by the
+catalogue regeneration (no Ruby source changed).
 
 Scan corroborating the reading below (clean `git archive origin/main`,
 `component-identification/scripts/component-scan.sh`, re-run for this

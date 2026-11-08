@@ -63,11 +63,16 @@ checker did real work — it ran a real grep and got a real, non-fabricated
 result — and still produced a false claim, because it checked the wrong
 file for the axis it was asserting.
 
-**Status: open.** Filed here rather than hand-corrected into the earlier
-pass, so the authorship trail stays intact. `.reports/component-parity.md`
-and `.reports/translation-parity.md` for this round both now say "22/23 on
-all four axes, 1/23 short on text" and name the fix (`po/update-catalogue.sh`
-or equivalent re-extraction).
+**Status: closed this round (`180f802`).** Filed here rather than
+hand-corrected into the earlier pass, so the authorship trail stays intact.
+`.reports/component-parity.md` and `.reports/translation-parity.md` as this
+round found them said "22/23 on all four axes, 1/23 short on text"; this
+round ran `nix develop --command po/update-catalogue.sh`, which added the
+three missing msgids to `po/forge-sparks.pot`, and both reports' re-run
+census now say 23/23 / 0 gaps. The underlying lesson stands regardless: the
+Text axis is measured against the `.pot`, never against a `lib/*.rb` grep,
+and a future pass should re-run the census rather than trust a prior
+report's count.
 
 ## Finding 2 (new this round) — a fabricated check count carried across three reports: "207/207" where both the live run and the commit's own message say 201
 
@@ -137,20 +142,29 @@ examples, 0 failures. **Closed**, confirmed by execution, not re-quoted.
 
 ## Verdict
 
-**Not clean.** Two open findings this round, both inside `.reports/`
-itself rather than in the port's source:
+**Clean as of this round's fixes (`180f802`).** Two findings were open at
+the start of this round, both inside `.reports/` itself rather than in the
+port's source, and both are now closed:
 
 1. A false "23/23, all four axes" / "present verbatim" claim that checked
    source code instead of the translation catalogue it was actually
    asserting something about (Finding 1) — the Text axis for the
-   background-portal unit is genuinely short by 3 msgids in
-   `po/forge-sparks.pot` today.
+   background-portal unit was short by 3 msgids in `po/forge-sparks.pot`.
+   **Closed this round** by regenerating the `.pot`; re-run census in
+   `.reports/translation-parity.md` and `.reports/component-parity.md`
+   confirms 0 gaps / 23 of 23 units.
 2. A fabricated-or-stale "207/207" drive-check count repeated across three
    report files, none of which independently executed the script against
    the commit they attached the number to (Finding 2) — the real,
    reproduced number for every commit since `0bcf2cc` is 201/201.
+   **Already corrected** in the previous round's rewritten reports, and
+   re-confirmed live this round (201/201, unaffected by the `.pot` change).
 
 The port's own code (`lib/`, `exe/`) is clean of excuse language and the
-background-portal behaviour fix is real. The false greens this round found
-are both in the parity ledger, which is exactly where this skill says to
-keep looking even after the source looks clean.
+background-portal behaviour fix is real. The false greens this round
+started with were both in the parity ledger, which is exactly where this
+skill says to keep looking even after the source looks clean — and the fix
+for a reports-only false green is to re-run the actual check, not just to
+edit the report's prose, which is what this round did (regenerated the
+`.pot`, then re-ran both the translation-parity census and the drive
+script before writing any of this down).
