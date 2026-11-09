@@ -44,3 +44,5 @@ RSpec.configure do |config|
     c.syntax = :expect
   end
 end
+require "forge/sparks/rb"
+
